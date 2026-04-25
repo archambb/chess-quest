@@ -1,0 +1,114 @@
+{
+  "Desert Sun": {
+    "name": "Desert Sun",
+    "description": "Unleash the fury of a scorching sun, evaporating all ice with divine heat. The battlefield cracks beneath its blaze.",
+    "cast_type": "instant",
+    "target_mode": null,
+    "target_rgb": null
+  },
+  "Flood": {
+    "name": "Flood",
+    "description": "Conjure a deluge in a cross-shaped surge, washing away pawns and entombing everyone else in a prison of frost.",
+    "cast_type": "targeted",
+    "target_mode": "square",
+    "target_rgb": [40, 120, 255]
+  },
+  "Granite Elf": {
+    "name": "Granite Elf",
+    "description": "An elven guardian of living stone answers your call. A chosen bishop hardens into an unyielding rook.",
+    "cast_type": "targeted",
+    "target_mode": "square",
+    "target_rgb": [140, 140, 140]
+  },
+  "Greed": {
+    "name": "Greed",
+    "description": "Like a moth to flame, your enemy will try to land on gold.",
+    "cast_type": "instant",
+    "target_mode": null,
+    "target_rgb": null
+  },
+  "Heal Pawns": {
+    "name": "Heal Pawns",
+    "description": "By sacred rite, lost footsoldiers rise anew upon the front lines - yet no spirit may return if it would doom a king.",
+    "cast_type": "instant",
+    "target_mode": null,
+    "target_rgb": null
+  },
+  "Ice Blast": {
+    "name": "Ice Blast",
+    "description": "From the north winds comes a howling curse - a glacial bolt freezes an entire column of the battlefield.",
+    "cast_type": "targeted",
+    "target_mode": "square",
+    "target_rgb": [0, 200, 255]
+  },
+  "Inspire Soldier": {
+    "name": "Inspire Soldier",
+    "description": "A chosen pawn hears the call of destiny. Bathed in valor, it ascends early into knighthood and charges forth.",
+    "cast_type": "targeted",
+    "target_mode": "square",
+    "target_rgb": [180, 255, 120]
+  },
+  "Meteor Shower": {
+    "name": "Meteor Shower",
+    "description": "Tear open the heavens and summon a barrage of flaming stones. The sky falls where you command, scorching all beneath.",
+    "cast_type": "targeted",
+    "target_mode": "quadrant",
+    "target_rgb": [255, 80, 80]
+  },
+  "Mirror Armies": {
+    "name": "Mirror Armies",
+    "description": "Invoke a spell of perfect symmetry. The battlefield bends toward balance as excess warriors vanish until both sides mirror one another.",
+    "cast_type": "instant",
+    "target_mode": null,
+    "target_rgb": null
+  },
+  "One With Light": {
+    "name": "One With Light",
+    "description": "Claim the white banner, and the battle turns anew in your favor.",
+    "cast_type": "instant",
+    "target_mode": null,
+    "target_rgb": null
+  },
+  "Orb of Premonition": {
+    "name": "Orb of Premonition",
+    "description": "Gaze into a shimmering sphere of fate and witness the optimal course - a vision of perfect strategy revealed.",
+    "cast_type": "instant",
+    "target_mode": null,
+    "target_rgb": null
+  },
+  "Sacrifice": {
+    "name": "Sacrifice",
+    "description": "Offer your queen upon the altar of gain. Her noble death empowers your ranks with two gifts of promotion.",
+    "cast_type": "instant",
+    "target_mode": null,
+    "target_rgb": null
+  },
+  "Shadow Step": {
+    "name": "Shadow Step",
+    "description": "Your king may step through the folds of shadow and mist, only to reappear in a safe haven beyond blade or spell.",
+    "cast_type": "targeted",
+    "target_mode": "square",
+    "target_rgb": [160, 80, 255]
+  },
+  "Summon Elf": {
+    "name": "Summon Elf",
+    "description": "Call forth a sylvan ally - a graceful bishop born of moonlight. But beware, it will not appear if it offends the sacred balance.",
+    "cast_type": "instant",
+    "target_mode": null,
+    "target_rgb": null
+  },
+  "Summon Undead Elves": {
+    "name": "Summon Undead Elves",
+    "description": "Through a forbidden rite, fallen bishops rise again as ghostly elves beside your king, provided the summoning does not threaten a monarch.",
+    "cast_type": "instant",
+    "target_mode": null,
+    "target_rgb": null
+  },
+  "Wind Storm": {
+    "name": "Wind Storm",
+    "description": "Summon a screaming gale from the west. All pieces - friend and foe - are cast one square eastward in chaotic disorder.",
+    "cast_type": "instant",
+    "target_mode": null,
+    "target_rgb": null
+  }
+}

@@ -1,0 +1,35 @@
+Animation and Art:
+    Chess Pieces
+        Build chess pieces
+        Build animations for all chess pieces
+        Build better knight and other "heavy piece" animations
+
+    Quest Cards
+        Rewards indicator
+
+    Items
+        Sword, orb, etc
+
+Design:
+    Items
+    More story quests
+
+Quest Cards:
+    Rewards
+
+Story:
+    Writing
+    Art
+    Sound
+    Music
+
+Chess game:
+    Music
+
+Library:
+    Book winning
+    Book choosing
+    Book downloading
+    Book editing
+    Book displaying in Library
+

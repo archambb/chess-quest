@@ -1,0 +1,41 @@
+# Python junk
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.env/
+.env
+
+# Builds/logs/temp
+build/
+dist/
+*.log
+*.tmp
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+
+# Scratch testing
+test/
+water_test/
+
+# Archives / backups
+*.zip
+archive/
+legacy/
+*/backup/
+*/archive/
+data/backup/
+
+# Third-party binaries / local installs
+engine/
+
+# Large game assets - keep out of first GitHub push
+assets/

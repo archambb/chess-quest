@@ -1,0 +1,666 @@
+{
+  "global": {
+    "knight_description": "A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.",
+    "style": "Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic."
+  },
+  "images": {
+    "Intro": [
+      {
+        "start_frame": 1,
+        "end_frame": 6,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows an aging king knighting a tall medieval knight in full plate armor and a long red cloak in a warm torchlit throne room, banners hanging on stone walls as the knight kneels."
+      }
+    ],
+    "Intro_return": [
+      {
+        "start_frame": 7,
+        "end_frame": 9,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows the same armored knight returning by ship to his homeland, standing on a dock at dusk as storm clouds gather over a distant castle where the wounded king calls for aid."
+      }
+    ],
+    "Tutorial": [
+      {
+        "start_frame": 10,
+        "end_frame": 10,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a stylized overhead battle-map with a chessboard and small pixel icons for bombs and ice spells, while the armored knight stands at the edge of the board, learning how to fight."
+      }
+    ],
+    "Stone_Plead_1": [
+      {
+        "start_frame": 11,
+        "end_frame": 11,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows the armored knight confronting a terrified stone wizard inside a rocky hall, the wizard on his knees with shackles of faint magic while the knight looms over him with a drawn sword."
+      }
+    ],
+    "Stone_Plead_2": [
+      {
+        "start_frame": 12,
+        "end_frame": 12,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows the stone wizard gesturing fearfully toward a looming unseen master while the armored knight listens, sword lowered slightly but still ready."
+      }
+    ],
+    "Stone_Plead_3": [
+      {
+        "start_frame": 13,
+        "end_frame": 13,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows the stone wizard confessing about the knight’s missing family, pointing toward a dark archway while the armored knight stiffens in shock and anger."
+      }
+    ],
+    "Stone_Death": [
+      {
+        "start_frame": 14,
+        "end_frame": 14,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows the armored knight delivering a final execution stroke to the stone wizard on a bare stone platform, no distractions, the wizard collapsing as the red cloak flares dramatically."
+      }
+    ],
+    "Stone_Spare": [
+      {
+        "start_frame": 15,
+        "end_frame": 15,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows the armored knight sparing the stone wizard, lowering the sword and pointing toward the exit while a glowing boulder-shaped spell sigil appears between them as a reluctant pact."
+      }
+    ],
+    "Stone_Run_Away": [
+      {
+        "start_frame": 17,
+        "end_frame": 17,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows the armored knight turning and leaving the stone chamber at speed, cloak trailing behind, while the stone wizard shrinks into the darkness among broken pillars."
+      }
+    ],
+    "Return_to_stone": [
+      {
+        "start_frame": 19,
+        "end_frame": 21,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows the armored knight facing the stone wizard again outside a ruined fortress, sword leveled as the mocking wizard stands atop shattered masonry with storm clouds overhead."
+      }
+    ],
+    "Misty_Fens_First_Visit": [
+      {
+        "start_frame": 22,
+        "end_frame": 36,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak arriving at an eerie swamp called the Misty Fens, with knee-deep murky water, twisted dead trees, and heavy rolling fog, pausing to take in the danger of the place while a hunched swamp sorcerer wielding a crooked wooden staff, partly wrapped in moss and dripping water watches from the distance."
+      }
+    ],
+    "Misty_Fens_Failure": [
+      {
+        "start_frame": 37,
+        "end_frame": 41,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak and a small band of soldiers being overwhelmed in an eerie swamp called the Misty Fens, with knee-deep murky water, twisted dead trees, and heavy rolling fog, forced to retreat while a hunched swamp sorcerer wielding a crooked wooden staff, partly wrapped in moss and dripping water stands victorious in the background."
+      }
+    ],
+    "Misty_Fens_Win": [
+      {
+        "start_frame": 42,
+        "end_frame": 45,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak standing in a guarded stance in an eerie swamp called the Misty Fens, with knee-deep murky water, twisted dead trees, and heavy rolling fog, victorious as a hunched swamp sorcerer wielding a crooked wooden staff, partly wrapped in moss and dripping water kneels or lies defeated nearby."
+      }
+    ],
+    "Misty_Fens_Kill": [
+      {
+        "start_frame": 46,
+        "end_frame": 46,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak delivering a final, decisive blow to a hunched swamp sorcerer wielding a crooked wooden staff, partly wrapped in moss and dripping water in an eerie swamp called the Misty Fens, with knee-deep murky water, twisted dead trees, and heavy rolling fog, capturing the moment of execution."
+      }
+    ],
+    "Misty_Fens_Release": [
+      {
+        "start_frame": 47,
+        "end_frame": 47,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak lowering their weapon and sparing a hunched swamp sorcerer wielding a crooked wooden staff, partly wrapped in moss and dripping water in an eerie swamp called the Misty Fens, with knee-deep murky water, twisted dead trees, and heavy rolling fog, as a glowing spell sigil appears between them to seal a pact."
+      }
+    ],
+    "Misty_Fens_Return": [
+      {
+        "start_frame": 48,
+        "end_frame": 50,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak returning to an eerie swamp called the Misty Fens, with knee-deep murky water, twisted dead trees, and heavy rolling fog later in the journey, moving with familiarity and hard-won confidence while signs of past battle remain in the environment."
+      }
+    ],
+    "Ember_Spire_First_Visit": [
+      {
+        "start_frame": 51,
+        "end_frame": 56,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak arriving at a volcanic mountain fortress called the Ember Spire, with jagged black rock and bright rivers of lava, pausing to take in the danger of the place while a wild-eyed fire mage with singed robes, molten cracks glowing across his staff and armor watches from the distance."
+      }
+    ],
+    "Ember_Spire_Failure": [
+      {
+        "start_frame": 57,
+        "end_frame": 59,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak and a small band of soldiers being overwhelmed in a volcanic mountain fortress called the Ember Spire, with jagged black rock and bright rivers of lava, forced to retreat while a wild-eyed fire mage with singed robes, molten cracks glowing across his staff and armor stands victorious in the background."
+      }
+    ],
+    "Ember_Spire_Win": [
+      {
+        "start_frame": 60,
+        "end_frame": 62,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak standing in a guarded stance in a volcanic mountain fortress called the Ember Spire, with jagged black rock and bright rivers of lava, victorious as a wild-eyed fire mage with singed robes, molten cracks glowing across his staff and armor kneels or lies defeated nearby."
+      }
+    ],
+    "Ember_Spire_Kill": [
+      {
+        "start_frame": 63,
+        "end_frame": 63,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak delivering a final, decisive blow to a wild-eyed fire mage with singed robes, molten cracks glowing across his staff and armor in a volcanic mountain fortress called the Ember Spire, with jagged black rock and bright rivers of lava, capturing the moment of execution."
+      }
+    ],
+    "Ember_Spire_Release": [
+      {
+        "start_frame": 64,
+        "end_frame": 64,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak lowering their weapon and sparing a wild-eyed fire mage with singed robes, molten cracks glowing across his staff and armor in a volcanic mountain fortress called the Ember Spire, with jagged black rock and bright rivers of lava, as a glowing spell sigil appears between them to seal a pact."
+      }
+    ],
+    "Ember_Spire_Return": [
+      {
+        "start_frame": 65,
+        "end_frame": 67,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak returning to a volcanic mountain fortress called the Ember Spire, with jagged black rock and bright rivers of lava later in the journey, moving with familiarity and hard-won confidence while signs of past battle remain in the environment."
+      }
+    ],
+    "Emerald_Grove_First_Visit": [
+      {
+        "start_frame": 68,
+        "end_frame": 73,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak arriving at a lush enchanted forest called the Emerald Grove, with towering ancient trees, glowing plants, and drifting pollen motes, pausing to take in the danger of the place while a calm but dangerous forest druid, crowned with branches and leaves, channeling nature magic watches from the distance."
+      }
+    ],
+    "Emerald_Grove_Failure": [
+      {
+        "start_frame": 74,
+        "end_frame": 76,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak and a small band of soldiers being overwhelmed in a lush enchanted forest called the Emerald Grove, with towering ancient trees, glowing plants, and drifting pollen motes, forced to retreat while a calm but dangerous forest druid, crowned with branches and leaves, channeling nature magic stands victorious in the background."
+      }
+    ],
+    "Emerald_Grove_Win": [
+      {
+        "start_frame": 77,
+        "end_frame": 79,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak standing in a guarded stance in a lush enchanted forest called the Emerald Grove, with towering ancient trees, glowing plants, and drifting pollen motes, victorious as a calm but dangerous forest druid, crowned with branches and leaves, channeling nature magic kneels or lies defeated nearby."
+      }
+    ],
+    "Emerald_Grove_Kill": [
+      {
+        "start_frame": 80,
+        "end_frame": 80,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak delivering a final, decisive blow to a calm but dangerous forest druid, crowned with branches and leaves, channeling nature magic in a lush enchanted forest called the Emerald Grove, with towering ancient trees, glowing plants, and drifting pollen motes, capturing the moment of execution."
+      }
+    ],
+    "Emerald_Grove_Release": [
+      {
+        "start_frame": 81,
+        "end_frame": 81,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak lowering their weapon and sparing a calm but dangerous forest druid, crowned with branches and leaves, channeling nature magic in a lush enchanted forest called the Emerald Grove, with towering ancient trees, glowing plants, and drifting pollen motes, as a glowing spell sigil appears between them to seal a pact."
+      }
+    ],
+    "Emerald_Grove_Return": [
+      {
+        "start_frame": 82,
+        "end_frame": 83,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak returning to a lush enchanted forest called the Emerald Grove, with towering ancient trees, glowing plants, and drifting pollen motes later in the journey, moving with familiarity and hard-won confidence while signs of past battle remain in the environment."
+      }
+    ],
+    "Shadow_Realms_First_Visit": [
+      {
+        "start_frame": 84,
+        "end_frame": 89,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak arriving at a warped realm of shadows, with floating stone platforms, torn banners, and a horizon fading into darkness, pausing to take in the danger of the place while a looming shadow warlock, cloaked in tattered darkness with burning eyes watches from the distance."
+      }
+    ],
+    "Shadow_Realms_Failure": [
+      {
+        "start_frame": 90,
+        "end_frame": 92,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak and a small band of soldiers being overwhelmed in a warped realm of shadows, with floating stone platforms, torn banners, and a horizon fading into darkness, forced to retreat while a looming shadow warlock, cloaked in tattered darkness with burning eyes stands victorious in the background."
+      }
+    ],
+    "Shadow_Realms_Win": [
+      {
+        "start_frame": 93,
+        "end_frame": 95,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak standing in a guarded stance in a warped realm of shadows, with floating stone platforms, torn banners, and a horizon fading into darkness, victorious as a looming shadow warlock, cloaked in tattered darkness with burning eyes kneels or lies defeated nearby."
+      }
+    ],
+    "Shadow_Realms_Kill": [
+      {
+        "start_frame": 96,
+        "end_frame": 96,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak delivering a final, decisive blow to a looming shadow warlock, cloaked in tattered darkness with burning eyes in a warped realm of shadows, with floating stone platforms, torn banners, and a horizon fading into darkness, capturing the moment of execution."
+      }
+    ],
+    "Shadow_Realms_Release": [
+      {
+        "start_frame": 97,
+        "end_frame": 97,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak lowering their weapon and sparing a looming shadow warlock, cloaked in tattered darkness with burning eyes in a warped realm of shadows, with floating stone platforms, torn banners, and a horizon fading into darkness, as a glowing spell sigil appears between them to seal a pact."
+      }
+    ],
+    "Shadow_Realms_Return": [
+      {
+        "start_frame": 98,
+        "end_frame": 99,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak returning to a warped realm of shadows, with floating stone platforms, torn banners, and a horizon fading into darkness later in the journey, moving with familiarity and hard-won confidence while signs of past battle remain in the environment."
+      }
+    ],
+    "Frozen_Lake_First_Visit": [
+      {
+        "start_frame": 100,
+        "end_frame": 105,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak arriving at a windswept frozen lake, with cracked ice, jagged glaciers, and swirling snow, pausing to take in the danger of the place while a tall ice mage in heavy furs and frost-covered armor, wielding a staff crowned with a floating ice crystal watches from the distance."
+      }
+    ],
+    "Frozen_Lake_Failure": [
+      {
+        "start_frame": 106,
+        "end_frame": 108,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak and a small band of soldiers being overwhelmed in a windswept frozen lake, with cracked ice, jagged glaciers, and swirling snow, forced to retreat while a tall ice mage in heavy furs and frost-covered armor, wielding a staff crowned with a floating ice crystal stands victorious in the background."
+      }
+    ],
+    "Frozen_Lake_Win": [
+      {
+        "start_frame": 109,
+        "end_frame": 111,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak standing in a guarded stance in a windswept frozen lake, with cracked ice, jagged glaciers, and swirling snow, victorious as a tall ice mage in heavy furs and frost-covered armor, wielding a staff crowned with a floating ice crystal kneels or lies defeated nearby."
+      }
+    ],
+    "Frozen_Lake_Kill": [
+      {
+        "start_frame": 112,
+        "end_frame": 112,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak delivering a final, decisive blow to a tall ice mage in heavy furs and frost-covered armor, wielding a staff crowned with a floating ice crystal in a windswept frozen lake, with cracked ice, jagged glaciers, and swirling snow, capturing the moment of execution."
+      }
+    ],
+    "Frozen_Lake_Release": [
+      {
+        "start_frame": 113,
+        "end_frame": 113,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak lowering their weapon and sparing a tall ice mage in heavy furs and frost-covered armor, wielding a staff crowned with a floating ice crystal in a windswept frozen lake, with cracked ice, jagged glaciers, and swirling snow, as a glowing spell sigil appears between them to seal a pact."
+      }
+    ],
+    "Frozen_Lake_Return": [
+      {
+        "start_frame": 114,
+        "end_frame": 115,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak returning to a windswept frozen lake, with cracked ice, jagged glaciers, and swirling snow later in the journey, moving with familiarity and hard-won confidence while signs of past battle remain in the environment."
+      }
+    ],
+    "Storm_Reaches_First_Visit": [
+      {
+        "start_frame": 116,
+        "end_frame": 121,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak arriving at a storm-lashed mountain range called the Storm Reaches, with jagged peaks, lightning, and gale-force winds, pausing to take in the danger of the place while a stormcaller mage whose cloak whips in the gale, holding a staff crackling with lightning watches from the distance."
+      }
+    ],
+    "Storm_Reaches_Failure": [
+      {
+        "start_frame": 122,
+        "end_frame": 124,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak and a small band of soldiers being overwhelmed in a storm-lashed mountain range called the Storm Reaches, with jagged peaks, lightning, and gale-force winds, forced to retreat while a stormcaller mage whose cloak whips in the gale, holding a staff crackling with lightning stands victorious in the background."
+      }
+    ],
+    "Storm_Reaches_Win": [
+      {
+        "start_frame": 125,
+        "end_frame": 127,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak standing in a guarded stance in a storm-lashed mountain range called the Storm Reaches, with jagged peaks, lightning, and gale-force winds, victorious as a stormcaller mage whose cloak whips in the gale, holding a staff crackling with lightning kneels or lies defeated nearby."
+      }
+    ],
+    "Storm_Reaches_Kill": [
+      {
+        "start_frame": 128,
+        "end_frame": 128,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak delivering a final, decisive blow to a stormcaller mage whose cloak whips in the gale, holding a staff crackling with lightning in a storm-lashed mountain range called the Storm Reaches, with jagged peaks, lightning, and gale-force winds, capturing the moment of execution."
+      }
+    ],
+    "Storm_Reaches_Release": [
+      {
+        "start_frame": 129,
+        "end_frame": 129,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak lowering their weapon and sparing a stormcaller mage whose cloak whips in the gale, holding a staff crackling with lightning in a storm-lashed mountain range called the Storm Reaches, with jagged peaks, lightning, and gale-force winds, as a glowing spell sigil appears between them to seal a pact."
+      }
+    ],
+    "Storm_Reaches_Return": [
+      {
+        "start_frame": 130,
+        "end_frame": 131,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak returning to a storm-lashed mountain range called the Storm Reaches, with jagged peaks, lightning, and gale-force winds later in the journey, moving with familiarity and hard-won confidence while signs of past battle remain in the environment."
+      }
+    ],
+    "Grave_Hollow_First_Visit": [
+      {
+        "start_frame": 132,
+        "end_frame": 137,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak arriving at a haunted necropolis called Grave Hollow, with crooked tombstones, leaning mausoleums, and drifting ghostly wisps, pausing to take in the danger of the place while a skeletal necromancer in ragged robes, surrounded by faintly glowing skulls watches from the distance."
+      }
+    ],
+    "Grave_Hollow_Failure": [
+      {
+        "start_frame": 138,
+        "end_frame": 140,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak and a small band of soldiers being overwhelmed in a haunted necropolis called Grave Hollow, with crooked tombstones, leaning mausoleums, and drifting ghostly wisps, forced to retreat while a skeletal necromancer in ragged robes, surrounded by faintly glowing skulls stands victorious in the background."
+      }
+    ],
+    "Grave_Hollow_Win": [
+      {
+        "start_frame": 141,
+        "end_frame": 143,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak standing in a guarded stance in a haunted necropolis called Grave Hollow, with crooked tombstones, leaning mausoleums, and drifting ghostly wisps, victorious as a skeletal necromancer in ragged robes, surrounded by faintly glowing skulls kneels or lies defeated nearby."
+      }
+    ],
+    "Grave_Hollow_Kill": [
+      {
+        "start_frame": 144,
+        "end_frame": 144,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak delivering a final, decisive blow to a skeletal necromancer in ragged robes, surrounded by faintly glowing skulls in a haunted necropolis called Grave Hollow, with crooked tombstones, leaning mausoleums, and drifting ghostly wisps, capturing the moment of execution."
+      }
+    ],
+    "Grave_Hollow_Release": [
+      {
+        "start_frame": 145,
+        "end_frame": 145,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak lowering their weapon and sparing a skeletal necromancer in ragged robes, surrounded by faintly glowing skulls in a haunted necropolis called Grave Hollow, with crooked tombstones, leaning mausoleums, and drifting ghostly wisps, as a glowing spell sigil appears between them to seal a pact."
+      }
+    ],
+    "Grave_Hollow_Return": [
+      {
+        "start_frame": 146,
+        "end_frame": 147,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak returning to a haunted necropolis called Grave Hollow, with crooked tombstones, leaning mausoleums, and drifting ghostly wisps later in the journey, moving with familiarity and hard-won confidence while signs of past battle remain in the environment."
+      }
+    ],
+    "Shifting_Sands_First_Visit": [
+      {
+        "start_frame": 148,
+        "end_frame": 153,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak arriving at a vast desert called the Shifting Sands, with towering dunes, broken obelisks, and sandstorms in the distance, pausing to take in the danger of the place while a desert sorcerer with flowing cloth wrappings and a staff topped with a swirling sand orb watches from the distance."
+      }
+    ],
+    "Shifting_Sands_Failure": [
+      {
+        "start_frame": 154,
+        "end_frame": 156,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak and a small band of soldiers being overwhelmed in a vast desert called the Shifting Sands, with towering dunes, broken obelisks, and sandstorms in the distance, forced to retreat while a desert sorcerer with flowing cloth wrappings and a staff topped with a swirling sand orb stands victorious in the background."
+      }
+    ],
+    "Shifting_Sands_Win": [
+      {
+        "start_frame": 157,
+        "end_frame": 159,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak standing in a guarded stance in a vast desert called the Shifting Sands, with towering dunes, broken obelisks, and sandstorms in the distance, victorious as a desert sorcerer with flowing cloth wrappings and a staff topped with a swirling sand orb kneels or lies defeated nearby."
+      }
+    ],
+    "Shifting_Sands_Kill": [
+      {
+        "start_frame": 160,
+        "end_frame": 160,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak delivering a final, decisive blow to a desert sorcerer with flowing cloth wrappings and a staff topped with a swirling sand orb in a vast desert called the Shifting Sands, with towering dunes, broken obelisks, and sandstorms in the distance, capturing the moment of execution."
+      }
+    ],
+    "Shifting_Sands_Release": [
+      {
+        "start_frame": 161,
+        "end_frame": 161,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak lowering their weapon and sparing a desert sorcerer with flowing cloth wrappings and a staff topped with a swirling sand orb in a vast desert called the Shifting Sands, with towering dunes, broken obelisks, and sandstorms in the distance, as a glowing spell sigil appears between them to seal a pact."
+      }
+    ],
+    "Shifting_Sands_Return": [
+      {
+        "start_frame": 162,
+        "end_frame": 163,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak returning to a vast desert called the Shifting Sands, with towering dunes, broken obelisks, and sandstorms in the distance later in the journey, moving with familiarity and hard-won confidence while signs of past battle remain in the environment."
+      }
+    ],
+    "Iron_Keep_First_Visit": [
+      {
+        "start_frame": 164,
+        "end_frame": 169,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak arriving at a brutal fortress called the Iron Keep, with high stone walls, iron spikes, and a massive gatehouse, pausing to take in the danger of the place while a massive armored warlord, half-knight, half-sorcerer, wielding a greatsword that glows with runes watches from the distance."
+      }
+    ],
+    "Iron_Keep_Failure": [
+      {
+        "start_frame": 170,
+        "end_frame": 172,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak and a small band of soldiers being overwhelmed in a brutal fortress called the Iron Keep, with high stone walls, iron spikes, and a massive gatehouse, forced to retreat while a massive armored warlord, half-knight, half-sorcerer, wielding a greatsword that glows with runes stands victorious in the background."
+      }
+    ],
+    "Iron_Keep_Win": [
+      {
+        "start_frame": 173,
+        "end_frame": 175,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak standing in a guarded stance in a brutal fortress called the Iron Keep, with high stone walls, iron spikes, and a massive gatehouse, victorious as a massive armored warlord, half-knight, half-sorcerer, wielding a greatsword that glows with runes kneels or lies defeated nearby."
+      }
+    ],
+    "Iron_Keep_Kill": [
+      {
+        "start_frame": 176,
+        "end_frame": 176,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak delivering a final, decisive blow to a massive armored warlord, half-knight, half-sorcerer, wielding a greatsword that glows with runes in a brutal fortress called the Iron Keep, with high stone walls, iron spikes, and a massive gatehouse, capturing the moment of execution."
+      }
+    ],
+    "Iron_Keep_Release": [
+      {
+        "start_frame": 177,
+        "end_frame": 177,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak lowering their weapon and sparing a massive armored warlord, half-knight, half-sorcerer, wielding a greatsword that glows with runes in a brutal fortress called the Iron Keep, with high stone walls, iron spikes, and a massive gatehouse, as a glowing spell sigil appearing as a sword emblem appears between them to seal a pact."
+      }
+    ],
+    "Iron_Keep_Return": [
+      {
+        "start_frame": 178,
+        "end_frame": 179,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak returning to a brutal fortress called the Iron Keep, with high stone walls, iron spikes, and a massive gatehouse later in the journey, moving with familiarity and hard-won confidence while signs of past battle remain in the environment."
+      }
+    ],
+    "Astral_Gate_First_Visit": [
+      {
+        "start_frame": 180,
+        "end_frame": 185,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak arriving at a floating platform before the Astral Gate, an enormous ring of runes suspended in a star-filled void, pausing to take in the danger of the place while an astral archmage in flowing star-patterned robes, holding a staff that contains a miniature galaxy watches from the distance."
+      }
+    ],
+    "Astral_Gate_Failure": [
+      {
+        "start_frame": 186,
+        "end_frame": 188,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak and a small band of soldiers being overwhelmed in a floating platform before the Astral Gate, an enormous ring of runes suspended in a star-filled void, forced to retreat while an astral archmage in flowing star-patterned robes, holding a staff that contains a miniature galaxy stands victorious in the background."
+      }
+    ],
+    "Astral_Gate_Win": [
+      {
+        "start_frame": 189,
+        "end_frame": 191,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak standing in a guarded stance in a floating platform before the Astral Gate, an enormous ring of runes suspended in a star-filled void, victorious as an astral archmage in flowing star-patterned robes, holding a staff that contains a miniature galaxy kneels or lies defeated nearby."
+      }
+    ],
+    "Astral_Gate_Kill": [
+      {
+        "start_frame": 192,
+        "end_frame": 192,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak delivering a final, decisive blow to an astral archmage in flowing star-patterned robes, holding a staff that contains a miniature galaxy in a floating platform before the Astral Gate, an enormous ring of runes suspended in a star-filled void, capturing the moment of execution."
+      }
+    ],
+    "Astral_Gate_Release": [
+      {
+        "start_frame": 193,
+        "end_frame": 193,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak lowering their weapon and sparing an astral archmage in flowing star-patterned robes, holding a staff that contains a miniature galaxy in a floating platform before the Astral Gate, an enormous ring of runes suspended in a star-filled void, as a glowing spell sigil appears between them to seal a pact."
+      }
+    ],
+    "Astral_Gate_Return": [
+      {
+        "start_frame": 194,
+        "end_frame": 195,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak returning to a floating platform before the Astral Gate, an enormous ring of runes suspended in a star-filled void later in the journey, moving with familiarity and hard-won confidence while signs of past battle remain in the environment."
+      }
+    ],
+    "Verdant_Citadel_First_Visit": [
+      {
+        "start_frame": 196,
+        "end_frame": 201,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak arriving at a living fortress called the Verdant Citadel, overgrown with vines, trees, and flowers that wrap around stone towers, pausing to take in the danger of the place while a towering guardian druid made of bark and vine, with glowing green eyes watches from the distance."
+      }
+    ],
+    "Verdant_Citadel_Failure": [
+      {
+        "start_frame": 202,
+        "end_frame": 204,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak and a small band of soldiers being overwhelmed in a living fortress called the Verdant Citadel, overgrown with vines, trees, and flowers that wrap around stone towers, forced to retreat while a towering guardian druid made of bark and vine, with glowing green eyes stands victorious in the background."
+      }
+    ],
+    "Verdant_Citadel_Win": [
+      {
+        "start_frame": 205,
+        "end_frame": 207,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak standing in a guarded stance in a living fortress called the Verdant Citadel, overgrown with vines, trees, and flowers that wrap around stone towers, victorious as a towering guardian druid made of bark and vine, with glowing green eyes kneels or lies defeated nearby."
+      }
+    ],
+    "Verdant_Citadel_Kill": [
+      {
+        "start_frame": 208,
+        "end_frame": 208,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak delivering a final, decisive blow to a towering guardian druid made of bark and vine, with glowing green eyes in a living fortress called the Verdant Citadel, overgrown with vines, trees, and flowers that wrap around stone towers, capturing the moment of execution."
+      }
+    ],
+    "Verdant_Citadel_Release": [
+      {
+        "start_frame": 209,
+        "end_frame": 209,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak lowering their weapon and sparing a towering guardian druid made of bark and vine, with glowing green eyes in a living fortress called the Verdant Citadel, overgrown with vines, trees, and flowers that wrap around stone towers, as a glowing spell sigil appears between them to seal a pact."
+      }
+    ],
+    "Verdant_Citadel_Return": [
+      {
+        "start_frame": 210,
+        "end_frame": 211,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak returning to a living fortress called the Verdant Citadel, overgrown with vines, trees, and flowers that wrap around stone towers later in the journey, moving with familiarity and hard-won confidence while signs of past battle remain in the environment."
+      }
+    ],
+    "Crimson_Court_First_Visit": [
+      {
+        "start_frame": 212,
+        "end_frame": 217,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak arriving at a gothic palace called the Crimson Court, with tall arched windows, blood-red banners, and candlelit marble floors, pausing to take in the danger of the place while a refined vampire noble with an ornate cane-sword and a high-collared coat watches from the distance."
+      }
+    ],
+    "Crimson_Court_Failure": [
+      {
+        "start_frame": 218,
+        "end_frame": 220,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak and a small band of soldiers being overwhelmed in a gothic palace called the Crimson Court, with tall arched windows, blood-red banners, and candlelit marble floors, forced to retreat while a refined vampire noble with an ornate cane-sword and a high-collared coat stands victorious in the background."
+      }
+    ],
+    "Crimson_Court_Win": [
+      {
+        "start_frame": 221,
+        "end_frame": 223,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak standing in a guarded stance in a gothic palace called the Crimson Court, with tall arched windows, blood-red banners, and candlelit marble floors, victorious as a refined vampire noble with an ornate cane-sword and a high-collared coat kneels or lies defeated nearby."
+      }
+    ],
+    "Crimson_Court_Kill": [
+      {
+        "start_frame": 224,
+        "end_frame": 224,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak delivering a final, decisive blow to a refined vampire noble with an ornate cane-sword and a high-collared coat in a gothic palace called the Crimson Court, with tall arched windows, blood-red banners, and candlelit marble floors, capturing the moment of execution."
+      }
+    ],
+    "Crimson_Court_Release": [
+      {
+        "start_frame": 225,
+        "end_frame": 225,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak lowering their weapon and sparing a refined vampire noble with an ornate cane-sword and a high-collared coat in a gothic palace called the Crimson Court, with tall arched windows, blood-red banners, and candlelit marble floors, as a glowing spell sigil appears between them to seal a pact."
+      }
+    ],
+    "Crimson_Court_Return": [
+      {
+        "start_frame": 226,
+        "end_frame": 227,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak returning to a gothic palace called the Crimson Court, with tall arched windows, blood-red banners, and candlelit marble floors later in the journey, moving with familiarity and hard-won confidence while signs of past battle remain in the environment."
+      }
+    ],
+    "Sanctuary_of_Light_First_Visit": [
+      {
+        "start_frame": 228,
+        "end_frame": 233,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak arriving at a radiant cathedral called the Sanctuary of Light, with towering stained glass windows and glowing holy sigils, pausing to take in the danger of the place while a radiant high priest in luminous armor and robes, holding a staff topped with a blazing sun sigil watches from the distance."
+      }
+    ],
+    "Sanctuary_of_Light_Failure": [
+      {
+        "start_frame": 234,
+        "end_frame": 236,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak and a small band of soldiers being overwhelmed in a radiant cathedral called the Sanctuary of Light, with towering stained glass windows and glowing holy sigils, forced to retreat while a radiant high priest in luminous armor and robes, holding a staff topped with a blazing sun sigil stands victorious in the background."
+      }
+    ],
+    "Sanctuary_of_Light_Win": [
+      {
+        "start_frame": 237,
+        "end_frame": 239,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak standing in a guarded stance in a radiant cathedral called the Sanctuary of Light, with towering stained glass windows and glowing holy sigils, victorious as a radiant high priest in luminous armor and robes, holding a staff topped with a blazing sun sigil kneels or lies defeated nearby."
+      }
+    ],
+    "Sanctuary_of_Light_Kill": [
+      {
+        "start_frame": 240,
+        "end_frame": 240,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak delivering a final, decisive blow to a radiant high priest in luminous armor and robes, holding a staff topped with a blazing sun sigil in a radiant cathedral called the Sanctuary of Light, with towering stained glass windows and glowing holy sigils, capturing the moment of execution."
+      }
+    ],
+    "Sanctuary_of_Light_Release": [
+      {
+        "start_frame": 241,
+        "end_frame": 241,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak lowering their weapon and sparing a radiant high priest in luminous armor and robes, holding a staff topped with a blazing sun sigil in a radiant cathedral called the Sanctuary of Light, with towering stained glass windows and glowing holy sigils, as a glowing spell sigil appears between them to seal a pact."
+      }
+    ],
+    "Sanctuary_of_Light_Return": [
+      {
+        "start_frame": 242,
+        "end_frame": 243,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak returning to a radiant cathedral called the Sanctuary of Light, with towering stained glass windows and glowing holy sigils later in the journey, moving with familiarity and hard-won confidence while signs of past battle remain in the environment."
+      }
+    ],
+    "Dreamland_First_Visit": [
+      {
+        "start_frame": 244,
+        "end_frame": 249,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak arriving at a surreal dreamscape called Dreamland, with floating islands, impossible stairways, and drifting constellations, pausing to take in the danger of the place while a mysterious dream-weaver with a mask-like face, holding a staff that trails stardust watches from the distance."
+      }
+    ],
+    "Dreamland_Failure": [
+      {
+        "start_frame": 250,
+        "end_frame": 252,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak and a small band of soldiers being overwhelmed in a surreal dreamscape called Dreamland, with floating islands, impossible stairways, and drifting constellations, forced to retreat while a mysterious dream-weaver with a mask-like face, holding a staff that trails stardust stands victorious in the background."
+      }
+    ],
+    "Dreamland_Win": [
+      {
+        "start_frame": 253,
+        "end_frame": 255,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak standing in a guarded stance in a surreal dreamscape called Dreamland, with floating islands, impossible stairways, and drifting constellations, victorious as a mysterious dream-weaver with a mask-like face, holding a staff that trails stardust kneels or lies defeated nearby."
+      }
+    ],
+    "Dreamland_Kill": [
+      {
+        "start_frame": 256,
+        "end_frame": 256,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak delivering a final, decisive blow to a mysterious dream-weaver with a mask-like face, holding a staff that trails stardust in a surreal dreamscape called Dreamland, with floating islands, impossible stairways, and drifting constellations, capturing the moment of execution."
+      }
+    ],
+    "Dreamland_Release": [
+      {
+        "start_frame": 257,
+        "end_frame": 257,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak lowering their weapon and sparing a mysterious dream-weaver with a mask-like face, holding a staff that trails stardust in a surreal dreamscape called Dreamland, with floating islands, impossible stairways, and drifting constellations, as a glowing spell sigil of star-pointed stars appears between them to seal a pact."
+      }
+    ],
+    "Dreamland_Return": [
+      {
+        "start_frame": 258,
+        "end_frame": 259,
+        "prompt": "The Knight Description: A tall medieval knight in full plate armor, dinged and battle-worn gray steel, fully enclosed helmet with a narrow visor slit, wearing a very long flowing red commander’s cloak that reaches nearly to the ground, heavy plate pauldrons, chainmail underlayer, realistic weight and bulk, no visible face.\nStyle: Boxy pixel-art style, thick chunky pixel clusters, slightly gritty textures, warm tones, dramatic directional lighting, subtle color banding, classic 16-bit fantasy aesthetic.\nScene: The scene shows a tall medieval knight in full plate armor and a long red cloak returning to a surreal dreamscape called Dreamland, with floating islands, impossible stairways, and drifting constellations later in the journey, moving with familiarity and hard-won confidence while signs of past battle remain in the environment."
+      }
+    ]
+  }
+}

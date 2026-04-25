@@ -1,0 +1,447 @@
+{
+  "Intro": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "Intro_return": [
+    7,
+    8,
+    9
+  ],
+  "Tutorial": [
+    10
+  ],
+  "Stone_Plead_1": [
+    11
+  ],
+  "Stone_Plead_2": [
+    12
+  ],
+  "Stone_Plead_3": [
+    13
+  ],
+  "Stone_Death": [
+    14
+  ],
+  "Stone_Spare": [
+    15
+  ],
+  "Stone_Run_Away": [
+    17
+  ],
+  "Return_to_stone": [
+    19,
+    20,
+    21
+  ],
+  "Misty_Fens_First_Visit": [
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36
+  ],
+  "Misty_Fens_Failure": [
+    37,
+    38,
+    39,
+    40,
+    41
+  ],
+  "Misty_Fens_Win": [
+    42,
+    43,
+    44,
+    45
+  ],
+  "Misty_Fens_Kill": [
+    46
+  ],
+  "Misty_Fens_Release": [
+    47
+  ],
+  "Misty_Fens_Return": [
+    48,
+    49,
+    50
+  ],
+  "Ember_Spire_First_Visit": [
+    51,
+    52,
+    53,
+    54,
+    55,
+    56
+  ],
+  "Ember_Spire_Failure": [
+    57,
+    58,
+    59
+  ],
+  "Ember_Spire_Win": [
+    60,
+    61,
+    62
+  ],
+  "Ember_Spire_Kill": [
+    63
+  ],
+  "Ember_Spire_Release": [
+    64
+  ],
+  "Ember_Spire_Return": [
+    65,
+    66,
+    67
+  ],
+  "Emerald_Grove_First_Visit": [
+    68,
+    69,
+    70,
+    71,
+    72,
+    73
+  ],
+  "Emerald_Grove_Failure": [
+    74,
+    75,
+    76
+  ],
+  "Emerald_Grove_Win": [
+    77,
+    78,
+    79
+  ],
+  "Emerald_Grove_Kill": [
+    80
+  ],
+  "Emerald_Grove_Release": [
+    81
+  ],
+  "Emerald_Grove_Return": [
+    82,
+    83
+  ],
+  "Shadow_Realms_First_Visit": [
+    84,
+    85,
+    86,
+    87,
+    88,
+    89
+  ],
+  "Shadow_Realms_Failure": [
+    90,
+    91,
+    92
+  ],
+  "Shadow_Realms_Win": [
+    93,
+    94,
+    95
+  ],
+  "Shadow_Realms_Kill": [
+    96
+  ],
+  "Shadow_Realms_Release": [
+    97
+  ],
+  "Shadow_Realms_Return": [
+    98,
+    99
+  ],
+  "Frozen_Lake_First_Visit": [
+    100,
+    101,
+    102,
+    103,
+    104,
+    105
+  ],
+  "Frozen_Lake_Failure": [
+    106,
+    107,
+    108
+  ],
+  "Frozen_Lake_Win": [
+    109,
+    110,
+    111
+  ],
+  "Frozen_Lake_Kill": [
+    112
+  ],
+  "Frozen_Lake_Release": [
+    113
+  ],
+  "Frozen_Lake_Return": [
+    114,
+    115
+  ],
+  "Storm_Reaches_First_Visit": [
+    116,
+    117,
+    118,
+    119,
+    120,
+    121
+  ],
+  "Storm_Reaches_Failure": [
+    122,
+    123,
+    124
+  ],
+  "Storm_Reaches_Win": [
+    125,
+    126,
+    127
+  ],
+  "Storm_Reaches_Kill": [
+    128
+  ],
+  "Storm_Reaches_Release": [
+    129
+  ],
+  "Storm_Reaches_Return": [
+    130,
+    131
+  ],
+  "Grave_Hollow_First_Visit": [
+    132,
+    133,
+    134,
+    135,
+    136,
+    137
+  ],
+  "Grave_Hollow_Failure": [
+    138,
+    139,
+    140
+  ],
+  "Grave_Hollow_Win": [
+    141,
+    142,
+    143
+  ],
+  "Grave_Hollow_Kill": [
+    144
+  ],
+  "Grave_Hollow_Release": [
+    145
+  ],
+  "Grave_Hollow_Return": [
+    146,
+    147
+  ],
+  "Shifting_Sands_First_Visit": [
+    148,
+    149,
+    150,
+    151,
+    152,
+    153
+  ],
+  "Shifting_Sands_Failure": [
+    154,
+    155,
+    156
+  ],
+  "Shifting_Sands_Win": [
+    157,
+    158,
+    159
+  ],
+  "Shifting_Sands_Kill": [
+    160
+  ],
+  "Shifting_Sands_Release": [
+    161
+  ],
+  "Shifting_Sands_Return": [
+    162,
+    163
+  ],
+  "Iron_Keep_First_Visit": [
+    164,
+    165,
+    166,
+    167,
+    168,
+    169
+  ],
+  "Iron_Keep_Failure": [
+    170,
+    171,
+    172
+  ],
+  "Iron_Keep_Win": [
+    173,
+    174,
+    175
+  ],
+  "Iron_Keep_Kill": [
+    176
+  ],
+  "Iron_Keep_Release": [
+    177
+  ],
+  "Iron_Keep_Return": [
+    178,
+    179
+  ],
+  "Astral_Gate_First_Visit": [
+    180,
+    181,
+    182,
+    183,
+    184,
+    185
+  ],
+  "Astral_Gate_Failure": [
+    186,
+    187,
+    188
+  ],
+  "Astral_Gate_Win": [
+    189,
+    190,
+    191
+  ],
+  "Astral_Gate_Kill": [
+    192
+  ],
+  "Astral_Gate_Release": [
+    193
+  ],
+  "Astral_Gate_Return": [
+    194,
+    195
+  ],
+  "Verdant_Citadel_First_Visit": [
+    196,
+    197,
+    198,
+    199,
+    200,
+    201
+  ],
+  "Verdant_Citadel_Failure": [
+    202,
+    203,
+    204
+  ],
+  "Verdant_Citadel_Win": [
+    205,
+    206,
+    207
+  ],
+  "Verdant_Citadel_Kill": [
+    208
+  ],
+  "Verdant_Citadel_Release": [
+    209
+  ],
+  "Verdant_Citadel_Return": [
+    210,
+    211
+  ],
+  "Crimson_Court_First_Visit": [
+    212,
+    213,
+    214,
+    215,
+    216,
+    217
+  ],
+  "Crimson_Court_Failure": [
+    218,
+    219,
+    220
+  ],
+  "Crimson_Court_Win": [
+    221,
+    222,
+    223
+  ],
+  "Crimson_Court_Kill": [
+    224
+  ],
+  "Crimson_Court_Release": [
+    225
+  ],
+  "Crimson_Court_Return": [
+    226,
+    227
+  ],
+  "Sanctuary_of_Light_First_Visit": [
+    228,
+    229,
+    230,
+    231,
+    232,
+    233
+  ],
+  "Sanctuary_of_Light_Failure": [
+    234,
+    235,
+    236
+  ],
+  "Sanctuary_of_Light_Win": [
+    237,
+    238,
+    239
+  ],
+  "Sanctuary_of_Light_Kill": [
+    240
+  ],
+  "Sanctuary_of_Light_Release": [
+    241
+  ],
+  "Sanctuary_of_Light_Return": [
+    242,
+    243
+  ],
+  "Dreamland_First_Visit": [
+    244,
+    245,
+    246,
+    247,
+    248,
+    249
+  ],
+  "Dreamland_Failure": [
+    250,
+    251,
+    252
+  ],
+  "Dreamland_Win": [
+    253,
+    254,
+    255
+  ],
+  "Dreamland_Kill": [
+    256
+  ],
+  "Dreamland_Release": [
+    257
+  ],
+  "Dreamland_Return": [
+    258,
+    259
+  ]
+}

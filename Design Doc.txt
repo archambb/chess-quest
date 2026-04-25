@@ -1,0 +1,772 @@
+Refactors
+🧱 1. Game Setup / Initialization
+Move to: game_setup.py or initializer.py
+
+init_pygame()
+
+load_images()
+
+load_sounds()
+
+Any pygame.font, pygame.mixer, or pygame.display setup
+
+✅ Benefit: Keeps your main loop focused on game logic, not bootstrapping.
+
+🧠 2. Event Handling
+Move to: input_handler.py
+
+The entire for event in pygame.event.get(): block, especially:
+
+Mouse clicks
+
+Keypresses
+
+Spell interactions
+
+UI button triggers
+
+✅ Benefit: Makes the main loop readable, and event logic testable.
+
+🧠 3. Game State Transitions
+Move to: state_manager.py
+
+Transition logic like:
+
+Switching between menus, quest selection, and board states
+
+Restarting game
+
+Winning/losing/ending animations
+
+✅ Benefit: Clean separation of gameplay logic vs. state machine behavior.
+
+✨ 4. Animation Control
+Move to: animations.py
+
+Control timers
+
+Shake effects
+
+Pulse logic
+
+Card entry/exit transitions
+
+Meteor/quadrant flash cycle
+
+✅ Benefit: Can reuse animation patterns across UI, board, cards, etc.
+
+
+🃏 6. Quest Selection / Handling
+Move to: quest_screen.py
+
+draw_quest_selection()
+
+check_quest_win()
+
+win_quest()
+
+Card drawing/hover/click logic
+
+✅ Benefit: All quest card logic lives in one place—easy to evolve.
+
+📦 7. Save/Load or JSON I/O
+Move to: save_system.py or data_loader.py
+
+Anything touching quests.json, game config, or save slots
+
+
+
+
+
+Can use different pieces (unlock chess sets, basically)
+
+Powers:
+Bomb - destroy a pawn
+Freeze - freeze a piece for 2 turns
+Shield - 2 turns of immortality for a piece
+Greater Shield - 4 turns of immortality for a piece
+Double Move - 1 extra move in the turn
+Promotion - promote pawn to chosen piece
+Time Warp - undo last move
+
+
+In Quest.json: "continue": "Conditional Continue" is it will continue as long as something is true, but then will end when it's not.
+
+
+
+Bugs:
+
+Can freeze a spot and get stuck there while having a piece clicked.
+Need to be able to UNCLICK a frozen piece (or any piece).
+SWAP to check is still possible (moved bishop to check king)
+Dropping coins twice
+Win/Lose against whole wizard is based on color, not player's color (or it's swapping player color before checking) -- update logic.
+Swap -- should be able to swap units that are causing a check.
+New powers:
+Resurrect (magic)
+Magnet
+
+
+
+Spellbook:
+323x118 start
+to y=550
+
+pg 2: 683x105
+to y = 550
+
+To Do:
+Get the Run section rebuilt -- separate the sections out for logic
+Will need to implement menus, etc too
+
+light, greed, mirror
+
+Fix error:
+This shoudl be legal. The b component is an issue.
+Trying move: h7h8
+Legal moves: ['f3g5', 'f3e5', 'f3h4', 'f3d4', 'f3g1', 'f3e1', 'h1g1', 'f1h3', 'f1d3', 'f1g2', 'f1e2', 'd1e1', 'a1b1', 'h7h8q', 'h7h8r', 'h7h8b', 'h7h8n', 'h2h3', 'b2b3', 'a2a3', 'h2h4', 'b2b4', 'a2a4']
+
+
+
+issues:
+When "closing" the app in overworld, it goes back to the chessboard
+Dithered spells can still be cast
+loading magic effects is all busted. Redesign.
+Playing the effects is also busted in meteor shower.
+
+If promotion allows full attack to king, it breaks:
+  File "g:\Python\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "g:\Python\Lib\site-packages\chess\engine.py", line 2931, in _not_shut_down
+    raise EngineTerminatedError("engine event loop dead")
+chess.engine.EngineTerminatedError: engine event loop dead
+
+If clicking the spellbook fast while the coins are falling, it freezes up
+Traceback (most recent call last):
+  File "c:\Users\archa\OneDrive\Python Projects\Magic Chess\main.py", line 1728, in <module>
+    game_screen = ChessScreen()
+                  ^^^^^^^^^^^^^
+  File "c:\Users\archa\OneDrive\Python Projects\Magic Chess\main.py", line 125, in __init__
+    self.run()
+  File "c:\Users\archa\OneDrive\Python Projects\Magic Chess\main.py", line 1400, in run
+    y_offset += icon_size + 30
+    ^^^^^^^^
+UnboundLocalError: cannot access local variable 'y_offset' where it is not associated with a value
+
+When the AI chooses as suboptimal path (due to freezes, for instance), it doesn't animate the piece move
+
+Spell recommendations:
+[] graphics
+[] sounds
+
+
+To do:
+[] Add merchants
+[] End game battle after all wins
+[] Indicate a win on the overworld map (let's color green for now)
+[] Story between each win/lose, start and end of each overworld change
+[] Quest cards
+[] Count months in overworld and charge for the pieces
+[] Display AI difficulty
+[] When in spell mode, turn the mouse into a magic wand (and/or for some spells, instance cast)
+[] After a checkmate, wait for user feedback
+
+- The story isn't progressing as it should
+- The options go off-screen (with 4 options)
+
+
+
+
+
+
+
+
+
+Issues with quest card calculations:
+Lost Pawns not calculating (likely will affect all lost ____ pieces)
+Lose 3 pieces before losing any enemy piece
+piece count adds the pieces, not the actual current pieces
+[] Need to build a list of attributes to check. Most seem to be working.
+Hvae 4 pieces that cannot move -- that's too easy in the beginning. Only count pawns. at least 4 pawns alive + 4 that can't move.
+Promote an enemy pawn doesn't work
+cold shoulder -- not working
+Queen's Gambit -- not working
+
+
+----- Quests -------
+[NOT WORKING] 1. Queen’s Gambit… for Real
+Objective: Sacrifice your queen before your 6th full move.
+
+Reward: Auto-Promotion Gem - promote any pawn instantly on its current square once.
+
+Flavor: “A crown lost today for a coronation tomorrow.”
+
+
+[NOT WORKING] 2. Cold Shoulder
+Objective: Cast Shield on two enemy pieces in one g.
+
+Reward: Immediately - freeze every enemy knight for three turns.
+
+Flavor: “Kindness so cold it burns.”
+
+
+[TESTING] 3. Pacifist’s Pact
+Objective: Make X (10, 15, 20) consecutive moves without capturing.
+
+10:
+Reward: Line Push - advance an entire friendly file (a-h) forward one rank. Pawns that collide capture as if moving.
+
+15:
+Reward: Line Push - advance an entire friendly file (a-h) forward one rank. Pawns that collide capture as if moving.
++ Time Warp
+
+20:
+Reward: Line Push - advance an entire friendly file (a-h) forward one rank. Pawns that collide capture as if moving.
++ Time Warp
++ Promotion
+
+Flavor: “Hold your blades… then march as one.”
+
+
+[FULLY TESTED]4. Fire in the Hole
+Objective: Detonate a bomb on your own pawn.
+
+Reward: +1 shield, +1 freeze
+
+Flavor: “Sometimes you must scorch the earth to plant new seeds.”
+
+
+[]5. Hasty Retreat
+Objective: Lose within 10 turns.
+
+Reward: +4 Time Warps
+
+Flavor: “Defeat is a doorway when time bends.”
+
+
+[]6. Rook Rapture
+Objective: Capture both enemy rooks before move X (10, 15, 20).
+
+20:
+Reward: Opponent no longer has rooks
+15: + shield
+10: + shield + advanced shield
+
+Flavor: “Pluck the towers, topple the kingdom.”
+
+
+[] 7. Shield Wall
+Objective: Win without moving or losing any pawns
+(would need swaps and shields to pull it off)
+
+Reward: +5 shields, +5 advanced shields, +4 swaps, +1 promotions
+
+NOTE: In testing, I won this using 2 swaps, 3 shields
+
+
+[] 8. Magneto Manoeuvre
+Objective: Force the enemy to make three consecutive knight moves (via pins, blocks, or lures).
+
+Reward: + 2 Magnets, +2 undo
+
+Flavor: “Pull the strings; let them dance.”
+
+++++++++++++++++++++++++++
+
+9. Last-Pawn-Standing
+Objective: Finish the game with exactly one pawn of either color remaining on the board.
+
+Reward: Pawn Clone - copy any pawn (with its rank) to the adjacent file.
+
+Difficulty: Medium; requires endgame finesse.
+
+Flavor: “When only one seed survives, plant another.”
+
+10. Friendly Fire Drill
+Objective: Capture one of your own pieces by bomb or swap effect.
+
+Reward: Advanced Shield Kit - place a 2-turn invincible bubble on any 2×2 zone.
+
+Difficulty: Easy-medium.
+
+Flavor: “Pain is the best rehearsal.”
+
+11. Silent Spring
+Objective: Deliver checkmate using only bishops and pawns.
+
+Reward: Forest-Snare - root every enemy piece on dark squares for one full turn.
+
+Difficulty: Hard; thematic for green-zone wizard.
+
+Flavor: “The quiet growl of nature claims all.”
+
+12. Knight School
+Objective: Fork king and queen twice in one game (need not capture).
+
+Reward: Swap Steed - instantly trade positions of any two friendly pieces.
+
+Difficulty: Skill-based, flashy.
+
+Flavor: “A good horse attends two classes at once.”
+
+13. Castled Doom
+Objective: Castle, then be checkmated without ever moving that rook.
+
+Reward: Retractable Rampart - next game begin with rook already on f-file behind a pawn wall.
+
+Difficulty: Medium-hard, usually concedes a loss.
+
+Flavor: “Fortress or tomb—walls remember.”
+
+14. Sphinx’s Riddle
+Objective: Make exactly 42 moves total (both players) before delivering mate or resigning.
+
+Reward: Wildcard Voucher - pick any unlocked item you don’t own yet.
+
+Difficulty: Precision puzzle; good for advanced players.
+
+Flavor: “Answer life, the universe, and everything—in moves.”
+
+15. Ghost Town
+Objective: Have at least four pieces on the board that cannot move (pinned or frozen) at once.
+
+Reward: Mass Phasing - turn all friendly pieces ethereal for one move (can pass through but not capture).
+
+Difficulty: Moderate; encourages odd positions.
+
+Flavor: “Stillness breeds the uncanny.”
+
+16. Storm Warning
+Objective: Place your king on three different files while in check during one game (escape tour).
+
+Reward: Static Discharge - shock all enemy pawns; they skip their next move.
+
+Difficulty: High drama but doable.
+
+Flavor: “Lightning never strikes once.”
+
+17. Reverse Psychology
+Objective: Promote an enemy pawn (let it reach the back rank) before promoting any of yours.
+
+Reward: Corrupted Crown - steal the highest-value enemy piece for two turns.
+
+Difficulty: Medium; risky but stylish.
+
+Flavor: “Hand them a crown, steal their throne.”
+
+18. Tunnel Vision
+Objective: Make 15 consecutive moves with the same piece.
+
+Reward: Burrow Drill - carve a straight tunnel: move any piece to the square directly in front, capturing all in-between.
+
+Difficulty: Situational; easier with a queen.
+
+Flavor: “When one path is clear, dig deeper.”
+
+19. Double or Nothing
+Objective: Offer a draw twice and have both declined, then win.
+
+Reward: Second Chance Token - replay one lost game in the set immediately.
+
+Difficulty: Social / AI-tuning dependent; rare.
+
+Flavor: “Fortune favors the stubborn.”
+
+20. Checkpoint Charlie
+Objective: Be in check on exactly five separate turns before move 25, then escape and win.
+
+Reward: Checkpoint Rewind - mark a board state; if things go south later, revert to it once.
+
+Difficulty: High; “rope-a-dope” style.
+
+Flavor: “Dance on the edge, then own the stage.”
+
+
+
+
+21. The King’s Pilgrimage
+Objective: Move your king to the 8th rank (opponent’s back row).
+
+Reward: King’s Mantle - start your next game with the king shielded for 5 turns.
+
+Difficulty: High risk, highly thematic.
+
+Flavor: “He walked into the enemy's throne room—unbent, unbowed, unbroken.”
+
+22. Blood Pact
+Objective: Lose three pawns in the first 10 moves.
+
+Reward: Berserker’s Blade - all your pawns gain the ability to capture forward for 3 turns.
+
+Difficulty: Medium; may unbalance your structure.
+
+Flavor: “Their blood paves the path to fury.”
+
+23. The Long Con
+Objective: Win with your last remaining piece.
+
+Reward: Shadow Cloak - one friendly piece becomes invisible for 5 turns.
+
+Difficulty: High; must survive with a solo piece.
+
+Flavor: “They thought you were done. You were just getting started.”
+
+24. Frozen Heart
+Objective: End the game without ever moving your queen.
+
+Reward: Ice Crown - freeze all diagonally adjacent enemy pieces for one turn.
+
+Difficulty: Easy-medium depending on queen placement.
+
+Flavor: “Some queens rule without lifting a finger.”
+
+25. Reckless Endangerment
+Objective: Place your king adjacent to an enemy piece and survive for two full turns.
+
+Reward: Divine Intervention - cancel the next check or mate. Once per g.
+
+Difficulty: High stakes but controlled risk.
+
+Flavor: “He stood face to face with death… and lived.”
+
+26. Pawn Storm
+Objective: Make five pawn moves in a row without moving any other piece.
+
+Reward: Pawnquake - all pawns move forward one rank instantly (including enemies).
+
+Difficulty: Medium.
+
+Flavor: “A wall of grain rolls like thunder.”
+
+27. The Gambler’s Debt
+Objective: Lose two pieces of higher value than what they captured.
+
+Reward: Debt Reversal - force an enemy trade down (they must trade stronger for weaker next time).
+
+Difficulty: Medium; sometimes natural.
+
+Flavor: “The house always wins—unless you are the house.”
+
+28. Echoes of War
+Objective: End the game with 4+ pieces still in their original positions.
+
+Reward: Time Mirror - repeat the exact move you made one turn ago, regardless of legality.
+
+Difficulty: Easy in short games, harder in endgames.
+
+Flavor: “Some things never change. Some should.”
+
+29. The Interloper
+Objective: Get an enemy piece onto your back rank (without capturing it).
+
+Reward: Trap Door - remove any one enemy piece from the board instantly.
+
+Difficulty: Medium; requires letting a piece through.
+
+Flavor: “Let them in… just to pull the rug.”
+
+30. Knightmare
+Objective: Move a single knight 10+ times in one g.
+
+Reward: Horned Mount - one piece can leap like a knight for a turn.
+
+Difficulty: Low-medium.
+
+Flavor: “The night belongs to the restless.”
+
+31. Crossfire
+Objective: Put your king between two enemy pieces that could capture diagonally (but don’t).
+
+Reward: Arcane Barrier - next time your king would be checked from two sides, negate both.
+
+Difficulty: Risky and specific.
+
+Flavor: “The eye of the storm is still—until it isn't.”
+
+32. The Martyr's Game
+Objective: Lose four pieces in four turns and still win the g.
+
+Reward: Martyr’s Medal - one piece explodes on death, taking adjacent enemies.
+
+Difficulty: High; aggressive trade-off.
+
+Flavor: “They died so you could win.”
+
+33. Telefragged!
+Objective: Use a teleport/swap effect to land on an enemy square and capture.
+
+Reward: Blinkstrike Module - move a piece anywhere, capturing if possible.
+
+Difficulty: Requires the right item in hand.
+
+Flavor: “They never saw it coming—not even from space.”
+
+34. Checkception
+Objective: Deliver a check with a discovered check behind it.
+
+Reward: Triple Threat - next check you give is treated as triple-threat (king cannot block, only run).
+
+Difficulty: High-skill.
+
+Flavor: “Layer upon layer of terror.”
+
+35. Reversal of Fortune
+Objective: Be behind in material, then checkmate.
+
+Reward: Turncoat Talisman - steal a random enemy piece at the start of the next g.
+
+Difficulty: Variable; comeback-driven.
+
+Flavor: “The tide never asks for permission.”
+
+36. Eye for an Eye
+Objective: Capture a piece with the same type that was just lost (e.g., bishop for bishop).
+
+Reward: Mimic Stone - one piece may mimic another piece's movement for 2 turns.
+
+Difficulty: Reactive, tactical.
+
+Flavor: “You take mine—I become yours.”
+
+37. Backline Brawl
+Objective: Capture 3+ enemy pieces on their first rank.
+
+Reward: Siege Engine - turn one pawn into a rook midgame.
+
+Difficulty: Medium-hard.
+
+Flavor: “Behind enemy lines, walls fall fastest.”
+
+38. Open Borders
+Objective: Keep your central pawns (d and e) unmoved all g.
+
+Reward: Gate of Chaos - next game, all pieces start randomly placed on the back rank (both sides).
+
+Difficulty: Easy-medium; unlocks chaos mode.
+
+Flavor: “A world without order births monsters.”
+
+39. Regicide
+Objective: Checkmate using a promoted pawn.
+
+Reward: Royal Token - one pawn starts promoted in your next g.
+
+Difficulty: High; satisfying and rare.
+
+Flavor: “Peasant no more.”
+
+40. Unbreakable Chain
+Objective: Maintain an unbroken diagonal of four same-colored pieces for 10 turns.
+
+Reward: Chain Lightning - damage bounces diagonally between enemy pieces (3 max).
+
+Difficulty: Board-state dependent, easier in midgame.
+
+Flavor: “Power flows where structure holds.”
+
+Optional Set Label: “The King's Crusade”
+These cards lean into high-risk thematic moments — perfect for mid-to-late campaign unlocks or boss zones. They reward creativity, board vision, and even some chaos tolerance.
+
+Let me know if you want:
+
+A printable deck format
+
+Element-themed versions (Fire, Ice, Arcane, Nature, etc.)
+
+A “deck builder” mechanic for quest loadouts
+
+Want more? I'm always ready for Round 3.
+
+
+
+41. No Kings Allowed
+Objective: Win without ever moving your king.
+
+Reward: Royal Proxy - once per game, your king becomes immune to check for 3 moves but cannot move.
+
+Difficulty: Medium-high.
+
+Flavor: “A king who leads from the back must trust his ghosts.”
+
+42. Pawnsecution
+Objective: Capture every enemy piece with pawns only (must win eventually).
+
+Reward: Broodmother’s Gift - spawn 3 pawns in empty squares on your 3rd rank.
+
+Difficulty: Extremely hard.
+
+Flavor: “The meek shall multiply.”
+
+43. Boardlock
+Objective: Reach a stalemate (as either player).
+
+Reward: Void Key - unlock one illegal move of your choice in a future match.
+
+Difficulty: High-skill, rare.
+
+Flavor: “When time stops, loopholes bloom.”
+
+44. Split the Sky
+Objective: Lose both bishops within 10 turns.
+
+Reward: Heaven’s Cleaver - summon a bishop with queen-like diagonal slash.
+
+Difficulty: Medium.
+
+Flavor: “The heavens grieve, and vengeance descends.”
+
+45. Early Graves
+Objective: Have 6 of your own pieces captured before turn 10.
+
+Reward: Mass Resurrection - return two random pieces to the board from your own graveyard.
+
+Difficulty: Medium; huge swing.
+
+Flavor: “Even death has deadlines.”
+
+46. Cornerstone
+Objective: Keep at least one knight on b1/g1 (or b8/g8) the entire g.
+
+Reward: Spireborn Shield - place a permanent defense buff on a corner piece.
+
+Difficulty: Medium.
+
+Flavor: “They guard the gate so others may roam.”
+
+47. Eye of the Storm
+Objective: Survive three checks in a row with no piece moved in between but the king.
+
+Reward: Perfect Focus - next game, your king gains teleport once.
+
+Difficulty: Nerve-wracking!
+
+Flavor: “The storm rages—but I do not flinch.”
+
+48. Divide and Conquer
+Objective: Keep all your pawns on one half of the board (a-d or e-h) all g.
+
+Reward: Mirror Rift - next game, board is flipped for both players (white starts on 8th rank).
+
+Difficulty: Mild constraint.
+
+Flavor: “Shift the world. Let your enemy play in reverse.”
+
+49. Symmetry Pact
+Objective: Finish with the same material as the opponent (e.g., 1 rook, 2 pawns, etc.).
+
+Reward: Balance Stone - negate a random enemy spell in the next g.
+
+Difficulty: Endgame puzzle.
+
+Flavor: “Equilibrium is the edge of chaos.”
+
+50. The Gauntlet
+Objective: Have your king cross four ranks on the board under check at least twice and survive.
+
+Reward: King’s Gauntlet - king may capture like a knight once per g.
+
+Difficulty: Very hard.
+
+Flavor: “If they dare test the king, let them feel his grip.”
+
+51. Pawn Juggler
+Objective: Move the same pawn backward and forward five times (requires rewind or swap tricks).
+
+Reward: Pawn Shuffler - in one match, all pawns may move backward for 3 turns.
+
+Difficulty: Tricky item combo.
+
+Flavor: “Time is a trick best played on the small.”
+
+52. Denial of Service
+Objective: Block all eight enemy pawns from moving for 5+ turns.
+
+Reward: Firewall Engine - next game, enemy pawns are stuck for the first 3 moves.
+
+Difficulty: Strategic, slow-burn.
+
+Flavor: “A war not fought is already won.”
+
+53. The Sacrifice Gambit
+Objective: Lose three minor pieces before capturing any enemy piece.
+
+Reward: Greater Arc - your bishops become queens for one turn (diagonals only).
+
+Difficulty: Medium-high.
+
+Flavor: “Three shadows fall. The sun blazes brighter.”
+
+54. Chained Lightning
+Objective: Capture 3 enemy pieces in one turn.
+
+Reward: Lightning Chain - strike up to 3 connected enemies in a line.
+
+Difficulty: Medium; very flashy.
+
+Flavor: “Speed is power when wielded like thunder.”
+
+55. The Famine Line
+Objective: Win a game having captured only 3 or fewer enemy pieces.
+
+Reward: Starving Blade - gain an assassination token (remove any one enemy piece not adjacent to another).
+
+Difficulty: Tactical puzzle.
+
+Flavor: “Kill just enough.”
+
+56. Mutual Destruction
+Objective: Force a draw by repetition, 50-move rule, or stalemate after being up by 2+ pieces.
+
+Reward: Equalizer Bomb - delete all highest-value pieces on both sides.
+
+Difficulty: Counterintuitive, clever.
+
+Flavor: “What I cannot have, no one shall.”
+
+57. Mirror Kill
+Objective: Checkmate with a piece on the same square your opponent’s king started.
+
+Reward: Twinned Doom - swap your king’s and enemy king’s positions once.
+
+Difficulty: Requires path control.
+
+Flavor: “Where you began, I will end you.”
+
+58. The Ghost Plan
+Objective: Promote a pawn without it ever capturing.
+
+Reward: Spectral Promoter - all pawns can now promote without reaching the back rank (if unblocked).
+
+Difficulty: Easy-medium.
+
+Flavor: “Unseen, unheard—unreal.”
+
+59. Blood Mirror
+Objective: Lose a piece the same turn you capture one. Do this three times.
+
+Reward: Mirror Curse - enemy pieces now take damage when they capture.
+
+Difficulty: Mid-tier, strategic.
+
+Flavor: “Every blade cuts both ways.”
+
+60. Immolation Pact
+Objective: Win after having less than 4 pieces on the board at some point.
+
+Reward: Ashen Core - start with only king and pawns, but every pawn starts on rank 3.
+
+Difficulty: Depends on timing.
+
+Flavor: “From ruin, rise again.”
+
+Bonus: Meta Rule Variant - “Deck of Dares”
+Let players draw 1-3 quests at the start of each game or match. You could even introduce:
+
+Rare/Mythic Quests - offer wild powers if met
+
+Double-edged Quests - if you fail, you suffer a penalty
+
+
+
+

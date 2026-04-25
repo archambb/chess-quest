@@ -1,0 +1,1201 @@
+[
+  {
+    "quest_number": 1,
+    "title": "Queen's Gambit",
+    "rules": "Sacrifice your queen before your 6th move to gain 2 Promotions.",
+    "feedback": [
+      "Turns",
+      "Queen Sacrifice"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Turns": {
+            "op": "<=",
+            "value": 6
+          },
+          "Queen Sacrifice": 1
+        },
+        "reward": {
+          "promotions": 2
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 2,
+    "title": "Cold Shoulder",
+    "rules": "Cast Shield on two enemy pieces at the same time to freeze every enemy knight for three turns.",
+    "feedback": [
+      "Concurrent Enemy Shields"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Concurrent Enemy Shields": {
+            "op": ">=",
+            "value": 2
+          }
+        },
+        "reward": {
+          "freeze_knights": 3
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 3,
+    "title": "Pacifist's Pact",
+    "rules": "Do not attack a piece for 10, 15, or 20 turns. Once a piece is taken, your troops will all move forward one row, taking any piece in their way. If 15: +1 Time Warp. If 20: +1 Promotion.",
+    "feedback": [
+      "Turns",
+      "Pacifist's Pact"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Turns": {
+            "op": ">=",
+            "value": 10
+          },
+          "Pacifist's Pact": {
+            "op": "==",
+            "value": 10
+          }
+        },
+        "reward": {
+          "advance_rows": 1,
+          "continue": "Conditional Continue"
+        }
+      },
+      {
+        "to_win": {
+          "Turns": {
+            "op": ">=",
+            "value": 15
+          },
+          "Pacifist's Pact": {
+            "op": "==",
+            "value": 15
+          }
+        },
+        "reward": {
+          "time_warps": 1,
+          "continue": "Conditional Continue"
+        }
+      },
+      {
+        "to_win": {
+          "Turns": {
+            "op": ">=",
+            "value": 20
+          },
+          "Pacifist's Pact": {
+            "op": "==",
+            "value": 20
+          }
+        },
+        "reward": {
+          "promotions": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 4,
+    "title": "Fire in the Hole",
+    "rules": "Destroy your own pawn with a bomb to gain +1 Shield, +1 Freeze.",
+    "feedback": [
+      "Bombed Pawn"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Bombed Pawn": {
+            "op": "==",
+            "value": 1
+          }
+        },
+        "reward": {
+          "shields": 1,
+          "freezes": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 5,
+    "title": "Hasty Retreat",
+    "rules": "Lose within 10 turns to gain +4 Time Warps.",
+    "feedback": [
+      "Turns"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Turns": {
+            "op": "<=",
+            "value": 10
+          },
+          "Lost Game": 1
+        },
+        "reward": {
+          "time_warps": 4
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 6,
+    "title": "Rook Rapture",
+    "rules": "Capture both enemy rooks before move 20 to keep this wizard from having rooks. If within 15: +1 Shield, 10: +1 Advanced Shield.",
+    "feedback": [
+      "Turns",
+      "Rook Captures"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Turns": {
+            "op": "<=",
+            "value": 10
+          },
+          "Rook Captures": {
+            "op": ">=",
+            "value": 2
+          }
+        },
+        "reward": {
+          "advanced_shields": 1,
+          "shields": 1,
+          "no_future_rooks": 1
+        }
+      },
+      {
+        "to_win": {
+          "Turns": {
+            "op": "<=",
+            "value": 15
+          },
+          "Rook Captures": {
+            "op": ">=",
+            "value": 2
+          }
+        },
+        "reward": {
+          "shields": 1,
+          "no_future_rooks": 1
+        }
+      },
+      {
+        "to_win": {
+          "Turns": {
+            "op": "<=",
+            "value": 20
+          },
+          "Rook Captures": {
+            "op": ">=",
+            "value": 2
+          }
+        },
+        "reward": {
+          "no_future_rooks": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 7,
+    "title": "Shield Wall",
+    "rules": "Win without moving or losing any pawns to gain +2 Shields, +2 Advanced Shields, +3 swaps, +1 Promotion.",
+    "feedback": [
+      "Moved Pawns",
+      "Lost Pawns"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Moved Pawns": {
+            "op": "==",
+            "value": 0
+          },
+          "Lost Pawns": {
+            "op": "==",
+            "value": 0
+          },
+          "Win Game": {
+            "op": "==",
+            "value": 1
+          }
+        },
+        "reward": {
+          "shields": 2,
+          "advanced_shields": 2,
+          "swaps": 3,
+          "promotions": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 8,
+    "title": "Magneto Manoeuvre",
+    "rules": "Force the enemy to make three consecutive knight moves (via pins, blocks, or lures) to gain +2 magnets, +2 Time Warp.",
+    "feedback": [
+      "Consecutive Enemy Knight Moves"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Consecutive Enemy Knight Moves": {
+            "op": ">=",
+            "value": 3
+          }
+        },
+        "reward": {
+          "magnets": 2,
+          "time_warps": 2
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 9,
+    "title": "Last Pawn Standing",
+    "rules": "Finish the game with exactly one pawn of either color remaining on the board. +1 promotion.",
+    "feedback": [
+      "Pawn Count"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Pawn Count": {
+            "op": "==",
+            "value": 1
+          },
+          "Win Game": {
+            "op": "==",
+            "value": 1
+          }
+        },
+        "reward": {
+          "promotions": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 10,
+    "title": "Bombs Away -- Oops!",
+    "rules": "Bomb all of your pawns. Reward: Advanced Shield Kit now blocks a full 3x3 section.",
+    "feedback": [
+      "Bombed Pawn"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Bombed Pawn": {
+            "op": ">=",
+            "value": 8
+          }
+        },
+        "reward": {
+          "advanced shield kit 3x3": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 11,
+    "title": "Silent Spring",
+    "rules": "Deliver checkmate using only elves and pawns to refresh your spells",
+    "feedback": [],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Checkmate Elves and Pawns": {
+            "op": "==",
+            "value": 1
+          }
+        },
+        "reward": {
+          "spell refresh": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 12,
+    "title": "The Loyal Assassins",
+    "rules": "Fork (being able to capture both) the king and queen twice in one game (need not capture). Reward: All pawns immediately become knights.",
+    "feedback": [
+      "King and Queen Fork"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "King and Queen Fork": {
+            "op": ">=",
+            "value": 2
+          }
+        },
+        "reward": {
+          "pawns_to_knights": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 13,
+    "title": "Castled Doom",
+    "rules": "Castle, then be checkmated without ever moving a rook. Reward: Outer pawns start as rooks during the next g.",
+    "feedback": [
+      "Castle",
+      "Moved Rooks"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Castle": {
+            "op": "==",
+            "value": 1
+          },
+          "Moved Rooks": {
+            "op": "==",
+            "value": 0
+          },
+          "Lost Game": {
+            "op": "==",
+            "value": 1
+          }
+        },
+        "reward": {
+          "outer_pawns_start_as_rooks": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 14,
+    "title": "Meaning of Etc.",
+    "rules": "Checkmate your opponent in exactly 42 moves. Reward: 42 gold coins.",
+    "feedback": [
+      "Turns"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Turns": {
+            "op": "==",
+            "value": 42
+          },
+          "Win Game": 1
+        },
+        "reward": {
+          "Gold": 42
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 15,
+    "title": "Ghost Town",
+    "rules": "Freeze at least four enemy pieces on the board while not in check after turn 18. Reward: Freeze your opponents -- everything but their king -- for 5 turns.",
+    "feedback": [
+      "Immobile Pieces"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Frozen Pieces": {
+            "op": ">=",
+            "value": 4
+          },
+          "Turns": {
+            "op": ">=",
+            "value": 18
+          }
+        },
+        "reward": {
+          "total_freeze": 5
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 16,
+    "title": "Storm Warning",
+    "rules": "Place your king on three different files while in check during one g. Reward: Lightning strikes the tallest piece, removing it from the board (excluding king).",
+    "feedback": [
+      "Checked Unique Files"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Checked Unique Files": {
+            "op": ">=",
+            "value": 3
+          }
+        },
+        "reward": {
+          "lightning_strikes_the_tallest_piece": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 17,
+    "title": "Crown of Mind Control",
+    "rules": "Promote an enemy pawn (let it reach the back rank) before promoting any of yours. Reward: the queen becomes yours.",
+    "feedback": [
+      "Promoted Enemy",
+      "Promoted Pawn"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Promoted Enemy": {
+            "op": "==",
+            "value": 1
+          },
+          "Promoted Pawn": {
+            "op": "==",
+            "value": 0
+          }
+        },
+        "reward": {
+          "steal_promotion": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 18,
+    "title": "Tunnel Vision",
+    "rules": "Make 15 consecutive moves with the same piece. Reward: The middle 4 files, friend and foe, are blasted away.",
+    "feedback": [
+      "Consecutive Moves"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Consecutive Moves": {
+            "op": ">=",
+            "value": 15
+          }
+        },
+        "reward": {
+          "central_blast": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 19,
+    "title": "Double or Nothing",
+    "rules": "Have two times as many units on the board as the enemy. Reward: Double your gold.",
+    "feedback": [
+      "Piece Ratio"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Piece Ratio": {
+            "op": ">=",
+            "value": 2
+          }
+        },
+        "reward": {
+          "double_gold": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 20,
+    "title": "Dance with Danger",
+    "rules": "Be in check on five or more separate turns, but still win. Reward: +5 Time Warps.",
+    "feedback": [
+      "Checked",
+      "Turns"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Checked": {
+            "op": ">=",
+            "value": 5
+          },
+          "Win Game": {
+            "op": "==",
+            "value": 1
+          }
+        },
+        "reward": {
+          "time_warps": 5
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 21,
+    "title": "The King\u2019s Pilgrimage",
+    "rules": "Move your king to the far rank (opponent\u2019s back row). Reward: Reflective Shield for 5 turns (any piece that puts your king in check will be automatically destroyed).",
+    "feedback": [
+      "King's Rank"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "King's Rank": {
+            "op": "==",
+            "value": 8
+          }
+        },
+        "reward": {
+          "Reflective Shield": 5
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 22,
+    "title": "Blood Pact",
+    "rules": "Lose three pawns in the first 10 moves. Reward: Recover your lost pawns in random spaces on the board, shield the pawns for 3 turns.",
+    "feedback": [
+      "Turns",
+      "Lost Pawns"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Lost Pawns": {
+            "op": ">=",
+            "value": 3
+          },
+          "Turns": {
+            "op": "<=",
+            "value": 10
+          }
+        },
+        "reward": {
+          "Recover Lost Pawns": 1,
+          "Shield Lost Pawns": 3
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 23,
+    "title": "Frozen Heart",
+    "rules": "Win the game without ever moving a queen. Reward: Empowered Freeze (Your freeze item forever has a 1/3 chance to also freeze an adjacent enemy)",
+    "feedback": [
+      "Moved Queens",
+      "Win Game"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Moved Queens": {
+            "op": "==",
+            "value": 0
+          },
+          "Win Game": {
+            "op": "==",
+            "value": 1
+          }
+        },
+        "reward": {
+          "Empowered Freeze": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 24,
+    "title": "Reckless Endangerment",
+    "rules": "Place your king adjacent to an enemy piece and survive for five full turns. Reward: The next time you are in checkmate, your king will teleport to a random safe square.",
+    "feedback": [
+      "King Adjacent to Enemy"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "King Adjacent to Enemy": {
+            "op": ">=",
+            "value": 5
+          }
+        },
+        "reward": {
+          "Checkmate Teleport": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 25,
+    "title": "Pawn Storm",
+    "rules": "Move only pawns for fifteen turns in a row without moving any other piece. Reward: All pawns move forward two ranks, taking all in their path.",
+    "feedback": [
+      "Consecutive Pawn Moves"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Consecutive Pawn Moves": {
+            "op": ">=",
+            "value": 15
+          }
+        },
+        "reward": {
+          "Pawn Storm": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 26,
+    "title": "Echoes of War",
+    "rules": "Win the game with 4+ pieces still in their original positions. Reward: +4 Time Warp.",
+    "feedback": [
+      "Unmoved Pieces"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Unmoved Pieces": {
+            "op": ">=",
+            "value": 4
+          },
+          "Win Game": 1
+        },
+        "reward": {
+          "time_warps": 4
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 27,
+    "title": "The Interloper",
+    "rules": "Get an enemy piece onto your back rank (without capturing it). Reward: It becomes yours.",
+    "feedback": [],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Enemy First on Rank 8": {
+            "op": "==",
+            "value": 1
+          }
+        },
+        "reward": {
+          "Steal First on Rank 8": {
+            "op": "==",
+            "value": 1
+          }
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 28,
+    "title": "Knightmare",
+    "rules": "Move your knights 25+ times in one g. Reward: Start your next game where all of your pieces are knights (except the king).",
+    "feedback": [
+      "Knight Moves"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Knight Moves": {
+            "op": ">=",
+            "value": 25
+          }
+        },
+        "reward": {
+          "knightmare": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 29,
+    "title": "Crossfire",
+    "rules": "Make your queen vulnerable to capture, but avoid capture 5 times in one g. Reward: Shield +4.",
+    "feedback": [
+      "Vulnerable Queen"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Vulnerable Queen": {
+            "op": ">=",
+            "value": 5
+          }
+        },
+        "reward": {
+          "shields": 4
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 30,
+    "title": "The Martyr's Game",
+    "rules": "Lose four pieces in four turns and still win the g. Reward: During the next game, your pawns are poisonous and kill any piece that takes them.",
+    "feedback": [
+      "Consecutively Lost Pieces"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Consecutively Lost Pieces": {
+            "op": ">=",
+            "value": 4
+          },
+          "Win Game": {
+            "op": "==",
+            "value": 1
+          }
+        },
+        "reward": {
+          "Poisoned Pawns": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 31,
+    "title": "Stealthy Assassin",
+    "rules": "Use a swap effect and then immediately take a piece with the swapped unit. Reward: +1 bomb.",
+    "feedback": [],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Swap and Kill": {
+            "op": "==",
+            "value": 1
+          }
+        },
+        "reward": {
+          "bombs": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 32,
+    "title": "Eye for an Eye",
+    "rules": "Immediately capture the exact piece that just captured one of yours — and use a piece of the same type that was taken, excluding pawns. Reward: +1 swap.",
+    "feedback": [],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Eye for an Eye": {
+            "op": "==",
+            "value": 1
+          }
+        },
+        "reward": {
+          "swaps": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 33,
+    "title": "Backline Brawl",
+    "rules": "Capture 3+ enemy pieces on their first rank. Reward: A random pawn becomes a rook.",
+    "feedback": [
+      "Backline Captures"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Backline Captures": {
+            "op": ">=",
+            "value": 3
+          }
+        },
+        "reward": {
+          "random_pawn_to_rook": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 34,
+    "title": "Regicide",
+    "rules": "Win with only queens and kings on the board. Reward: +2 Promotions.",
+    "feedback": [],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Regicide": {
+            "op": "==",
+            "value": 1
+          },
+          "Win Game": {
+            "op": "==",
+            "value": 1
+          }
+        },
+        "reward": {
+          "promotions": 2
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 35,
+    "title": "Unbreakable Chain (Lightning)",
+    "rules": "Maintain an unbroken diagonal of at least five same-colored pieces for 10 turns. Reward: Chain Lightning: All enemy pieces adjacent to your diagonal and all enemies connecting to them are destroyed with chain lightning.",
+    "feedback": [
+      "Unbroken 5-Piece Diagonal"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Unbroken 5-Piece Diagonal": {
+            "op": ">=",
+            "value": 10
+          }
+        },
+        "reward": {
+          "chain_lightning": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 36,
+    "title": "No Kings Allowed",
+    "rules": "Win without ever moving your king. Reward: +2 bombs.",
+    "feedback": [
+      "King Moves"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "King Moves": {
+            "op": "==",
+            "value": 0
+          },
+          "Win Game": {
+            "op": "==",
+            "value": 1
+          }
+        },
+        "reward": {
+          "bombs": 2
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 37,
+    "title": "Boardlock",
+    "rules": "Reach a stalemate. Reward: +2 Freezes.",
+    "feedback": [],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Stalemate": {
+            "op": "==",
+            "value": 1
+          }
+        },
+        "reward": {
+          "freezes": 2
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 38,
+    "title": "Elven Precision",
+    "rules": "Lose both elves (bishops) within 6 turns. Reward: +2 Promotions.",
+    "feedback": [
+      "Turns",
+      "Lost Elves"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Lost Elves": {
+            "op": ">=",
+            "value": 2
+          },
+          "Turns": {
+            "op": "<=",
+            "value": 6
+          }
+        },
+        "reward": {
+          "promotions": 2
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 39,
+    "title": "Early Graves",
+    "rules": "Have 6 of your own pieces captured before turn 10. Reward: Return them to the board in random spots.",
+    "feedback": [
+      "Lost Pieces",
+      "Turns"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Turns": {
+            "op": "<=",
+            "value": 10
+          },
+          "Lost Pieces": {
+            "op": ">=",
+            "value": 6
+          }
+        },
+        "reward": {
+          "Early Graves": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 40,
+    "title": "Cornerstone",
+    "rules": "Do not move a knight and still win the g. + 4 Shields.",
+    "feedback": [
+      "Knight Moves"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Knight Moves": {
+            "op": "==",
+            "value": 0
+          },
+          "Win Game": {
+            "op": "==",
+            "value": 1
+          }
+        },
+        "reward": {
+          "shields": 4
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 41,
+    "title": "Divide and Conquer",
+    "rules": "Keep all of your units on your side of the board while still winning. Reward: +4 swaps.",
+    "feedback": [],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Divide and Conquer": {
+            "op": "==",
+            "value": 1
+          },
+          "Win Game": {
+            "op": "==",
+            "value": 1
+          }
+        },
+        "reward": {
+          "swaps": 4
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 42,
+    "title": "Symmetry Pact",
+    "rules": "Win the game with the same number of pieces as the enemy. Reward: End the board effects for this level.",
+    "feedback": [
+      "Piece Ratio"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Piece Ratio": {
+            "op": "==",
+            "value": 1
+          },
+          "Win Game": {
+            "op": "==",
+            "value": 1
+          }
+        },
+        "reward": {
+          "end_board_effects": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 43,
+    "title": "The Gauntlet",
+    "rules": "Survive with 3 or fewer pieces for 10 turns. Reward: +2 advanced shield.",
+    "feedback": [
+      "Piece Count",
+      "The Gauntlet Turns"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "The Gauntlet Turns": {
+            "op": ">=",
+            "value": 10
+          },
+          "Piece Count": {
+            "op": "<=",
+            "value": 3
+          }
+        },
+        "reward": {
+          "advanced_shields": 2
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 44,
+    "title": "Pawn Juggler",
+    "rules": "After losing your queen, your pawns will randomly relocate on the board and you will gain +1 promotion.",
+    "feedback": [
+      "Queen Count"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Queen Count": {
+            "op": "==",
+            "value": 0
+          }
+        },
+        "reward": {
+          "Pawn Juggler": 1,
+          "promotions": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 45,
+    "title": "Wall of Fire",
+    "rules": "Block all eight enemy pawns from moving for 5+ turns. Reward: Immediately pick a row and burn all enemies in that row.",
+    "feedback": [
+      "Enemy Pawns Haven't Moved"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Enemy Pawns Haven't Moved": {
+            "op": ">=",
+            "value": 5
+          }
+        },
+        "reward": {
+          "Firewall": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 46,
+    "title": "The Sacrifice Gambit",
+    "rules": "Lose eight pieces before capturing any enemy piece. Reward: +2 Promotions.",
+    "feedback": [
+      "Lost Pieces",
+      "Captured Pieces"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Lost Pieces": {
+            "op": ">=",
+            "value": 8
+          },
+          "Captured Pieces": {
+            "op": "==",
+            "value": 0
+          }
+        },
+        "reward": {
+          "promotions": 2
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 47,
+    "title": "The Famine Line",
+    "rules": "Win a game having captured only 3 or fewer enemy pieces. Reward: +2 freeze, +2 shield",
+    "feedback": [
+      "Captured Pieces"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Captured Pieces": {
+            "op": "<=",
+            "value": 3
+          },
+          "Win Game": {
+            "op": "==",
+            "value": 1
+          }
+        },
+        "reward": {
+          "freezes": 2,
+          "shields": 2
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 48,
+    "title": "Mirror Kill",
+    "rules": "Checkmate by moving a piece on the same square your opponent\u2019s king started. Reward: +1 swap.",
+    "feedback": [],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Mirror Kill": {
+            "op": "==",
+            "value": 1
+          }
+        },
+        "reward": {
+          "swaps": 1
+        }
+      }
+    ]
+  },
+  {
+    "quest_number": 49,
+    "title": "Blood Mirror",
+    "rules": "Lose a piece the same turn you capture one. Do this five times. +2 Time Warps, +2 Freezes.",
+    "feedback": [
+      "Blood Mirror"
+    ],
+    "win_reward_pairs": [
+      {
+        "to_win": {
+          "Blood Mirror": {
+            "op": ">=",
+            "value": 5
+          }
+        },
+        "reward": {
+          "time_warps": 2,
+          "freezes": 2
+        }
+      }
+    ]
+  }
+]

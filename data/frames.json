@@ -1,0 +1,1199 @@
+{
+  "1": {
+    "text": "Last Year"
+  },
+  "2": {
+    "text": "King: ...and stand, Sir Kahnigut, Knight of the Realm!"
+  },
+  "3": {
+    "text": "King: Your first assignment will be to travel to Backgammia and represent all of Chessasia in the Grand Tournament."
+  },
+  "4": {
+    "text": "Kahnigut: And so I left my wife, my son."
+  },
+  "5": {
+    "text": "And sailed across the Great Sea to the land of Backgammia!"
+  },
+  "6": {
+    "text": "When I arrived, the festivities were already well underway.",
+    "options": [
+      {
+        "text": "Join the tournament [Play tutorial]",
+        "target": "Tutorial",
+        "return_choice": true
+      },
+      {
+        "text": "I was too late [Return to Chessasia]",
+        "target": "continue",
+        "return_choice": true
+      }
+    ]
+  },
+  "7": {
+    "text": "The journey home was lonely. At least I was coming home to a hero's welcome and a warm home, a happy wife, and my son."
+  },
+  "8": {
+    "text": "Or so I thought."
+  },
+  "9": {
+    "text": "King: Sir Kahnigut! I am barely holding on. You must avenge my kingdom! Evil wizards have conquered the land! You are our last hope. Lead our armies to victory! Push these wizards into Oblivion!"
+  },
+  "10": {
+    "text": "The top-right are inventory items. You can blow up pawns on your side of the board. You can freeze enemies in place. And more. You'll figure it out. The main thing is this: The opponent always follows standard Chess rules. So use your inventory to confuse them. Don't worry about the spell book. You're a knight, not a wizrad."
+  },
+  "11": {
+    "text": "Wizard of Stone: Knight of the Realm... I know what you seek. Your family was taken by other wizards, not by my hand. But I know where they walked, and why.",
+    "options": [
+      {
+        "text": "Why did you do this? WHY!?",
+        "target": "Stone_Plead_2",
+        "return_choice": false
+      },
+      {
+        "text": "Where is my family?",
+        "target": "Stone_Plead_3",
+        "return_choice": false
+      },
+      {
+        "text": "You will die for this! [+2 Shields, +2 Promotions]",
+        "target": "Stone_Death",
+        "return_choice": false
+      },
+      {
+        "text": "I will spare you, but you are hereby banished! [Learn Summon Boulder]",
+        "target": "Stone_Spare",
+        "return_choice": false
+      }
+    ]
+  },
+  "12": {
+    "text": "Wizard of Stone: We were forced to by our Master, the Wizard of Time. His will cannot be broken. If you were wise, you would flee these lands!",
+    "options": [
+      {
+        "text": "Where is my family?",
+        "target": "Stone_Plead_3",
+        "return_choice": false
+      },
+      {
+        "text": "You will die for this! [+2 Shields, +2 Promotions]",
+        "target": "Stone_Death",
+        "return_choice": false
+      },
+      {
+        "text": "I will spare you, but you are hereby banished! [Learn Summon Boulder]",
+        "target": "Stone_Spare",
+        "return_choice": false
+      }
+    ]
+  },
+  "13": {
+    "text": "Wizard of Stone: Other wizards took them. I do not know which, but if you let me live, I will teach you a spell to help bring them home.",
+    "options": [
+      {
+        "text": "Why did you do this? WHY!?",
+        "target": "Stone_Plead_2",
+        "return_choice": false
+      },
+      {
+        "text": "You will die for this! [+2 Shields, +2 Promotions]",
+        "target": "Stone_Death",
+        "return_choice": false
+      },
+      {
+        "text": "I will spare you, but you are hereby banished! [Learn Summon Boulder]",
+        "target": "Stone_Spare",
+        "return_choice": false
+      }
+    ]
+  },
+  "14": {
+    "text": "Kahnigut: I take no pleasure in this, but justice must be served and I am a Knight of the Realm.",
+    "options": [
+      {
+        "text": "Stab the Wizard of Stone! [+2 Shields, +2 Promotions]",
+        "target": "kill",
+        "return_choice": true
+      },
+      {
+        "text": "Change your mind",
+        "target": "Stone_Plead_1",
+        "return_choice": true
+      }
+    ],
+    "return_rewards": {
+      "powerups": {
+        "shields": 2,
+        "promotions": 2
+      }
+    }
+  },
+  "15": {
+    "text": "Kahnigut: You caught me on a merciful day. You will live. But you are banished and shall never return here again or you will certainly taste my steel.",
+    "options": [
+      {
+        "text": "Free the Wizard of Stone! [Learn Summon Boulder]",
+        "target": "free",
+        "return_choice": true
+      },
+      {
+        "text": "Change your mind",
+        "target": "Stone_Plead_1",
+        "return_choice": true
+      }
+    ],
+    "return_rewards": {
+      "spells": [
+        "Summon Boulder"
+      ]
+    }
+  },
+  "16": {
+    "text": ""
+  },
+  "18": {
+    "text": ""
+  },
+  "17": {
+    "text": ""
+  },
+  "19": {
+    "text": "Wizard of Stone: Back for another beating, manchild?"
+  },
+  "20": {
+    "text": "Kahnigut: It is YOU who will return!"
+  },
+  "21": {
+    "text": "Wizard of Stone: You're an idiot. You can't even insult me properly. Prepare yourself!"
+  },
+  "22": {
+    "text": "The Misty Fends greets Sir Kahnigut with a silence so complete it felt intentional."
+  },
+  "23": {
+    "text": "Fog clings low over the moss-drowned ground, swirling around his greaves like pale, reaching fingers."
+  },
+  "24": {
+    "text": "Even his torch sputters as if afraid to burn too brightly in a place that has forgotten the sun."
+  },
+  "25": {
+    "text": "A ripple passes through the mist."
+  },
+  "26": {
+    "text": "Then a voice-wet, rasping, and impossibly close-slides between the gnarled trees."
+  },
+  "27": {
+    "text": "Voice in the Swamp: Kaaaah-niiigut..."
+  },
+  "28": {
+    "text": "Kahnigut: Show yourself!"
+  },
+  "29": {
+    "text": "A hunched silhouette emerges, woven from swamp-rot and shadow, its eyes glowing like lanterns sunk too deep in the mire. Fireflies circle behind it like lost souls.\n\nThe creature grins."
+  },
+  "30": {
+    "text": "Swamp Dwelling Man: You are bold to call out in MY waters.\n\nBold... or foolish."
+  },
+  "31": {
+    "text": "Kahnigut: Name yourself, spirit."
+  },
+  "32": {
+    "text": "Swamp Dweller: I am what the drowned whisper when the air runs thin.\n\nThe Drowned Seer. The Swamp Wizard. The one who knows where your steps lead..."
+  },
+  "33": {
+    "text": "A surge of fetid wind rolls through the clearing.  \n\nThe Seer's staff slams into the muck, sending ripples of sickly green light across the Fends."
+  },
+  "34": {
+    "text": "The Drowned Seer: And I see..."
+  },
+  "35": {
+    "text": "The Drowned Seer: ...you do not walk out of my swamp alive."
+  },
+  "36": {
+    "text": "The mist closes around them like a tightening noose as the first spell ignites in the Seer's palm."
+  },
+  "37": {
+    "text": "Kahnigut's captain falls, drowned by a wall of water. \n"
+  },
+  "38": {
+    "text": "Kahnigut: I am VERY suddenly rethinking my life choices! FALLING BACK!\n"
+  },
+  "39": {
+    "text": "The Drowned Seer: Yes... flee. You were only a pawn in my plan, little Knight.\n"
+  },
+  "40": {
+    "text": "Kahnigut turns and runs into the fog, armor dripping, lungs burning, not stopping until the glow of the Seer's eyes fades behind him-and the swamp's whispers follow every step.\n"
+  },
+  "41": {
+    "text": "Kahnigut: Next time, Seer. Next time!"
+  },
+  "42": {
+    "text": "The swamp churns with violent magic, but Kahnigut presses forward, his remaining soldiers fanning out behind him. With a final leap through the muck, he knocks the Seer's staff aside and sends the old wizard crashing into a pool of stagnant water."
+  },
+  "43": {
+    "text": "The Drowned Seer wheezes, half-submerged, mud filling the folds of his robes. His glowing eyes flicker like dying lanterns. Kahnigut's men stand ready, weapons trembling but determined."
+  },
+  "44": {
+    "text": "The Drowned Seer: End me if you must, Knight... but know this: mercy buys knowledge. Spare me, and I will teach you a spell stolen from the deep waters. A spell your soldiers would kill to have on their side."
+  },
+  "45": {
+    "text": "Captain Reginald: Kill him, Sir Kahnigut. We can't allow him to live. And then we can take his stash.",
+    "options": [
+      {
+        "text": "Kill the Drowned Seer [+4 Freezes, +2 Swaps]",
+        "target": "Misty_Fens_Kill",
+        "return_choice": true
+      },
+      {
+        "text": "Free the Drowned Seer [Learn Flood]",
+        "target": "Misty_Fens_Release",
+        "return_choice": true
+      }
+    ]
+  },
+  "46": {
+    "text": "Kahnigut raises his blade, and the swamp seems to hold its breath. One clean strike sends the Drowned Seer sinking beneath the murky water, his final curse bubbling away into silence. Kahnigut's soldiers stand grim and steady as the mire closes over the wizard like a tomb.",
+    "return_rewards": {
+      "powerups": {
+        "freezes": 4,
+        "swaps": 2
+      }
+    }
+  },
+  "47": {
+    "text": "Kahnigut lowers his sword. The Drowned Seer presses a dripping hand into the water, and luminous ripples race outward. The pattern of FLOOD carves itself into Kahnigut's mind—a promise that the swamp will rise at his command.",
+    "return_rewards": {
+      "spells": [
+        "Flood"
+      ]
+    }
+  },
+  "48": {
+    "text": "The Misty Fens greet Kahnigut again with their familiar stink of moss and defeat, but this time his soldiers step forward with steadier boots and sharper eyes. The swamp remembers him-but so does he."
+  },
+  "49": {
+    "text": "The Drowned Seer materializes from the fog, eyes glowing brighter than before. Drowned Seer: Back again, Knight? You return like a stubborn tide. Very well. Let us see if you rise... or sink."
+  },
+  "50": {
+    "text": "Kahnigut: Last time you caught me off guard. This time? I come prepared. And considerably less soggy."
+  },
+  "51": {
+    "text": "The Ember Spire looms above Kahnigut and his men, a jagged tower of black rock glowing with rivers of slow, molten fire that drip like the world is trying to melt."
+  },
+  "52": {
+    "text": "The heat slams into the soldiers first, stealing their breath. Armor grows hot to the touch, and more than one man mutters that this is what a knight's oven must feel like."
+  },
+  "53": {
+    "text": "Ignus the Magma Sage steps out onto a cracked ledge, beard singed and wild, robes lined with emberlight. He leans on a staff that looks carved from cooled lava."
+  },
+  "54": {
+    "text": "Ignus: Ahh... fresh kindling, marching straight into my furnace. Tell me, Knight-did your king send you, or did you simply follow the smell of your own cooked courage?"
+  },
+  "55": {
+    "text": "Kahnigut: I am Sir Kahnigut of Chessasia. I come with soldiers at my back and justice at my side. You will stand down or be put down."
+  },
+  "56": {
+    "text": "Ignus laughs, and the Spire answers with a tremor. Ignus: Then let us see which burns out first-your resolve, or your bones."
+  },
+  "57": {
+    "text": "The ground erupts in a chain of explosions, and Kahnigut's line breaks as men stumble, shields raised against falling fire."
+  },
+  "58": {
+    "text": "Ignus: Melt before me, little pieces. You were never more than sparks on my board."
+  },
+  "59": {
+    "text": "Kahnigut chokes on smoke as a blast of heat drives him and the survivors back down the mountain, retreating under a rain of glowing embers."
+  },
+  "60": {
+    "text": "Kahnigut drives Ignus to his knees on a crumbling ledge, soldiers circling warily as molten rivers hiss and spit below."
+  },
+  "61": {
+    "text": "Ignus coughs, ash spilling from his lips as he grins up at the Knight. Ignus: Hah... you do not break as easily as most. Very well, Kahnigut-will you smother me, or use me?"
+  },
+  "62": {
+    "text": "Ignus: Spare me, and I will tear open the sky for you. I will teach you METEOR SHOWER, a storm of fire that falls where you command. Kill me, and the spell dies with me in the dark.",
+    "options": [
+      {
+        "text": "Hurl Ignus into the magma [+3 Bombs, +2 Promotions]",
+        "target": "Ember_Spire_Kill",
+        "return_choice": true
+      },
+      {
+        "text": "Spare Ignus and claim Meteor Shower [Learn Meteor Shower]",
+        "target": "Ember_Spire_Release",
+        "return_choice": true
+      }
+    ]
+  },
+  "63": {
+    "text": "Kahnigut gives a single, sharp order, and his sword flashes. Ignus tumbles from the ledge into the waiting magma below, swallowed by a glow that flares once and then vanishes like a snuffed candle.",
+    "return_rewards": {
+      "powerups": {
+        "bombs": 3,
+        "promotions": 2
+      }
+    }
+  },
+  "64": {
+    "text": "Kahnigut lowers his blade. Ignus presses a burning hand to the rock, tracing a fiery sigil that sears itself into Kahnigut's mind. Ignus: Take METEOR SHOWER, Knight... and remember who first taught you to make the heavens fall.",
+    "return_rewards": {
+      "spells": [
+        "Meteor Shower"
+      ]
+    }
+  },
+  "65": {
+    "text": "The Ember Spire greets Kahnigut with the same blistering heat, but this time his soldiers move with practiced steps, shields angled against falling sparks instead of panic."
+  },
+  "66": {
+    "text": "Ignus appears from behind a crag Ignus: Back again, Knight? Careful-pieces that stay in the fire too long tend to crack."
+  },
+  "67": {
+    "text": "Kahnigut: Last time I left half-baked. This time, I am ready for the full roast."
+  },
+  "68": {
+    "text": "The Emerald Grove opens around Kahnigut like a whispered secret, trees arching high overhead, their leaves glowing with an emerald light that never quite feels like day or night."
+  },
+  "69": {
+    "text": "His soldiers fall quiet as roots curl over old stones and fireflies drift in patterns that seem almost intentional, like someone is watching through the glow."
+  },
+  "70": {
+    "text": "From the roots of an enormous oak, Thalara the Forest Druid rises, moss woven into his hair, bark braided into his sleeves, eyes the wary green of an old forest that has seen wars come and go."
+  },
+  "71": {
+    "text": "Thalara: Another iron-clad visitor trampling my soil. Tell me, Knight-are you here to protect life, or to prove you can out-stomp it?"
+  },
+  "72": {
+    "text": "Kahnigut: I am here to stop a war of wizards that has torn my kingdom apart. Step aside, or stand accountable."
+  },
+  "73": {
+    "text": "Vines coil at his feet. Thalara: Then let the Grove judge you, Sir Kahnigut. We will see whether you are a protector... or just another axe with a fancy title."
+  },
+  "74": {
+    "text": "Roots burst from the soil, seizing shields and ankles. Kahnigut watches two of his men vanish beneath a surge of grasping vines."
+  },
+  "75": {
+    "text": "Thalara: Your pieces fall out of rhythm, Knight. The forest prefers those who know how to move with it."
+  },
+  "76": {
+    "text": "Forced to cut his way free, Kahnigut orders a retreat, his line staggering back through a curtain of thorns that parts only after the Grove is satisfied it has made its point."
+  },
+  "77": {
+    "text": "Kahnigut pins Thalara against the roots of his oak, his soldiers forming a wary circle as the Grove itself seems to hold its breath."
+  },
+  "78": {
+    "text": "Thalara lowers her staff, leaves dimming. Thalara: You fight fiercely... but I see you protect your men like a true captain, not a butcher. Perhaps this forest misjudged you."
+  },
+  "79": {
+    "text": "Thalara: Spare me, and I will call an ally for you—SUMMON ELF, a living bishop of the wild. Refuse, and the Grove will sing your name as a cautionary tale.",
+    "options": [
+      {
+        "text": "Cut Thalara down [+2 Shields, +2 Freezes]",
+        "target": "Emerald_Grove_Kill",
+        "return_choice": true
+      },
+      {
+        "text": "Spare Thalara and accept her aid [Learn Summon Elf]",
+        "target": "Emerald_Grove_Release",
+        "return_choice": true
+      }
+    ]
+  },
+  "80": {
+    "text": "Kahnigut's blade strikes swift and final. Thalara's body collapses into a drift of leaves that scatter on an unseen wind, leaving only a fading echo in the branches overhead.",
+    "return_rewards": {
+      "powerups": {
+        "shields": 2,
+        "freezes": 2
+      }
+    }
+  },
+  "81": {
+    "text": "Kahnigut steps back, lowering his sword. Thalara presses his hand to the oak, and a radiant elven figure steps forth for a heartbeat before dissolving into light. The knowledge of SUMMON ELF settles into Kahnigut like roots anchoring in rich soil.",
+    "return_rewards": {
+      "spells": [
+        "Summon Elf"
+      ]
+    }
+  },
+  "82": {
+    "text": "The Emerald Grove greets him once more with its soft green glow, but this time Kahnigut's soldiers tread lightly, armor quiet, eyes sharp for creeping roots."
+  },
+  "83": {
+    "text": "Thalara's voice drifts from the branches, whether in body or spirit. Thalara: Back again, Knight? Let us see if you have learned to move with the forest... or against it."
+  },
+  "84": {
+    "text": "The Shadow Realms do not begin so much as they erase everything else. One step and Kahnigut's men find themselves in a world of black stone and drifting mist, where even their torches burn small and nervous."
+  },
+  "85": {
+    "text": "Footsteps echo without direction, and more than one soldier checks over his shoulder for enemies that never quite appear, shapes sinking back into the dark whenever looked at directly."
+  },
+  "86": {
+    "text": "Morvek the Dark Wizard emerges from the gloom, a short-bearded figure in a black cloak that seems to drink the light, eyes calm in a way that feels much worse than rage."
+  },
+  "87": {
+    "text": "Morvek: Sir Kahnigut. You bring an army into my shadows. Brave... or desperately uninformed."
+  },
+  "88": {
+    "text": "Kahnigut: I have faced magma, swamps, and worse. You will not be the first cloak I have cut down to size."
+  },
+  "89": {
+    "text": "Morvek smiles faintly. Morvek: Confidence is a fine opening move. Let us see how many of your pawns you are willing to raise again."
+  },
+  "90": {
+    "text": "The ground vanishes beneath several soldiers, and skeletal hands drag them into rifts of darkness as Kahnigut slashes at nothing but air."
+  },
+  "91": {
+    "text": "Morvek: Death is not an end here, Knight. It is... material."
+  },
+  "92": {
+    "text": "Kahnigut orders a retreat, pulling his shaken men back toward the faint memory of light as the shadows close in behind them like a slow, satisfied grin."
+  },
+  "93": {
+    "text": "Kahnigut forces Morvek back against a jagged obsidian pillar, the Dark Wizard breathing hard, cloak shredded, flickers of restless souls leaking from tiny cracks in the stone around them."
+  },
+  "94": {
+    "text": "Morvek: Impressive. Most commanders shatter by now, but you... you protect your king like a man who knows the value of each piece."
+  },
+  "95": {
+    "text": "Morvek: Spare me, and I will share my rite—SUMMON UNDEAD PAWN. Fallen soldiers claw back to serve again. Kill me, and the shadows lose a very generous partner.",
+    "options": [
+      {
+        "text": "Strike Morvek down [+3 Advanced Shields, +2 Time Warps]",
+        "target": "Shadow_Realms_Kill",
+        "return_choice": true
+      },
+      {
+        "text": "Spare Morvek and accept his dark rite [Learn Summon Undead Pawn]",
+        "target": "Shadow_Realms_Release",
+        "return_choice": true
+      }
+    ]
+  },
+  "96": {
+    "text": "Kahnigut drives his sword through the Dark Wizard's chest. Morvek dissolves into a cloud of black ash that screams without sound, then scatters, leaving only cold silence behind.",
+    "return_rewards": {
+      "powerups": {
+        "advanced_shields": 3,
+        "time_warps": 2
+      }
+    }
+  },
+  "97": {
+    "text": "Kahnigut steps aside. Morvek lifts a hand, tracing a circle of black fire in the air. Whispers coil into Kahnigut's mind—the method of SUMMON UNDEAD PAWN, a grim gift he will not use lightly.",
+    "return_rewards": {
+      "spells": [
+        "Summon Undead Pawn"
+      ]
+    }
+  },
+  "98": {
+    "text": "The Shadow Realms swallow Kahnigut again, but this time his men lock shields immediately, backs together, refusing to give the darkness an easy opening."
+  },
+  "99": {
+    "text": "Morvek's voice rises from everywhere and nowhere. Morvek: Back again, Sir Kahnigut. Let us see what you have learned... and what you are willing to raise."
+  },
+  "100": {
+    "text": "The Frozen Lake stretches out like a vast mirror of pale blue glass, wind knifing across its surface as Kahnigut and his soldiers step onto the ice with careful, crunching boots."
+  },
+  "101": {
+    "text": "Breath steams in the air, and even words feel brittle. Beneath the ice, shadows drift like memories that refuse to thaw."
+  },
+  "102": {
+    "text": "Eira the Frostbound Oracle stands at the center of the lake, white hair whipping in the frigid wind, winter robes billowing, eyes the color of distant glaciers."
+  },
+  "103": {
+    "text": "Eira: Brave of you to march so many hearts onto my lake, Knight. One wrong move, and they all crack at once."
+  },
+  "104": {
+    "text": "Kahnigut: I will take my chances on the ice over letting you freeze my homeland in prophecy and fear."
+  },
+  "105": {
+    "text": "Eira raises his staff, frost spiderwebbing out from her feet. Eira: Then let destiny decide whose resolve shatters first."
+  },
+  "106": {
+    "text": "The ice erupts in jagged pillars, separating Kahnigut from his men. A blast of freezing wind sends two soldiers sliding screaming into a fissure that seals behind them."
+  },
+  "107": {
+    "text": "Eira: I warned you, Knight. Not every board supports so many pieces."
+  },
+  "108": {
+    "text": "Numb-fingered and half-frozen, Kahnigut signals the retreat, his surviving men stumbling off the lake as the frost behind them mends itself smooth and unbroken."
+  },
+  "109": {
+    "text": "With a final charge across cracking ice, Kahnigut reaches Eira, sword at his throat as his men anchor themselves in a ring to keep the ice from splitting beneath them all."
+  },
+  "110": {
+    "text": "Eira: You defy the cold longer than most. Interesting. Perhaps your fate is not as brittle as I foresaw."
+  },
+  "111": {
+    "text": "Eira: Spare me, and I will grant you ICE BLAST—an entire column of the field frozen at your command. Kill me, and the future grows that much darker... even for you.",
+    "options": [
+      {
+        "text": "Shatter Eira where she stands [+4 Freezes, +1 Advanced Shield]",
+        "target": "Frozen_Lake_Kill",
+        "return_choice": true
+      },
+      {
+        "text": "Spare Eira and bind her frost to your cause [Learn Ice Blast]",
+        "target": "Frozen_Lake_Release",
+        "return_choice": true
+      }
+    ]
+  },
+  "112": {
+    "text": "Kahnigut's blade flashes, and Eira falls silently, her body fracturing into a spray of ice crystals that scatter across the lake and vanish into the wind.",
+    "return_rewards": {
+      "powerups": {
+        "freezes": 4,
+        "advanced_shields": 1
+      }
+    }
+  },
+  "113": {
+    "text": "Kahnigut withdraws his sword. Eira presses her palm to the ice, and a surge of frozen light races outward before sinking into his memory—the pattern of ICE BLAST burns itself into Kahnigut's memory like frostbite he will never quite shake.",
+    "return_rewards": {
+      "spells": [
+        "Ice Blast"
+      ]
+    }
+  },
+  "114": {
+    "text": "The Frozen Lake greets him again with a howl of wind, but Kahnigut's men brace themselves, planting spikes and gripping shields in practiced formation."
+  },
+  "115": {
+    "text": "Eira's figure appears through the snow-mist. Eira: So the Knight returns. Let us see if you have learned to dance on the edge of breaking."
+  },
+  "116": {
+    "text": "The Storm Reaches rise like jagged teeth into a raging sky, lightning crawling across low clouds as Kahnigut leads his soldiers along a narrow mountain path."
+  },
+  "117": {
+    "text": "Wind howls around them, snatching at cloaks and banners. More than once, a man grabs the rock wall, swearing that the air is trying to shove him off the board entirely."
+  },
+  "118": {
+    "text": "At the peak stands Sylvaine the Tempest Caller, blue-gray robes whipping in the gale, arms spread wide as if she is personally arguing with the storm-and winning."
+  },
+  "119": {
+    "text": "Sylvaine: Ah, guests! Most people avoid standing on a mountaintop in the middle of a lightning festival. You must be very brave... or very, very bad at risk assessment."
+  },
+  "120": {
+    "text": "Kahnigut: I have seen worse than weather. If this is your strongest argument, I am not impressed."
+  },
+  "121": {
+    "text": "Thunder laughs overhead as Sylvaine smirks. Sylvaine: Then allow me to... intensify my case."
+  },
+  "122": {
+    "text": "A shrieking gale slams into the line, hurling soldiers sideways as lightning splits the ground at their feet, forcing them to scramble or fall."
+  },
+  "123": {
+    "text": "Sylvaine: You stand like pieces on a board, Knight. I prefer to rearrange things."
+  },
+  "124": {
+    "text": "Beaten back by wind and thunder, Kahnigut signals the retreat, his men staggering down the path while the storm laughs behind them."
+  },
+  "125": {
+    "text": "Kahnigut pushes through the screaming wind, closing the distance until his blade rests against Sylvaine's throat, his soldiers anchoring themselves with shields dug into the rock."
+  },
+  "126": {
+    "text": "Sylvaine: Well, well. You actually climbed all the way up and did not fall off once. I am almost proud."
+  },
+  "127": {
+    "text": "Sylvaine: Spare me, and I will give you WIND STORM—one roaring gust that shoves every piece on the field eastward in glorious chaos. Kill me, and the storm loses one of its favorite conductors.",
+    "options": [
+      {
+        "text": "Cast Sylvaine from the peak [+3 Swaps, +2 Magnets]",
+        "target": "Storm_Reaches_Kill",
+        "return_choice": true
+      },
+      {
+        "text": "Spare Sylvaine and claim the gale [Learn Wind Storm]",
+        "target": "Storm_Reaches_Release",
+        "return_choice": true
+      }
+    ]
+  },
+  "128": {
+    "text": "Kahnigut strikes, and Sylvaine topples from the peak, her body vanishing into the storm below as the thunder rolls on without her.",
+    "return_rewards": {
+      "powerups": {
+        "swaps": 3,
+        "magnets": 2
+      }
+    }
+  },
+  "129": {
+    "text": "Kahnigut lowers his sword. Sylvaine laughs and traces a spiral in the air; the wind hums in answer, and the pattern of WIND STORM imprints itself in Kahnigut's thoughts like a restless breeze waiting to be unleashed.",
+    "return_rewards": {
+      "spells": [
+        "Wind Storm"
+      ]
+    }
+  },
+  "130": {
+    "text": "The Storm Reaches greet him with familiar thunder, but this time Kahnigut's men crouch low and move in rhythm with each gust, no longer strangers to the mountain's temper."
+  },
+  "131": {
+    "text": "Sylvaine appears on a rocky outcrop. Sylvaine: Back for another round of high-altitude regret, Knight? Let us see if your footing has improved."
+  },
+  "132": {
+    "text": "The Grave Hollow sprawls beneath a sagging sky, fields of crooked headstones and open graves stretching far beyond the reach of Kahnigut's torchlight."
+  },
+  "133": {
+    "text": "His soldiers whisper prayers as the ground crunches under their boots, bone and old roots mingling in every step."
+  },
+  "134": {
+    "text": "Varkos the Gravekeeper rises from behind a leaning stone, pale and thin in a black cloak, a rusty lantern swinging from his hand with a sickly yellow glow."
+  },
+  "135": {
+    "text": "Varkos: Hm. New arrivals. I keep the quiet places, Knight. Your marching makes a terrible noise."
+  },
+  "136": {
+    "text": "Kahnigut: Then surrender your necromancy, and the dead can rest without your meddling."
+  },
+  "137": {
+    "text": "Varkos tilts his head. Varkos: Oh, I do not disturb them. I simply borrow them when the living prove... insufficient."
+  },
+  "138": {
+    "text": "Skeletal hands claw from the graves, dragging soldiers down as Kahnigut hacks at limbs that refuse to feel pain."
+  },
+  "139": {
+    "text": "Varkos: See? The dead do not complain about orders. They simply obey."
+  },
+  "140": {
+    "text": "Outnumbered by things that should not still be moving, Kahnigut calls for a retreat, his men scrambling between gravestones as jaws snap at their heels."
+  },
+  "141": {
+    "text": "Kahnigut smashes Varkos's lantern under his boot and pins the necromancer against a tall monument, the glow of restless spirits fading around them."
+  },
+  "142": {
+    "text": "Varkos: Impressive. Most commanders fear my ranks. You cut through them like a gravedigger late for supper."
+  },
+  "143": {
+    "text": "Varkos: Spare me, and I will refine your army with SUMMON UNDEAD PAWN. Your fallen can march again. Kill me, and the Hollow goes dark... and empty.",
+    "options": [
+      {
+        "text": "Lay Varkos to rest at last [+2 Shields, +2 Time Warps]",
+        "target": "Grave_Hollow_Kill",
+        "return_choice": true
+      },
+      {
+        "text": "Spare Varkos and accept his grave bargain [Learn Summon Undead Pawn]",
+        "target": "Grave_Hollow_Release",
+        "return_choice": true
+      }
+    ]
+  },
+  "144": {
+    "text": "Kahnigut drives his blade through Varkos, and the necromancer crumples among his own graves. The dead around them collapse into stillness, finally allowed to rest.",
+    "return_rewards": {
+      "powerups": {
+        "shields": 2,
+        "time_warps": 2
+      }
+    }
+  },
+  "145": {
+    "text": "Kahnigut steps back. Varkos presses a bone-white hand to the soil, and a cold pattern of command seeps into Kahnigut's thoughts—the rite of SUMMON UNDEAD PAWN, offered with a thin, knowing smile.",
+    "return_rewards": {
+      "spells": [
+        "Summon Undead Pawn"
+      ]
+    }
+  },
+  "146": {
+    "text": "The Grave Hollow greets him with familiar rows of stone, but this time Kahnigut's men keep tight formation, eyes wary for shifting earth."
+  },
+  "147": {
+    "text": "Varkos appears beside a fresh-dug grave as if he has always been there. Varkos: Back again, Knight? I saved you a plot, just in case."
+  },
+  "148": {
+    "text": "The Shifting Sands roll out in all directions, a blazing ocean of dunes that swallow footprints as fast as Kahnigut's soldiers can make them."
+  },
+  "149": {
+    "text": "The sun beats down like a hammer, and even the air wavers, turning distant shapes into tricks of the eye."
+  },
+  "150": {
+    "text": "Sahri the Sand Shaper rises from a swirl of dust, her brown cloak blending with the desert, eyes sharp and amused beneath a wrap that shields her from the heat."
+  },
+  "151": {
+    "text": "Sahri: A knight in all that metal, walking into my desert. Bold. Or you lost a bet."
+  },
+  "152": {
+    "text": "Kahnigut: I came to end your part in this war, not to discuss my wardrobe."
+  },
+  "153": {
+    "text": "Sahri chuckles, sand curling around her fingers. Sahri: Then let us see how long you last before the desert chooses to keep you."
+  },
+  "154": {
+    "text": "A wall of sand rears up and crashes over the line, burying shields and weapons as soldiers cough and claw for air."
+  },
+  "155": {
+    "text": "Sahri: The desert takes what does not belong. Today, it takes you, Knight."
+  },
+  "156": {
+    "text": "Half-blind and choking, Kahnigut orders a retreat, dragging his men out of the dunes before the sands close over them completely."
+  },
+  "157": {
+    "text": "Kahnigut closes the distance through the storm, seizing Sahri's wrist before she can summon another wave, his soldiers forming a ragged circle in the shifting ground."
+  },
+  "158": {
+    "text": "Sahri: Hah. You are more stubborn than most. The desert tried to swallow you, and you answered by marching harder."
+  },
+  "159": {
+    "text": "Sahri: Spare me, and I gift you DESERT SUN—a scorching wrath that cracks the battlefield and burns away ice. Kill me, and the sands lose one of their loudest voices.",
+    "options": [
+      {
+        "text": "Let the desert take Sahri [+3 Bombs, +2 Freezes]",
+        "target": "Shifting_Sands_Kill",
+        "return_choice": true
+      },
+      {
+        "text": "Spare Sahri and command the desert [Learn Desert Sun]",
+        "target": "Shifting_Sands_Release",
+        "return_choice": true
+      }
+    ]
+  },
+  "160": {
+    "text": "Kahnigut's sword strikes, and Sahri falls back into the sand. The dunes rise once in a brief, angry gust, then settle as if nothing had ever stood there at all.",
+    "return_rewards": {
+      "powerups": {
+        "bombs": 3,
+        "freezes": 2
+      }
+    }
+  },
+  "161": {
+    "text": "Kahnigut releases her. Sahri presses her hand to the desert, and a burst of unbearable heat races outward before sinking into his memory—the shape and fury of DESERT SUN, waiting to be unleashed.",
+    "return_rewards": {
+      "spells": [
+        "Desert Sun"
+      ]
+    }
+  },
+  "162": {
+    "text": "The Shifting Sands greet him with the same relentless sun, but this time Kahnigut's men march in tighter lines, veils over their faces and eyes sharp for moving dunes."
+  },
+  "163": {
+    "text": "Sahri appears atop a nearby ridge. Sahri: Back again, Knight? Careful-too many visits, and even the desert will start to recognize your footprints."
+  },
+  "164": {
+    "text": "The Iron Keep towers over a landscape of training yards and siege lines, its walls bristling with spikes and banners snapping in a controlled, disciplined wind."
+  },
+  "165": {
+    "text": "Kahnigut's soldiers straighten almost instinctively at the sight of so much drilled order, boots falling into an even sharper rhythm."
+  },
+  "166": {
+    "text": "Garruk the Iron Castellan strides out onto the battlements, muscles like forged steel beneath his armor, a greatsword resting on his shoulder as if it weighs nothing."
+  },
+  "167": {
+    "text": "Garruk: So. The famous Sir Kahnigut marches on my fortress. I expected more men... or at least taller ones."
+  },
+  "168": {
+    "text": "Kahnigut: I brought enough to finish this. Your war ends, Castellan-one way or another."
+  },
+  "169": {
+    "text": "Garruk: Good. I was worried this would be boring."
+  },
+  "170": {
+    "text": "Well-drilled soldiers crash into Kahnigut's line with brutal precision, his own men forced back step by grinding step."
+  },
+  "171": {
+    "text": "Garruk: This is a war, Knight, not a parade. Come back when you have more bite than banner."
+  },
+  "172": {
+    "text": "Outmatched by the Iron Keep's disciplined fury, Kahnigut orders the retreat, pulling his wounded away before the gate slams shut behind a wall of shields."
+  },
+  "173": {
+    "text": "After a brutal clash, Kahnigut forces Garruk to one knee in the courtyard, his own soldiers ringed around them, exhausted but standing."
+  },
+  "174": {
+    "text": "Garruk laughs through a bloodied grin. Garruk: That is more like it. A commander who actually knows how to use his pieces."
+  },
+  "175": {
+    "text": "Garruk: Spare me, and I will teach you INSPIRE SOLDIER—a way to raise a pawn to knighthood before its time. Kill me, and the Keep loses its sharpest edge.",
+    "options": [
+      {
+        "text": "Execute Garruk before his men [+3 Promotions, +2 Shields]",
+        "target": "Iron_Keep_Kill",
+        "return_choice": true
+      },
+      {
+        "text": "Spare Garruk and learn to inspire your ranks [Learn Inspire Soldier]",
+        "target": "Iron_Keep_Release",
+        "return_choice": true
+      }
+    ]
+  },
+  "176": {
+    "text": "Kahnigut's blade falls, and Garruk slumps forward, the clang of his armor echoing through the suddenly quiet courtyard as the Iron Keep's banners sag in mourning.",
+    "return_rewards": {
+      "powerups": {
+        "promotions": 3,
+        "shields": 2
+      }
+    }
+  },
+  "177": {
+    "text": "Kahnigut steps back. Garruk presses a fist to his chest, then gestures to one of Kahnigut's soldiers. A warm surge of courage ripples through the ranks as the pattern of INSPIRE SOLDIER etches itself into Kahnigut's understanding.",
+    "return_rewards": {
+      "spells": [
+        "Inspire Soldier"
+      ]
+    }
+  },
+  "178": {
+    "text": "The Iron Keep greets him with familiar discipline, but this time Kahnigut's men meet the fortress stares with steady eyes of their own."
+  },
+  "179": {
+    "text": "Garruk appears on the wall once more. Garruk: Back for another round, Knight? Let us see if your ranks are still worth inspiring."
+  },
+  "180": {
+    "text": "The Astral Gate stands in the middle of nowhere and everywhere, a ring of stone suspended above the ground, stars swirling within its empty center even in broad daylight."
+  },
+  "181": {
+    "text": "Kahnigut's soldiers shift uneasily as constellations drift past that none of them recognize, the sky above and the sky inside the Gate refusing to agree on anything."
+  },
+  "182": {
+    "text": "Asterion the Cosmic Wizard descends a set of stairs that were not there a moment before, ancient white beard flowing, robes speckled with moving starlight, an orb cradled in his hands."
+  },
+  "183": {
+    "text": "Asterion: Ah. A mortal commander, standing at the edge of all possible boards. Fascinating."
+  },
+  "184": {
+    "text": "Kahnigut: I am not here for riddles. Your magic has torn my world enough."
+  },
+  "185": {
+    "text": "Asterion smiles softly. Asterion: All war is a question of which future you choose to walk toward, Knight. Allow me to narrow your options."
+  },
+  "186": {
+    "text": "Visions crash into Kahnigut and his men-battlefields that never were, defeats that might be. The line staggers as swords drop and shields slip, men clutching their heads."
+  },
+  "187": {
+    "text": "Asterion: Overwhelmed by possibilities? Do not worry. Most minds are."
+  },
+  "188": {
+    "text": "With his soldiers reeling from futures they were never meant to see, Kahnigut orders a withdrawal, dragging them back from the Gate's impossible glow."
+  },
+  "189": {
+    "text": "Kahnigut pushes through the haze of visions and reaches Asterion, blade leveled at the old wizard's chest as the orb flickers with a dozen panicked timelines."
+  },
+  "190": {
+    "text": "Asterion: Remarkable. You cut through fate itself with sheer stubbornness. Few can ignore that many warnings of their own death."
+  },
+  "191": {
+    "text": "Asterion: Spare me, and I grant you the ORB OF PREMONITION—a glimpse of the optimal course in battle. Kill me, and you choose to fight blind in a universe that does not forgive mistakes.",
+    "options": [
+      {
+        "text": "Silence Asterion forever [+2 Time Warps, +2 Advanced Shields]",
+        "target": "Astral_Gate_Kill",
+        "return_choice": true
+      },
+      {
+        "text": "Spare Asterion and accept his vision [Learn Orb of Premonition]",
+        "target": "Astral_Gate_Release",
+        "return_choice": true
+      }
+    ]
+  },
+  "192": {
+    "text": "Kahnigut thrusts forward, and Asterion falls, the orb shattering into motes of dead starlight that fade one by one until only the ordinary sky remains.",
+    "return_rewards": {
+      "powerups": {
+        "time_warps": 2,
+        "advanced_shields": 2
+      }
+    }
+  },
+  "193": {
+    "text": "Kahnigut lowers his weapon. Asterion lifts the orb, and a beam of soft light touches the Knight's brow. For an instant, the lines of every battlefield he will ever see arrange themselves with perfect clarity—the gift of the ORB OF PREMONITION taking root.",
+    "return_rewards": {
+      "spells": [
+        "Orb of Premonition"
+      ]
+    }
+  },
+  "194": {
+    "text": "The Astral Gate greets him again with its impossible sky, but this time Kahnigut's men march with eyes forward, refusing to be distracted by shifting constellations."
+  },
+  "195": {
+    "text": "Asterion's voice echoes from the ring. Asterion: Back again, Sir Kahnigut. Let us see what you have done with the futures you were given."
+  },
+  "196": {
+    "text": "The Verdant Citadel rises from a sea of green, its stone walls half-swallowed by ivy, balconies overflowing with flowers and hanging gardens."
+  },
+  "197": {
+    "text": "Kahnigut's soldiers breathe in air thick with the scent of soil and blossoms, a strange contrast to the steel and blood they have grown used to."
+  },
+  "198": {
+    "text": "Verdanis the Lifebinder waits atop a staircase of roots, his green cloak alive with small vines, eyes kind but heavy with age."
+  },
+  "199": {
+    "text": "Verdanis: You bring war to a place that grows life, Sir Kahnigut. That is an interesting choice."
+  },
+  "200": {
+    "text": "Kahnigut: I did not start this war. I am here to end the wizards who keep feeding it."
+  },
+  "201": {
+    "text": "Verdanis sighs, placing a hand on a nearby tree. Verdanis: Then let us see whether you preserve your men... or spend them."
+  },
+  "202": {
+    "text": "The very ground rises against them, roots gently but firmly forcing soldiers to their knees while thorns turn blades aside."
+  },
+  "203": {
+    "text": "Verdanis: You do not yet understand that some lives cannot simply be traded away, Knight."
+  },
+  "204": {
+    "text": "Bound by living wood and outmaneuvered by the Citadel's quiet defenses, Kahnigut orders a retreat, his men released only once they start to fall back."
+  },
+  "205": {
+    "text": "Kahnigut reaches Verdanis at the top of the root-stair, sword drawn but held steady rather than wild, his men arrayed below with wounds and weary eyes."
+  },
+  "206": {
+    "text": "Verdanis: You have brought them this far with fewer dead than I expected. You value them more than most commanders."
+  },
+  "207": {
+    "text": "Verdanis: Spare me, and I will teach you HEAL PAWNS—a rite to restore fallen footsoldiers to the front lines, so long as it does not doom a king. Kill me, and this knowledge returns to the soil.",
+    "options": [
+      {
+        "text": "Cut Verdanis down and let the Citadel mourn [+2 Shields, +2 Freezes]",
+        "target": "Verdant_Citadel_Kill",
+        "return_choice": true
+      },
+      {
+        "text": "Spare Verdanis and accept his healing art [Learn Heal Pawns]",
+        "target": "Verdant_Citadel_Release",
+        "return_choice": true
+      }
+    ]
+  },
+  "208": {
+    "text": "Kahnigut strikes, and Verdanis falls back into the waiting arms of twisting roots. Flowers bloom briefly where his blood touches the ground, then close like eyes going to sleep.",
+    "return_rewards": {
+      "powerups": {
+        "shields": 2,
+        "freezes": 2
+      }
+    }
+  },
+  "209": {
+    "text": "Kahnigut lowers his sword. Verdanis smiles sadly and places a hand over Kahnigut's gauntlet. A warm, green pulse passes through him—the pattern of HEAL PAWNS settling into place like new growth.",
+    "return_rewards": {
+      "spells": [
+        "Heal Pawns"
+      ]
+    }
+  },
+  "210": {
+    "text": "The Verdant Citadel greets him with rustling leaves and distant birdsong, but this time Kahnigut's men walk with a quiet reverence, hands away from the living walls."
+  },
+  "211": {
+    "text": "Verdanis's voice drifts through the branches, whether in body or memory. Verdanis: You return, Knight. Let us see what you have learned about the lives that march at your side."
+  },
+  "212": {
+    "text": "The Crimson Court spreads out like a wound in the world, marble floors veined with red, banners the color of fresh blood hanging from vaulted ceilings."
+  },
+  "213": {
+    "text": "Kahnigut's soldiers shift uneasily, boots echoing too loudly in a hall lined with statues of queens, each one cracked or broken in some deliberate way."
+  },
+  "214": {
+    "text": "Vorath the Crimson Magus descends from a throne of blades, red cloak swirling, a cruel dagger spinning lazily between his fingers."
+  },
+  "215": {
+    "text": "Vorath: Sir Kahnigut. I have heard of you. A commander who actually cares whether his pieces survive the g."
+  },
+  "216": {
+    "text": "Kahnigut: They are not pieces. They are men. And I am here to stop you from bleeding any more of them for your rituals."
+  },
+  "217": {
+    "text": "Vorath smiles, all teeth and hunger. Vorath: Oh, but sacrifice is how victories are truly purchased."
+  },
+  "218": {
+    "text": "Vorath's magic twists the battlefield, forcing Kahnigut's own men to choose between their captain and their comrades. Too many fall buying seconds that slip away anyway."
+  },
+  "219": {
+    "text": "Vorath: See? Even you cannot win without paying in blood."
+  },
+  "220": {
+    "text": "With his line fractured and the Court closing in, Kahnigut orders a retreat, dragging his wounded from the hall as the statues seem to watch in silent judgment."
+  },
+  "221": {
+    "text": "Kahnigut disarms Vorath with a sharp strike, sending the ritual dagger skittering across the crimson floor as his own soldiers hold formation around them."
+  },
+  "222": {
+    "text": "Vorath laughs, even in defeat. Vorath: Remarkable. A commander who brings so many this far alive. You must be terrible at sacrificing queens."
+  },
+  "223": {
+    "text": "Vorath: Spare me, and I will show you SACRIFICE—a rite where a queen's fall feeds promotions across your ranks. Kill me, and you prove you have learned nothing from this hall.",
+    "options": [
+      {
+        "text": "Kill Vorath on his throne [+4 Promotions, +2 Bombs]",
+        "target": "Crimson_Court_Kill",
+        "return_choice": true
+      },
+      {
+        "text": "Spare Vorath and take his cruel lesson [Learn Sacrifice]",
+        "target": "Crimson_Court_Release",
+        "return_choice": true
+      }
+    ]
+  },
+  "224": {
+    "text": "Kahnigut plunges his sword through Vorath's chest. The Crimson Magus slumps back onto his throne of blades, the hall's banners dimming from fresh red to dried rust.",
+    "return_rewards": {
+      "powerups": {
+        "promotions": 4,
+        "bombs": 2
+      }
+    }
+  },
+  "225": {
+    "text": "Kahnigut steps away from the killing blow. Vorath grins and presses the dagger into the Knight's gauntlet. A cold, exhilarating pattern floods Kahnigut's mind—the cruel elegance of SACRIFICE, waiting to be used or rejected.",
+    "return_rewards": {
+      "spells": [
+        "Sacrifice"
+      ]
+    }
+  },
+  "226": {
+    "text": "The Crimson Court greets him again with its dark splendor, but this time Kahnigut's men stare straight ahead, refusing to meet the eyes of the broken queens."
+  },
+  "227": {
+    "text": "Vorath's voice curls through the hall like smoke. Vorath: Back again, Sir Kahnigut? Let us see what price you are willing to pay today."
+  },
+  "228": {
+    "text": "The Sanctuary of Light rises in gleaming stone and gold, every surface catching and reflecting radiance until Kahnigut's men must squint just to see straight."
+  },
+  "229": {
+    "text": "Soft hymns echo through the halls, and even battle-hardened soldiers feel a strange calm settle over their hearts as they march across floors polished like mirrors."
+  },
+  "230": {
+    "text": "Seraphiel the Luminary stands before a great window of stained glass, ancient in pure white robes, a golden headband resting upon silver hair."
+  },
+  "231": {
+    "text": "Seraphiel: Sir Kahnigut, Knight of Chessasia. You bring steel into a place built for stillness."
+  },
+  "232": {
+    "text": "Kahnigut: Stillness is a luxury we do not have. Not while wizards tear my kingdom apart."
+  },
+  "233": {
+    "text": "Seraphiel turns, light bending slightly around her. Seraphiel: Then let us test whether your cause is worthy of the light you claim to fight for."
+  },
+  "234": {
+    "text": "Beams of blinding radiance scatter Kahnigut's formation, soldiers dropping shields to cover their eyes as holy fire traces warning lines across the floor."
+  },
+  "235": {
+    "text": "Seraphiel: You advance without understanding. Light can guide... or burn."
+  },
+  "236": {
+    "text": "Disoriented and half-blinded, Kahnigut calls for a retreat, leading his men back out of the Sanctuary's overwhelming brilliance."
+  },
+  "237": {
+    "text": "Kahnigut reaches Seraphiel at the center of the Sanctuary, sword held low but ready, his soldiers waiting at the edge of a circle of radiant sigils."
+  },
+  "238": {
+    "text": "Seraphiel studies him, then his men. Seraphiel: You lead not for glory, but for those behind you. That is rarer than you might think."
+  },
+  "239": {
+    "text": "Seraphiel: Spare me, and I will grant you ONE WITH LIGHT—a turning of the battle itself in your favor. Kill me, and the world grows that much dimmer.",
+    "options": [
+      {
+        "text": "Strike Seraphiel down [+3 Advanced Shields, +2 Shields]",
+        "target": "Sanctuary_of_Light_Kill",
+        "return_choice": true
+      },
+      {
+        "text": "Spare Seraphiel and receive her blessing [Learn One With Light]",
+        "target": "Sanctuary_of_Light_Release",
+        "return_choice": true
+      }
+    ]
+  },
+  "240": {
+    "text": "Kahnigut strikes, and Seraphiel falls in a flare of white that leaves only a scorched outline on the polished floor. The Sanctuary's glow dims to a softer, sadder light.",
+    "return_rewards": {
+      "powerups": {
+        "advanced_shields": 3,
+        "shields": 2
+      }
+    }
+  },
+  "241": {
+    "text": "Kahnigut sheaths his sword. Seraphiel raises a hand, and a gentle radiance washes through him, rewriting the rules of victory in his mind—the whispered promise of ONE WITH LIGHT.",
+    "return_rewards": {
+      "spells": [
+        "One With Light"
+      ]
+    }
+  },
+  "242": {
+    "text": "The Sanctuary of Light greets him again with its mirrored floors and singing halls, but this time Kahnigut's men move with quiet respect, steps echoing like a procession instead of an invasion."
+  },
+  "243": {
+    "text": "Seraphiel's voice rings out from the high arches. Seraphiel: You return, Knight. Let us see what you have done with the light you were given."
+  },
+  "244": {
+    "text": "Kahnigut: A new land, friends. And fortunate for us, no danger here."
+  },
+  "245": {
+    "text": "Let us nap today and regain our strength."
+  },
+  "246": {
+    "text": "Dreamland does not arrive; it unfolds. One blink and Kahnigut's soldiers find the ground beneath them turned to soft, shifting clouds, distant towers bending at impossible angles in the sky.\n\nColors feel too bright, sounds slightly muffled, and every breath tastes faintly of something sweet and half-remembered from childhood."
+  },
+  "247": {
+    "text": "Nymera the Dreamweaver appears atop a floating stair that leads nowhere, young-faced, eyes full of starlight and mischief, robes drifting as if underwater.\n\nNymera: Ohhh, a whole squad of serious faces. You must be the Knight. You look very... awake. How unfortunate."
+  },
+  "248": {
+    "text": "Kahnigut: I have no time for illusions, wizard. My kingdom needs answers, not riddles."
+  },
+  "249": {
+    "text": "Nymera giggles softly. Nymera: Everything important begins as a dream, Sir Kahnigut. Let us see what you are really afraid to wake up to."
+  },
+  "250": {
+    "text": "The ground tilts, and suddenly soldiers are stumbling across a chessboard made of clouds, their weapons turning to flowers or feathers in their hands before they can strike."
+  },
+  "251": {
+    "text": "Nymera: You cannot fight what you do not believe is real, Knight."
+  },
+  "252": {
+    "text": "As the dreamscape folds in on itself, Kahnigut grabs his men by sheer force of will, dragging them back toward the thin, stubborn line of waking reality."
+  },
+  "253": {
+    "text": "Kahnigut pushes through shifting illusions and reaches Nymera, seizing her wrist before she can snap her fingers again. The dream around them flickers, momentarily unsure which story to follow."
+  },
+  "254": {
+    "text": "Nymera tilts her head, impressed. Nymera: Huh. Most people just lie down and accept the nightmare. You really are inconveniently determined."
+  },
+  "255": {
+    "text": "Nymera: Spare me, and I will teach you DREAMSHIFT—a way for a chosen piece to slip out of danger, stepping from one square of reality to another. Kill me, and you go back to fighting in a world with no imagination.",
+    "options": [
+      {
+        "text": "End Nymera's dream games [+2 Time Warps, +2 Swaps]",
+        "target": "Dreamland_Kill",
+        "return_choice": true
+      },
+      {
+        "text": "Spare Nymera and learn to bend reality [Learn Dreamshift]",
+        "target": "Dreamland_Release",
+        "return_choice": true
+      }
+    ]
+  },
+  "256": {
+    "text": "Kahnigut strikes, and Nymera shatters into a swirl of glowing petals that fade into the clouds. The dreamscape stiffens, becoming duller and more rigid as it cracks around him.",
+    "return_rewards": {
+      "powerups": {
+        "time_warps": 2,
+        "swaps": 2
+      }
+    }
+  },
+  "257": {
+    "text": "Kahnigut releases her. Nymera presses a fingertip to his helm, and for a heartbeat the world melts and reforms in a dozen safe configurations. The idea of DREAMSHIFT settles into his mind like a secret door only he can see."
+  },
+  "258": {
+    "text": "Dreamland greets him again with bending towers and drifting clouds, but this time Kahnigut's men hold onto each other's shoulders, anchoring themselves against the shifting nonsense."
+  },
+  "259": {
+    "text": "Nymera's voice floats from somewhere above. Nymera: Back again, Knight? Careful-you keep this up, and you might start enjoying yourself."
+  }
+}

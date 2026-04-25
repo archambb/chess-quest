@@ -1,0 +1,28 @@
+Coding - Ben Archambault (lots of AI help -- ChatGPT)
+Game Design - Ben Archambault
+Music - Andrey Sitkov (Purchased from Humble Bundle)
+    Note: This music is licensed and is not part of the code under GPLv3
+    The music and many other assets of this game may not be copied or distributed except by the original licensee, Ben Archambault
+    game_start.wav -- Ice and Fire (peaceful part - looped).wav
+    1.wav - Secrets of Kingdom (looped).wav
+    2.wav - Journey into Fog (looped).wav
+    3.wav - Knight Rising (looped).wav
+    4.wav - Magic Within (looped).wav
+    5.wav - Ice and Fire (heavy part - looped).wav
+    6.wav - Protection of Kingdom (looped).wav
+    7.wav - Battle March (looped).wav
+    8.wav - Driving Force (looped).wav
+    9.wav - Knight Power (looped).wav
+    10.wav - Brave Heart (Looped).wav
+    11.wav - Time For Adventures (Looped).wav
+    12.wav - Unbreakable (Looped).wav
+    13.wav - Battle Theme 1 (Looped).wav
+    14.wav - Battle Theme 2 (Looped).wav
+    15.wav - Battle Theme 3 (Looped).wav
+    16.wav - Battle Theme 4 (Looped).wav
+    17.wav - Battle Theme 5 (Looped).wav
+    18.wav - Army of Death (looped).wav
+    19.wav - Evil is Near (looped).wav
+    20.wav - My Kingdom (looped).wav
+
+Art - Lots of ChatGPT, Sora, and Ben Archambault

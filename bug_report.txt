@@ -1,0 +1,47 @@
+[] Blocking pawns is really just looking at if a pawn hasn't moved. We need to see if it COULD move. (one of hte last 5 quests)
+[likely fixed] When casting One with Light, the pieces need to be reloaded (player should be the player pieces, the enemy should have their elemental pieces)
+[likely fixed] Need to check quest statuses after enemy move (Queen Count not firing)
+[can't put on freeze or shield, but need to make sure enemy doesn't move if frozen or if magnet is shielded] Magnet does not respect freezes and shields
+[] Gold dropped twice on new level
+[] 
+→ Checking Quest #44
+  Title: Pawn Juggler
+  → Checking win condition group #1
+    • Queen Count: 0 == 0? ✅ Yes
+  ✅ Quest #44 COMPLETE! Calling win_quest()...
+🏆 win_quest(44) called
+Calling start_quest_win_animation:  44
+    [] Animation doesn't do the exclude
+    [] Pawns don't promote when on the last File
+[]   Title: Wall of Fire - Quest reward fires just because a pawn hasn't moved, I think. Not following intended logic.
+  → Checking win condition group #1
+    • Enemy Pawns Haven't Moved: 6 >= 5? ✅ Yes
+  ✅ Quest #45 COMPLETE! Calling win_quest()...
+🏆 win_quest(45) called
+Calling start_quest_win_animation:  45
+[QuestReward] Firewall cast
+[] Money not showed on screen from army buy
+  [] On the army buy screen, I think the money symbol is really big and not the typical size. If not that screen, another.
+[likely fixed] Only allow PIECES (not pawns) to be swapped. Powers should only be used on your side of the board
+
+[] moving on with the story is broken.
+[STONE] Extra +2 promotions, +2 shields (legacy behavior).
+[INFO] Territory Hill Country won; opening build selection UI.
+[WARN] TerritoryWinScreen failed: 'GameWorld' object has no attribute 'game'
+Traceback (most recent call last):
+  File "C:\Users\archa\OneDrive\Python Projects\chessquest\main.py", line 184, in <module>
+    game_screen.run()
+  File "C:\Users\archa\OneDrive\Python Projects\chessquest\main.py", line 156, in run
+    self.debug_controller.handle_event(event)
+  File "C:\Users\archa\OneDrive\Python Projects\chessquest\debug_controller.py", line 26, in handle_event
+    g.win_round()
+  File "C:\Users\archa\OneDrive\Python Projects\chessquest\main.py", line 107, in win_round
+    return self.game_result.win_round(dialog_option=dialog_option)
+  File "C:\Users\archa\OneDrive\Python Projects\chessquest\game_result.py", line 123, in win_round
+    g.world.overworld_move()
+  File "C:\Users\archa\OneDrive\Python Projects\chessquest\game_world.py", line 544, in overworld_move
+    screen = g.screen
+NameError: name 'g' is not defined
+
+
+[possibly fixed, can't test properly in debug mode] When winning multiple quests at the same time, let them fire one after the other (build a win queue)

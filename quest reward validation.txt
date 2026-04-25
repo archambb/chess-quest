@@ -1,0 +1,215 @@
+
+Q22: Blood Pact
+[triggers on TWO] Validate: Lose three pawns in the first 10 moves. Reward: Recover your lost pawns in random spaces on the board, shield the pawns for 3 turns.
+[Pawns do not appear] Validate: Recover lost pawns, Shield lost pawns x3
+
+Q24: Reckless Endangerment
+[x] Validate: Place your king adjacent to an enemy piece and survive for five full turns. Reward: The next time you are in checkmate, your king will teleport to a random safe square.
+[NOT WORKING YET] Validate: Checkmate teleport
+    = Built function in main.py during lose that calls from quest_rewards.py
+    = Doesn't seem to work at all, though, or perhaps the board state closes up
+
+Q42: Symmetry Pact
+[x] Validate: Win the game with the same number of pieces as the enemy. Reward: End the board effects for this level.
+[NEED TO BUILD BOARD EFFECTS] Validate: End board effects
+
+
+
+Q39: Early Graves
+[x] Validate: Have 6 of your own pieces captured before turn 10. Reward: Return them to the board in random spots.
+[] Validate: Early graves
+
+
+
+
+Q43: The Gauntlet
+[] Validate: Survive with 3 or fewer pieces for 10 turns. Reward: +2 advanced shield.
+[] Validate: Advanced shields x2
+
+Q44: Pawn Juggler
+[] Validate: After losing your queen, your pawns will randomly relocate on the board and you will gain +1 promotion.
+[] Validate: Pawn juggler, Promotions
+
+Q45: Wall of Fire
+[] Validate: Block all eight enemy pawns from moving for 5+ turns. Reward: Immediately pick a row and burn all enemies in that row.
+[] Validate: Firewall
+
+Q46: The Sacrifice Gambit
+[] Validate: Lose eight pieces before capturing any enemy piece. Reward: +2 Promotions.
+[] Validate: Promotions x2
+
+Q47: The Famine Line
+[] Validate: Win a game having captured only 3 or fewer enemy pieces. Reward: +2 freeze, +2 shield
+[] Validate: Freezes x2, Shields x2
+
+Q48: Mirror Kill
+[] Validate: Checkmate by moving a piece on the same square your opponent’s king started. Reward: +1 swap.
+[] Validate: Swaps
+
+Q49: Blood Mirror
+[] Validate: Lose a piece the same turn you capture one. Do this five times. +2 Time Warps, +2 Freezes.
+[] Validate: Time warps x2, Freezes x2
+
+
+
+##########################################################################################################
+
+
+### COMPLETE
+
+Q16: Storm Warning
+[x] Validate: Place your king on three different files while in check during one g. Reward: Lightning strikes the tallest piece, removing it from the board (excluding king).
+[x] Validate: Lightning strikes the tallest piece
+
+Q17: Crown of Mind Control
+[x] Validate: Promote an enemy pawn (let it reach the back rank) before promoting any of yours. Reward: the queen becomes yours.
+[x] Validate: Steal promotion
+
+Q18: Tunnel Vision
+[x] Validate: Make 15 consecutive moves with the same piece. Reward: The middle 4 files, friend and foe, are blasted away.
+[x] Validate: Central blast
+
+Q19: Double or Nothing
+[x] Validate: Have two times as many units on the board as the enemy. Reward: Double your gold.
+[x] Validate: Double gold
+
+Q20: Dance with Danger
+[x] Validate: Be in check on five or more separate turns before move 25, but still win. Reward: +5 Time Warps.
+[x] Validate: Time warps x5
+
+Q1: Queen's Gambit
+[x] Validate: Sacrifice your queen before your 6th move to gain 2 Promotions.
+[x] Validate: Promotions x2
+
+Q2: Cold Shoulder
+[x] Validate: Cast Shield on two enemy pieces at the same time to freeze every enemy knight for three turns.
+[x] Validate: Freeze knights x3
+
+Q3: Pacifist's Pact
+[x] Validate: Do not attack a piece for 10, 15, or 20 turns. Once a piece is taken, your troops will all move forward one row, taking any piece in their way. If 15: +1 Time Warp. If 20: +1 Promotion.
+[x] Validate: Advance rows, Continue
+[x] Validate: Time warps, Continue
+[x] Validate: Promotions
+
+Q4: Fire in the Hole
+[x] Validate: Destroy your own pawn with a bomb to gain +1 Shield, +1 Freeze.
+[x] Validate: Shields, Freezes
+
+Q5: Hasty Retreat
+[x] Validate: Lose within 10 turns to gain +4 Time Warps.
+[x] Validate: Time warps x4
+
+Q6: Rook Rapture
+[x] Validate: Capture both enemy rooks before move 20 to keep this wizard from having rooks. If within 15: +1 Shield, 10: +1 Advanced Shield.
+[x] Validate: Advanced shields, Shields, No future rooks
+[x] Validate: Shields, No future rooks
+[] Validate: No future rooks
+
+Q7: Shield Wall
+[x] Validate: Win without moving or losing any pawns to gain +2 Shields, +2 Advanced Shields, +3 swaps, +1 Promotion.
+[x] Validate: Shields x2, Advanced shields x2, Swaps x3, Promotions
+
+Q8: Magneto Manoeuvre
+[x] Validate: Force the enemy to make three consecutive knight moves (via pins, blocks, or lures) to gain +2 magnets, +2 Time Warp.
+[x] Validate: Magnets x2, Time warps x2
+
+Q9: Last Pawn Standing
+[x] Validate: Finish the game with exactly one pawn of either color remaining on the board. +1 promotion.
+[x] Validate: Promotions
+
+Q10: Bombs Away -- Oops!
+[x] Validate: Bomb all of your pawns. Reward: Advanced Shield Kit now blocks a full 3x3 section.
+[x] Validate: Advanced shield kit 3x3
+
+Q11: Silent Spring
+[x] Validate: Deliver checkmate using only elves and pawns to refresh your spells
+[x] Validate: Spell refresh
+
+Q12: The Loyal Assassins
+[x] Validate: Fork (being able to capture both) the king and queen twice in one game (need not capture). Reward: All pawns immediately become knights.
+[x] Validate: Pawns to knights
+
+Q13: Castled Doom
+[x] Validate: Castle, then be checkmated without ever moving a rook. Reward: Outer pawns start as rooks during the next g.
+[x] Validate: Outer pawns start as rooks
+
+Q14: Meaning of Etc.
+[x] Validate: Checkmate your opponent in exactly 42 moves. Reward: 42 gold coins.
+[x] Validate: Gold x42
+
+Q15: Ghost Town
+[x] Validate: Force at least four enemy pieces on the board that cannot move (pinned or frozen) while not in check after turn 30. Reward: Freeze your opponents -- everything but their king -- for 3 turns.
+[x] Validate: Total freeze x3
+
+Q21: The King’s Pilgrimage
+[x] Validate: (Changeds -- see JSON) Move your king to the far rank (opponent’s back row). Reward: Reflective Shield for the first 10 turns of your next game (any piece that puts your king in check will be automatically destroyed).
+[x] Validate: Reflective shield x5
+
+Q25: Pawn Storm
+[x] Validate: Move only pawns for fifteen turns in a row without moving any other piece. Reward: All pawns move forward one rank, taking all in their path.
+[x] Validate: Pawn storm
+
+Q26: Echoes of War
+[x] Validate: Win the game with 4+ pieces still in their original positions. Reward: +4 Time Warp.
+[x] Validate: Time warps x4
+
+Q23: Frozen Heart
+[x] Validate: Win the game without ever moving a queen. Reward: Empowered Freeze (Your freeze item forever has a chance to also freeze an adjacent enemy)
+[x] Validate: Empowered freeze
+
+Q28: Knightmare
+[x] Validate: Move your knights 25+ times in one g. Reward: Start your next game where all of your pieces are knights (except the king).
+[x] Validate: Knightmare
+
+Q29: Crossfire
+[x] Validate: Make your queen vulnerable to capture, but avoid capture 5 times in one g. Reward: Shield +4.
+[x] Validate: Shields x4
+
+
+Q27: The Interloper
+[x] Validate: Get an enemy piece onto your back rank (without capturing it). Reward: It becomes yours.
+[x] Validate: Steal first on rank 8
+
+Q30: The Martyr's Game
+[x] Validate: Lose four pieces in four turns and still win the g. Reward: During the next game, pieces that take your pawns are also lost.
+[x] Validate: Poisoned pawns
+
+Q31: Stealthy Assassin
+[x] Validate: Use a swap effect and then immediately take a piece with the swapped unit. Reward: +1 bomb.
+[x] Validate: Bombs
+
+Q32: Eye for an Eye
+[x] Validate: Immediately capture the exact piece that just captured one of yours — and use a piece of the same type that was taken, excluding pawns. Reward: +1 swap.
+[x] Validate: Swaps
+
+Q33: Backline Brawl
+[x] Validate: Capture 3+ enemy pieces on their first rank. Reward: A random pawn becomes a rook.
+[x] Validate: Random pawn to rook
+
+Q34: Regicide
+[x] Validate: Win with only queens and kings on the board. Reward: +2 Promotions.
+[x] Validate: Promotions x2
+
+Q35: Unbreakable Chain (Lightning)
+[x] Validate: Maintain an unbroken diagonal of at least five same-colored pieces for 10 turns. Reward: Chain Lightning: All enemy pieces adjacent to your diagonal and all enemies connecting to them are destroyed with chain lightning.
+[x] Validate: Chain lightning
+
+Q36: No Kings Allowed
+[x] Validate: Win without ever moving your king. Reward: +2 bombs.
+[x] Validate: Bombs x2
+
+Q38: Elven Precision
+[x] Validate: Lose both elves (bishops) within 6 turns. Reward: +2 Promotions.
+[x] Validate: Promotions x2
+
+Q37: Boardlock
+[x] Validate: Reach a stalemate. Reward: +2 Freezes.
+[x] Validate: Freezes x2
+
+Q40: Cornerstone
+[x] Validate: Do not move a knight and still win the g. + 4 Shields.
+[x] Validate: Shields x4
+
+Q41: Divide and Conquer
+[x] Validate: Keep all of your units on your side of the board while still winning. Reward: +4 swaps.
+[x] Validate: Swaps x4

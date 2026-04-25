@@ -1,0 +1,44 @@
+# Win in a market world
+world.record_win(grid_x, grid_y, win_state="wonmarket")
+
+# Lose on a tile
+world.record_loss(grid_x, grid_y)
+
+# Tax world, etc.
+world.record_win(grid_x, grid_y, win_state="wontax")
+
+
+
+#################################################
+current_pos = self.world.player_pos               # (x, y)
+current_stage_id = self.world.world_data[current_pos]["stage_id"]
+
+self.world_data[(x, y)] = {
+    "stage_id": assigned_id,
+    "state": "new",              # "new", "lost", "wonmarket", "wonbank", "wontax", "wontrain"
+    "win": False,                # beaten?
+    "lose": 0,                   # times lost
+    "visits": 0,                 # times visited
+    "building": None,            # "market" | "bank" | "tax" | "train" | None
+}
+
+Player gold: self.player_gold (ChessScreen)
+
+self.powerups            # dict like {"bombs": n, "swaps": n, ...}
+
+
+self.spellbook_master    # all spells you know in the campaign
+
+Currently available spells: self.spellbook
+
+Many quest-related variables:
+self.quests.enable_knightmare_mode
+self.quests.enable_no_future_rooks
+self.quests.set_outer_pawns_as_rooks
+
+self.current_year = 1065
+self.current_month_index = 5  # June
+self.month_names = [...]
+
+gold per piece:
+g.gold_per_unit

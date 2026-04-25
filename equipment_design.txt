@@ -1,0 +1,21 @@
+*Weapon*
+Chisel - Break a freeze
+Sword of Regicide - Use it to kill all enemy Queens on the board (enemy will promote to rook instead)
+Hatchet - Break a shield
+Mace - Break the stone of a castle (turning a rook into a pawn)
+Crossbow - Fire straight down the file of the player's king, killing any pawn it strikes
+Sling - Pawns sling a stone down its rank and kill the enemy queen if nothing is in the way
+
+*Magic*
+Wand of Stupdity - Reduce the AI to a level lower
+Crystal Staff of Transmutation - Transform pawns into random pieces (N, B, R)
+
+*Navigation*
+Torch - Removes all Pawns of Darkness
+Compass - Any checkmate move is highlighted
+Equipment Key - Unlock the use of power-ups
+
+*Clothing Accessories*
+Boots - All forked non-King pieces retreat to a random open adjacent square
+
+

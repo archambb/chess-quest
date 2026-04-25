@@ -1,0 +1,71 @@
+# QA Checklist for Chess Quest Quests
+
+1. Queen's Gambit - Verify queen is sacrificed before 6th move and rewards apply
+2. Cold Shoulder - Confirm 2 enemy pieces shielded simultaneously triggers freeze knights
+3. Pacifist's Pact - Ensure no captures for 10/15/20 turns triggers correct rewards
+4. Fire in the Hole - Check bomb destroys own pawn and triggers shield + freeze
+5. Hasty Retreat - Confirm game loss in ≤10 turns triggers +4 Time Warps
+
+7. Shield Wall - Ensure win with no moved or lost pawns applies all four reward types
+8. Magneto Manoeuvre - Confirm 3 enemy knight moves in a row activates magnets + time warp
+9. Last Pawn Standing - Check exactly one pawn left on board triggers promotion
+10. Bombs Away -- Oops! - Confirm all 8 pawns bombed triggers advanced shield kit upgrade
+11. Silent Spring - Checkmate using only elves and pawns refreshes spells
+12. The Loyal Assassins - Validate 2 king+queen forks triggers pawn-to-knight conversion
+13. Castled Doom - Confirm castle + no rook movement + loss gives outer pawn rook reward
+14. Meaning of Etc. - Verify checkmate in exactly 42 moves gives 42 gold
+
+16. Storm Warning - Ensure king in check on 3 different files triggers lightning reward
+17. Crown of Mind Control - Confirm enemy promotes first triggers queen steal
+18. Tunnel Vision - 15 same-piece moves in a row triggers central blast
+19. Double or Nothing - Validate 2x unit count on board triggers double gold
+20. Checkpoint Charlie - Verify 5 checks before move 25 + win grants 5 Time Warps
+21. The King’s Pilgrimage - Confirm king reaches opponent’s back rank triggers Reflective Shield
+22. Blood Pact - Lose 3 pawns in first 10 turns triggers recovery and shields
+23. Frozen Heart - Confirm win without queen movement grants Empowered Freeze
+24. Reckless Endangerment - King adjacent to enemy for 5 turns grants Checkmate Teleport
+25. Pawn Storm - 15 consecutive pawn-only moves triggers Pawn Storm
+26. Echoes of War - Win with 4 unmoved pieces grants Time Warps
+27. The Interloper - Enemy piece reaches back rank unchallenged grants control
+28. Knightmare - 25+ knight moves triggers all-knights reward
+29. Crossfire - 5 avoided queen captures while vulnerable triggers shields
+30. The Martyr's Game - Lose 4 pieces in 4 turns and win grants poisoned pawns
+
+32. Eye for an Eye - Capture same type as lost grants swap
+33. Backline Brawl - 3 captures on enemy back rank grants pawn-to-rook
+34. Regicide - Win with only kings/queens left triggers promotions
+35. Unbreakable Chain (Lightning) - 4-diagonal held for 10 turns triggers chain lightning
+36. No Kings Allowed - Win without king movement triggers 2 bombs
+37. Boardlock - Stalemate triggers 2 freezes
+38. Elven Precision - Lose both elves in ≤6 turns triggers promotions
+39. Early Graves - Lose 6 pieces before turn 10 triggers Early Graves reward
+
+41. Divide and Conquer - Never cross halfway line and win grants 4 swaps
+42. Symmetry Pact - Win with same # of pieces triggers end board effects
+43. The Gauntlet - Survive 10 turns with ≤3 pieces triggers advanced shields
+44. Pawn Juggler - Lose queen triggers pawn relocation and promotion
+45. Wall of Fire - Block all 8 enemy pawns for 5+ turns triggers Firewall
+46. The Sacrifice Gambit - Lose 3 pieces before taking any triggers promotions
+47. The Famine Line - Win after capturing ≤3 pieces triggers shields and freezes
+48. Mirror Kill - Checkmate on enemy king’s starting square grants swap
+
+
+
+
+In Test:
+49. Blood Mirror - 5 simultaneous capture/loss turns trigger time warp + freeze -- needs to zero
+6. Rook Rapture - Validate capture of both rooks before turns 20/15/10 triggers proper tiered rewards
+40. Cornerstone - Win without knight movement triggers shields
+
+
+
+Fails:
+15. Ghost Town - Confirm 4 immobile (non-king) pieces while not in check triggers total freeze -- immediately fires because there's immobile pieces right from the start. Perhaps immobile pawns.
+31. Stealthy Assassin - Swap then kill with swapped unit grants bomb
+
+
+
+
+Passes:
+
+

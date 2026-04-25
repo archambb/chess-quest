@@ -1,0 +1,18 @@
+Display entering story
+Complete results of story
+if won:
+    Enter Building (market, bank, training, tax collector)
+    Get money/equipment as appropriate
+    <if we build building-related story quests, run those here>
+else:
+    Chess Battle
+    Resultant story
+
+If won:
+    Provide opportunity to re/set building for land
+
+Pay for standing army
+Allow movement
+Update calendar month
+
+
