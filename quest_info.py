@@ -180,6 +180,7 @@ class QuestInfo:
 
         if equal_to is not None:
             self.quest_status[key] = equal_to
+            return
 
         print("quest_status: ", self.quest_status)
         if key in self.quest_status:
