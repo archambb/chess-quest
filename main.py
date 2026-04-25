@@ -47,7 +47,7 @@ class ChessScreen:
             game_type = beginning_screen.show_main_menu()
 
             if game_type == "New Game":
-                self.g_start_new_game()
+                self.game_start_new_game()
             elif game_type == "Continue":
                 pass
                 # self.g_start_continue()
