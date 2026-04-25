@@ -33,6 +33,7 @@ legacy/
 */backup/
 */archive/
 data/backup/
+git_notes/
 
 # Third-party binaries / local installs
 engine/
