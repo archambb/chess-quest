@@ -35,10 +35,9 @@ class RenderPipeline(BoardRenderer, UIRenderMixin):
         self.quest_win_animations = []  # Each entry: {"qid": int, "pieces": [...], "frame": float}
         self.quest_anim_config = {
             "rise_duration": 0.75,
-            "hold_duration": 0.8,
+            "hold_duration": 1.8,
             "shake_duration": 1.2,
             "explode_duration": 2.0,
-            "total_duration": 0.75 + 2.0 + 2.0 + 2.0
         }
 
 
@@ -1008,13 +1007,9 @@ class RenderPipeline(BoardRenderer, UIRenderMixin):
             self.g.quests.continue_rect = None
 
     def draw_quest_win_animations(self):
-        new_animations = []
-
         for anim in self.quest_win_animations:
             state = anim["state"]
             t = anim["frame"] / 60
-            if t < self.quest_anim_config["total_duration"]:
-                new_animations.append(anim)
 
             cfg = self.quest_anim_config
 
@@ -1040,19 +1035,16 @@ class RenderPipeline(BoardRenderer, UIRenderMixin):
 
             elif state == "exploding":
                 for piece in anim["pieces"]:
-                    if t >= cfg["explode_duration"]:
-                        fade_p = min(1.0, (t - cfg["explode_duration"]) / (cfg["total_duration"] - cfg["explode_duration"]))
-                        alpha = int((1.0 - fade_p) * 255)
-                    else:
-                        alpha = 255
+                    explosion_frame = anim.get("explosion_started_frame", anim["frame"])
+                    explosion_elapsed = max(0, anim["frame"] - explosion_frame) / 60
+                    fade_p = min(1.0, explosion_elapsed / cfg["explode_duration"])
+                    alpha = int((1.0 - fade_p) * 255)
 
                     img = pygame.transform.rotozoom(piece["image"], piece["angle"], piece["scale"])
                     img.fill((255, 255, 255, alpha), special_flags=pygame.BLEND_RGBA_MULT)
                     img = img.convert_alpha()
                     self.g.screen.blit(img, piece["pos"])
                     piece["angle"] += piece["rotation_speed"]
-
-        self.quest_win_animations = new_animations
 
     def slice_image_into_jagged_pieces(self, image, origin=(0, 0), rows=6, cols=6):
         origin_x, origin_y = origin
@@ -1139,9 +1131,12 @@ class RenderPipeline(BoardRenderer, UIRenderMixin):
                 anim["state"] = "shaking"
             elif anim["state"] == "shaking" and t >= anim_config["rise_duration"] + anim_config["hold_duration"] + anim_config["shake_duration"]:
                 anim["state"] = "exploding"
+                anim["explosion_started_frame"] = anim["frame"]
+                card_rect = anim.get("card_rect")
+                origin = card_rect.topleft if card_rect else anim["end_pos"]
                 anim["pieces"] = self.slice_image_into_jagged_pieces(
                     anim["image"],
-                    origin=(config.WIDTH // 2, config.HEIGHT // 2)
+                    origin=origin
                 )
 
             if anim["state"] == "exploding":
@@ -1150,8 +1145,9 @@ class RenderPipeline(BoardRenderer, UIRenderMixin):
                     piece["pos"][1] += piece["vel"][1]
                     piece["alpha"] = max(0, piece["alpha"] - 4)
 
-            if t >= anim_config["total_duration"]:
-                finished.append(anim)
+                explosion_elapsed = (anim["frame"] - anim.get("explosion_started_frame", anim["frame"])) / 60
+                if explosion_elapsed >= anim_config["explode_duration"]:
+                    finished.append(anim)
 
         for anim in finished:
             if anim in self.quest_win_animations:
@@ -1183,9 +1179,13 @@ class RenderPipeline(BoardRenderer, UIRenderMixin):
         full_card_img = self.g.quests.quest_cards[index]
         card_scaled = pygame.transform.smoothscale(full_card_img, (scaled_w, scaled_h))
 
+        screen_w = self.g.screen.get_width()
+        screen_h = self.g.screen.get_height()
+        card_rect = card_scaled.get_rect(center=(screen_w // 2, screen_h // 2))
+
         # Compute starting position (same logic as draw_current_quest_cards)
         total_width = 3 * scaled_w + 2 * config.CARD_MARGIN
-        start_x = (config.WIDTH - total_width) // 2
+        start_x = (screen_w - total_width) // 2
         if display_index is None:
             if qid not in self.g.quests.active_quests:
                 return False
@@ -1193,7 +1193,7 @@ class RenderPipeline(BoardRenderer, UIRenderMixin):
         display_index = max(0, min(2, int(display_index)))
         x = start_x + display_index * (scaled_w + config.CARD_MARGIN)
 
-        y = config.HEIGHT - 60  # initial peek zone
+        y = screen_h - 60  # initial peek zone
 
         self.quest_win_animations.append({
             "qid": qid,
@@ -1202,7 +1202,9 @@ class RenderPipeline(BoardRenderer, UIRenderMixin):
             "state": "rising",
             "pos": [x, y],
             "start_pos": [x, y],
-            "end_pos": [config.WIDTH // 2 - scaled_w // 2, config.HEIGHT // 2 - scaled_h // 2],
+            "end_pos": [card_rect.x, card_rect.y],
+            "card_rect": card_rect,
+            "explosion_started_frame": None,
             "pieces": None
         })
         return True
