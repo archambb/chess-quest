@@ -501,6 +501,8 @@ class EnemyMoveEngine:
             return
 
         # Capturing piece stands on move.to_square after push (incl. en passant)
+        poisoned_piece = self.g.board.piece_at(move.to_square)
+        self.g.quests.record_captured_piece(poisoned_piece, count_for_quests=True)
         self.g.board.remove_piece_at(move.to_square)
         print(f"[PoisonedPawns] Captured pawn → capturing piece at {chess.square_name(move.to_square)} is removed.")
 

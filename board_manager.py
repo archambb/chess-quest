@@ -79,6 +79,8 @@ class BoardManager:
         self.apply_player_army_to_board(g.player_side)
 
         g.move_history.clear()
+        g.lost_pieces = []
+        g.enemy_lost_pieces = []
         g.frozen_squares.clear()
         g.shielded_squares.clear()
         g.magnet_square = None
@@ -133,6 +135,8 @@ class BoardManager:
 
         g.board = chess.Board()
         g.move_history = []
+        g.lost_pieces = []
+        g.enemy_lost_pieces = []
         g.frozen_squares = {}
         g.shielded_squares = {}
         g.magnet_square = None

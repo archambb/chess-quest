@@ -20,7 +20,7 @@ DARKER_BLUE = (0, 191, 255)
 BLUE_OUTLINE = (0, 0, 255)
 
 # Mutable variable (not constant!)
-difficulty = 0
+difficulty = 7
 
 
 # Note: Magic effects are in a glob (alphabetical order) so we use filenames magic_effects_<3-digit number>x<#>y<#>.png

@@ -150,6 +150,7 @@ class Powers:
                 return False
 
             # Commit primary bomb
+            self.g.quests.record_captured_piece(piece, count_for_quests=True)
             self.g.board.remove_piece_at(square)
             self.g.powerups["bombs"] -= 1
             self.g.audio.play_random("bomb")
@@ -172,6 +173,7 @@ class Powers:
                         break
 
                 if picked is not None:
+                    self.g.quests.record_captured_piece(self.g.board.piece_at(picked), count_for_quests=True)
                     self.g.board.remove_piece_at(picked)
                     self.g.audio.play_random("bomb")
                     print(f"[Bomb Splash] Also destroyed at {self._square_name(picked)}")

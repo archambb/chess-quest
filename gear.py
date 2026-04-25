@@ -213,6 +213,7 @@ class Gear:
             print("[EQUIP] Crossbow: no enemy pawn on king's file.")
             return False
 
+        self.g.quests.record_captured_piece(board.piece_at(target_sq), count_for_quests=True)
         board.remove_piece_at(target_sq)
         if hasattr(self.g, "audio"):
             try:
@@ -279,6 +280,7 @@ class Gear:
                 continue
 
             # Success: remove queen
+            self.g.quests.record_captured_piece(board.piece_at(queen_sq), count_for_quests=True)
             board.remove_piece_at(queen_sq)
             if hasattr(self.g.board_manager, "update_allowed_moves"):
                 self.g.board_manager.update_allowed_moves()
@@ -311,7 +313,7 @@ class Gear:
         enemy_color = not player_color
 
         to_remove = [
-            sq for sq, piece in board.piece_map().items()
+            (sq, piece) for sq, piece in board.piece_map().items()
             if piece and piece.color == enemy_color and piece.piece_type == chess.PAWN
         ]
 
@@ -319,7 +321,8 @@ class Gear:
             print("[EQUIP] Torch: no enemy pawns to burn.")
             return False
 
-        for sq in to_remove:
+        for sq, piece in to_remove:
+            self.g.quests.record_captured_piece(piece, count_for_quests=True)
             board.remove_piece_at(sq)
 
         if hasattr(self.g.board_manager, "update_allowed_moves"):
@@ -511,6 +514,7 @@ class Gear:
         for sq in chess.SQUARES:
             piece = board.piece_at(sq)
             if piece and piece.color == enemy_color and piece.piece_type == chess.QUEEN:
+                self.g.quests.record_captured_piece(piece, count_for_quests=True)
                 board.remove_piece_at(sq)
                 removed += 1
 

@@ -268,6 +268,7 @@ class MapChallenges:
             # Resolve contact
             if victim and victim.color == player:
                 # Remove the player's piece, despawn, start cooldown
+                self.g.quests.record_captured_piece(victim, count_for_quests=True)
                 board.remove_piece_at(dst)
                 self._stalker_square = None
                 self._stalker_cooldown = 10
@@ -329,6 +330,7 @@ class MapChallenges:
                     sq = chess.square(file_, self._lava_row_index)
                     p = self.g.board.piece_at(sq)
                     if p and p.color == player_color:
+                        self.g.quests.record_captured_piece(p, count_for_quests=True)
                         self.g.board.remove_piece_at(sq)
                 self._lava_row_active = False
                 self.g.audio.play_random("bomb")
@@ -352,6 +354,7 @@ class MapChallenges:
             target = random.choice(candidates)
             victim = self.g.board.piece_at(target)
             if victim and victim.color == self._player_color():
+                self.g.quests.record_captured_piece(victim, count_for_quests=True)
                 self.g.board.remove_piece_at(target)
                 self.g.audio.play_random("bomb")
                 self.g.renderer.enemy_dialog_text = f"Lava strikes {chess.square_name(target)}!"
@@ -402,6 +405,7 @@ class MapChallenges:
         if not pawns:
             return
         sq = random.choice(pawns)
+        self.g.quests.record_captured_piece(self.g.board.piece_at(sq), count_for_quests=True)
         self.g.board.remove_piece_at(sq)
         self.g.audio.play_random("bomb")
         self.g.renderer.enemy_dialog_text = "A tornado snatches a pawn!"
@@ -695,6 +699,7 @@ class MapChallenges:
         # Choose one square to become a queen, remove all other enemy pawns
         queen_square = random.choice(pawn_squares)
         for sq in pawn_squares:
+            self.g.quests.record_captured_piece(self.g.board.piece_at(sq), count_for_quests=True)
             self.g.board.remove_piece_at(sq)
         self.g.board.set_piece_at(queen_square, chess.Piece(chess.QUEEN, enemy))
         self.g.audio.play_random("promotion")

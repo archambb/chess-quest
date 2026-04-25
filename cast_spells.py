@@ -46,6 +46,7 @@ class CastSpells:
                 continue
 
             if piece.piece_type == chess.PAWN:
+                self.g.quests.record_captured_piece(piece, count_for_quests=True)
                 self.g.board.remove_piece_at(sq)                     # drown the pawn
                 # optional: play splash SFX here
             else:
@@ -407,6 +408,7 @@ class CastSpells:
         player_color = chess.WHITE if self.g.player_side == "white" else chess.BLACK
         for square, piece in self.g.board.piece_map().items():
             if piece.piece_type == chess.QUEEN and piece.color == player_color:
+                self.g.quests.record_captured_piece(piece, count_for_quests=True)
                 self.g.board.remove_piece_at(square)
                 self.g.powerups["promotions"] += 2
                 if "Sacrifice" in self.g.spellbook:
@@ -660,6 +662,7 @@ class CastSpells:
 
         working_board = self.g.board.copy(stack=False)
         removed_summary = []
+        removed_pieces = []
 
         for piece_type in piece_types:
             white_squares = self._piece_squares(working_board, chess.WHITE, piece_type)
@@ -694,6 +697,7 @@ class CastSpells:
                 sq = random.choice(remaining_candidates)
                 attempted.add(sq)
 
+                removed_piece = working_board.piece_at(sq)
                 test_board = working_board.copy(stack=False)
                 test_board.remove_piece_at(sq)
 
@@ -702,6 +706,8 @@ class CastSpells:
 
                 working_board = test_board
                 removed_this_type += 1
+                if removed_piece:
+                    removed_pieces.append(removed_piece)
                 removed_summary.append(
                     f"{'White' if side_to_trim == chess.WHITE else 'Black'} "
                     f"{type_names[piece_type]} removed from {chess.square_name(sq)}"
@@ -721,6 +727,8 @@ class CastSpells:
             return False
 
         self.g.board = working_board
+        for removed_piece in removed_pieces:
+            self.g.quests.record_captured_piece(removed_piece, count_for_quests=True)
 
         print("[CAST] Mirror Armies results:")
         for line in removed_summary:

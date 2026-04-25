@@ -458,6 +458,7 @@ class QuestRewardHandler:
             p = board.piece_at(sq)
             # Double-check killable and enemy (never remove a king)
             if _is_killable(p):
+                self.g.quests.record_captured_piece(p, count_for_quests=True)
                 board.remove_piece_at(sq)
                 removed += 1
                 try:
@@ -618,6 +619,7 @@ class QuestRewardHandler:
                 if captured_piece and captured_piece.color != piece.color and captured_piece.piece_type != chess.KING:
                     captured_squares.append(sq)
                     print(f"[PawnStorm] {chess.square_name(from_sq)} captures {chess.square_name(sq)}")
+                    self.g.quests.record_captured_piece(captured_piece, count_for_quests=True)
                     board.remove_piece_at(sq)
 
             # Promotion check
@@ -715,6 +717,7 @@ class QuestRewardHandler:
             return
 
         # Remove the piece from the board
+        self.g.quests.record_captured_piece(target_piece, count_for_quests=True)
         board.remove_piece_at(target_square)
         print(f"[ZapTallest] Zapped enemy {target_piece.symbol()} at {chess.square_name(target_square)}")
 
@@ -791,6 +794,7 @@ class QuestRewardHandler:
                     # Legal move found — apply
                     board.remove_piece_at(from_sq)
                     if target_piece:
+                        self.g.quests.record_captured_piece(target_piece, count_for_quests=True)
                         board.remove_piece_at(to_sq)
                     board.set_piece_at(to_sq, piece)
 
@@ -842,6 +846,7 @@ class QuestRewardHandler:
 
         # 2) Remove them
         for sq, _piece in removed:
+            self.g.quests.record_captured_piece(_piece, count_for_quests=True)
             board.remove_piece_at(sq)
 
         # 3) Visuals: play effect #4 on each impacted square
@@ -902,6 +907,7 @@ class QuestRewardHandler:
                     piece = board.piece_at(square)
                     if piece:
                         self.g.renderer.destroy_piece(square)
+                        self.g.quests.record_captured_piece(piece, count_for_quests=True)
                         self.g.board.remove_piece_at(square)
 
     def checkmate_teleport(self):

@@ -182,9 +182,6 @@ Important reset behavior:
 ## Unclear or Fragile Areas
 
 - `StoryMode.handle_new_level_story()` reads `losses`, while `GameWorld.record_loss()` writes `lose`.
-- `main.py` calls `self.g_start_new_game()` for a non-debug new game, but the visible method is named `game_start_new_game()`.
-- `QuestInfo.setup_quest_selection()` uses `self.debug_quest_choices is not []`, which is always true for that literal comparison, so debug selection behavior may not match the apparent intent.
-- `QuestInfo.update_quest_stat(equal_to=...)` assigns a value and then may immediately add `amount` if the key exists. This is current behavior, but the combined assign/add pattern is easy to misread.
 - `QuestInfo.update_quest_variables()` is large and contains many quest-specific branches; several branches depend on state fields that are set elsewhere and not all are reset in one place.
 - `lost_pieces` and `enemy_lost_pieces` are initialized and referenced by rewards, but capture tracking into these lists was not evident in the inspected move paths.
 - `game_init.py` documents new-game setup, but the visible boot/new-game path does not clearly invoke `apply_new_game_settings()`.

@@ -13,6 +13,7 @@ class QuestInfo:
     def __init__(self,game):
 
         # Debugging Only -- this will setup default quest choices
+        self.debug_quest_choices = None
         self.debug_quest_choices = [37, 39, 40, 41, 42] # Must be count of 5
         #self.debug_quest_choices = random.sample(range(1, 50), 5)
 
@@ -94,13 +95,11 @@ class QuestInfo:
     def setup_quest_selection(self):
         all_quest_ids = list(range(1, self.quest_max+1))
         selected_ids = random.sample(all_quest_ids, 5)
-        if self.g.debug == True and self.debug_quest_choices is not []:
+        if self.g.debug and self.debug_quest_choices is not None:
             selected_ids = self.debug_quest_choices
         self.quest_candidates = selected_ids # TO DO: I'm not sure we're using this class variable anymore
         self.active_quests = []
         self.quest_cards = []
-
-
 
         for qid in selected_ids:
             print("Quest ID:", qid)
@@ -223,6 +222,9 @@ class QuestInfo:
         else:
             player_color = chess.BLACK 
             enemy_color = chess.WHITE
+
+        if captured_piece:
+            self.record_captured_piece(captured_piece, count_for_quests=False)
 
         # Pieceless checks (state checks)
         if piece == None:
@@ -1010,6 +1012,42 @@ class QuestInfo:
 
         # Normal capture (or None if it’s not a capture)
         return board_before_move.piece_at(move.to_square)
+
+    def record_captured_piece(self, captured_piece, count_for_quests=False):
+        """Track captured/destroyed pieces for revive rewards and non-move capture stats."""
+        if captured_piece is None:
+            return
+
+        if self.g.player_side == "white":
+            player_color = chess.WHITE
+            enemy_color = chess.BLACK
+        else:
+            player_color = chess.BLACK
+            enemy_color = chess.WHITE
+
+        piece_copy = chess.Piece(captured_piece.piece_type, captured_piece.color)
+
+        if captured_piece.color == player_color:
+            if not hasattr(self.g, "lost_pieces"):
+                self.g.lost_pieces = []
+            self.g.lost_pieces.append(piece_copy)
+
+            if count_for_quests:
+                self.update_quest_stat("Lost Pieces", amount=1)
+                if captured_piece.piece_type == chess.PAWN:
+                    self.update_quest_stat("Lost Pawns", amount=1)
+                elif captured_piece.piece_type == chess.BISHOP:
+                    self.update_quest_stat("Lost Elves", amount=1)
+
+        elif captured_piece.color == enemy_color:
+            if not hasattr(self.g, "enemy_lost_pieces"):
+                self.g.enemy_lost_pieces = []
+            self.g.enemy_lost_pieces.append(piece_copy)
+
+            if count_for_quests:
+                self.update_quest_stat("Captured Pieces", amount=1)
+                if captured_piece.piece_type == chess.ROOK:
+                    self.update_quest_stat("Rook Captures", amount=1)
 
     def reset_quest_variables(self):
         """

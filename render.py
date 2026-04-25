@@ -628,6 +628,7 @@ class RenderPipeline(BoardRenderer, UIRenderMixin):
                     duration=24
                 )
 
+                self.g.quests.record_captured_piece(self.g.board.piece_at(sq), count_for_quests=True)
                 self.g.board.remove_piece_at(sq)
                 self.remove_magic_effect(eid)      # erase falling meteor
             else:
