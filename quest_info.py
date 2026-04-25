@@ -979,10 +979,15 @@ class QuestInfo:
 
     def win_quest(self, quest_num, reward=None):
         print(f"🏆 win_quest({quest_num}) called")
-        self.g.renderer.start_quest_win_animation(quest_num)
+        display_index = None
+        if quest_num in self.active_quests:
+            display_index = self.active_quests.index(quest_num)
         
-        if reward:
-            self.g.quest_reward_handler.give_reward(quest_num, reward)
+        self.g.quest_reward_handler.give_reward(
+            quest_num,
+            reward or {},
+            display_index=display_index,
+        )
         
         if quest_num in self.active_quests:
             self.active_quests.remove(quest_num)

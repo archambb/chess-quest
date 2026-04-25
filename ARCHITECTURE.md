@@ -181,7 +181,6 @@ Important reset behavior:
 
 ## Unclear or Fragile Areas
 
-- `RenderPipeline.update_reward_presentation_queue()` appears to look for reward queue state on `g.quests`, but `active_reward_card` and queue methods are implemented on `g.quest_reward_handler`.
 - `StoryMode.handle_new_level_story()` reads `losses`, while `GameWorld.record_loss()` writes `lose`.
 - `main.py` calls `self.g_start_new_game()` for a non-debug new game, but the visible method is named `game_start_new_game()`.
 - `QuestInfo.setup_quest_selection()` uses `self.debug_quest_choices is not []`, which is always true for that literal comparison, so debug selection behavior may not match the apparent intent.

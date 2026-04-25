@@ -23,6 +23,15 @@ Behavior that appears redundant may be intentional.
 
 ---
 
+## Repository Navigation
+
+- Start with `ARCHITECTURE.md` for the current system map and module responsibilities.
+- Use `DIAGRAM.md` for the high-level match lifecycle and system flow.
+- Treat the code as authoritative if docs and code disagree.
+- Do not modify game logic unless explicitly instructed.
+
+---
+
 ## Development Rules
 
 - Always preserve existing behavior unless explicitly told otherwise

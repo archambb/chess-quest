@@ -20,24 +20,25 @@ class QuestRewardHandler:
         self.reward_card_duration_ms = 2200
         self.reward_card_gap_ms = 250
 
-    def give_reward(self, quest_num, reward):
+    def give_reward(self, quest_num, reward, display_index=None):
         # 1) Apply gameplay effect immediately
         self._apply_reward(reward)
 
         # 2) Queue presentation so multiple rewards serialize nicely
-        self.enqueue_reward_card(quest_num, reward)
+        self.enqueue_reward_card(quest_num, reward, display_index=display_index)
 
     # ------------------------------------------------------------------
     # REWARD CARD QUEUE
     # ------------------------------------------------------------------
 
-    def enqueue_reward_card(self, quest_num, reward):
+    def enqueue_reward_card(self, quest_num, reward, display_index=None):
         """
         Queue a reward presentation card instead of showing it immediately.
         """
         self.reward_win_queue.append({
             "quest_num": quest_num,
             "reward": reward,
+            "display_index": display_index,
         })
 
     def update_reward_queue(self):

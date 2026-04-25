@@ -917,12 +917,14 @@ class RenderPipeline(BoardRenderer, UIRenderMixin):
         if self.quest_win_animations:
             return
 
-        quests = getattr(self.g, "quests", None)
-        if not quests:
+        qrh = getattr(self.g, "quest_reward_handler", None)
+        if not qrh:
             return
 
-        # Ask quest system for the currently active queued reward presentation
-        active = getattr(quests, "active_reward_card", None)
+        qrh.update_reward_queue()
+
+        # QuestRewardHandler owns queued reward-card presentation state.
+        active = getattr(qrh, "active_reward_card", None)
         if not active:
             return
 
@@ -930,7 +932,7 @@ class RenderPipeline(BoardRenderer, UIRenderMixin):
         if qid is None:
             return
 
-        self.start_quest_win_animation(qid)
+        self.start_quest_win_animation(qid, display_index=active.get("display_index"))
 
     def draw_quest_selection(self):
         self.g.screen.fill((20, 20, 20))
@@ -1155,19 +1157,19 @@ class RenderPipeline(BoardRenderer, UIRenderMixin):
             if anim in self.quest_win_animations:
                 self.quest_win_animations.remove(anim)
 
-            # Notify the queue system that the current reward presentation is done
-            quests = getattr(self.g, "quests", None)
-            if quests and getattr(quests, "active_reward_card", None):
-                active = quests.active_reward_card
+            # Notify the queue owner that the current reward presentation is done.
+            qrh = getattr(self.g, "quest_reward_handler", None)
+            if qrh and getattr(qrh, "active_reward_card", None):
+                active = qrh.active_reward_card
                 if active.get("quest_num") == anim.get("qid"):
-                    quests.active_reward_card = None
+                    qrh.active_reward_card = None
 
-    def start_quest_win_animation(self, qid):
+    def start_quest_win_animation(self, qid, display_index=None):
         print("Calling start_quest_win_animation: ", qid)
         if self.quest_win_animations:
-            return
+            return False
         if qid not in self.g.quests.quest_candidates:
-            return
+            return False
 
         index = self.g.quests.quest_candidates.index(qid)
         base_w, base_h = self.g.quests.original_card_size
@@ -1184,8 +1186,12 @@ class RenderPipeline(BoardRenderer, UIRenderMixin):
         # Compute starting position (same logic as draw_current_quest_cards)
         total_width = 3 * scaled_w + 2 * config.CARD_MARGIN
         start_x = (config.WIDTH - total_width) // 2
-        i = self.g.quests.active_quests.index(qid)
-        x = start_x + i * (scaled_w + config.CARD_MARGIN)
+        if display_index is None:
+            if qid not in self.g.quests.active_quests:
+                return False
+            display_index = self.g.quests.active_quests.index(qid)
+        display_index = max(0, min(2, int(display_index)))
+        x = start_x + display_index * (scaled_w + config.CARD_MARGIN)
 
         y = config.HEIGHT - 60  # initial peek zone
 
@@ -1199,6 +1205,7 @@ class RenderPipeline(BoardRenderer, UIRenderMixin):
             "end_pos": [config.WIDTH // 2 - scaled_w // 2, config.HEIGHT // 2 - scaled_h // 2],
             "pieces": None
         })
+        return True
 
 
     ########################################################################
