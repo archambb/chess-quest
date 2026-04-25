@@ -671,6 +671,14 @@ class UIRenderMixin:
         self._powers_unlock_anim_active = True
         self._powers_unlock_anim_start_ms = pygame.time.get_ticks()
 
+    def reset_powers_unlock_animation(self):
+        """
+        Cancel any in-progress powers unlock animation without unlocking powers.
+        Used when a new match starts and inventory should relock.
+        """
+        self._powers_unlock_anim_active = False
+        self._powers_unlock_anim_start_ms = 0
+        
     ########################################################################
     #                          ☰ MENU Helpers                              #
     ########################################################################

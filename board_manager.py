@@ -99,6 +99,7 @@ class BoardManager:
         g.portrait_img = g.assets.load_portrait_image(world)
 
         g.selected_square = None
+        self._relock_powers()
         g.main_game_screen = False
 
         g.PIECE_IMAGES = g.assets.load_piece_images()
@@ -153,6 +154,7 @@ class BoardManager:
         elif g.world.world_data[(g.world.player_pos)]["stage_id"] == 4:
             g.player_side = "white"
 
+        self._relock_powers()
         self.apply_player_army_to_board(g.player_side)
 
         g.PIECE_IMAGES = g.assets.load_piece_images()
@@ -228,7 +230,7 @@ class BoardManager:
         return esc
 
     # ─────────────────────────────────────────────────────────────
-    # Board helpers moved from main.py
+    # Board helpers
     # ─────────────────────────────────────────────────────────────
     def mirror_move(self, move):
         from_sq = move.from_square
@@ -472,3 +474,12 @@ class BoardManager:
     def player_color(self):
         g = self.g
         return chess.WHITE if g.player_side == "white" else chess.BLACK
+    
+    def _relock_powers(self):
+        g = self.g
+        g.powers_unlocked = False
+        g.selected_power = None
+
+        renderer = getattr(g, "renderer", None)
+        if renderer and hasattr(renderer, "reset_powers_unlock_animation"):
+            renderer.reset_powers_unlock_animation()
