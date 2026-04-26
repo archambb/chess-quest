@@ -14,7 +14,7 @@ from bootloader import BootLoader
 
 class ChessScreen:
     def __init__(self):
-        self.debug = True
+        self.debug = False
         self.player_set = 0  # This is for the player's piece images. This will be set by the player in the final g.
 
         pygame.init()

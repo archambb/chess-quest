@@ -183,6 +183,5 @@ Important reset behavior:
 
 - `StoryMode.handle_new_level_story()` reads `losses`, while `GameWorld.record_loss()` writes `lose`.
 - `QuestInfo.update_quest_variables()` is large and contains many quest-specific branches; several branches depend on state fields that are set elsewhere and not all are reset in one place.
-- `lost_pieces` and `enemy_lost_pieces` are initialized and referenced by rewards, but capture tracking into these lists was not evident in the inspected move paths.
 - `game_init.py` documents new-game setup, but the visible boot/new-game path does not clearly invoke `apply_new_game_settings()`.
 - Several modules contain placeholder or TODO behavior (`trigger_firewall`, `Wand of Stupidity`, save/load, final boss, empty modules).

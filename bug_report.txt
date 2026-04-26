@@ -3,6 +3,16 @@
 [likely fixed] Need to check quest statuses after enemy move (Queen Count not firing)
 [can't put on freeze or shield, but need to make sure enemy doesn't move if frozen or if magnet is shielded] Magnet does not respect freezes and shields
 [] Gold dropped twice on new level
+[] Need to earn 3 gold per won quest card
+[] Need to show the map when choosing what to make a colony square (market, training, etc)
+[] Need to add $ to the money elements for the market (and any others involving money)
+[] Story still earns boulder for keeping the wizard of stone. New spell replaced boulder.
+[] When hovering over the enemy picture, we should get a pop-up of wins:losses:stalemates
+[] After stalemate, no coins
+[] Need to build save system
+[] After playing again Wizard of Light, we see wizard of light pieces in the piece purchase screen
+[] Storm takes a pawn every turn. Too aggressive. Try every 5 turns.
+[] Took light spell but didnt' get it. Probably all spells won't work (probably didnt' get that part of the code working)
 [] 
 → Checking Quest #44
   Title: Pawn Juggler

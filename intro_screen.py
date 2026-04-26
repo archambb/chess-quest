@@ -105,9 +105,9 @@ class BeginningScreens:
                     for name, rect in button_boxes.items():
                         if rect.collidepoint(mx, my):
                             if name == "CONTINUE":
-                                self.g_start_continue()
+                                self.game_start_continue()
                             elif name == "NEW GAME":
-                                return_value = self.g_start_new_game()
+                                return_value = self.game_start_new_game()
                             elif name == "OPTIONS":
                                 self.options_menu()
                             elif name == "LIBRARY":

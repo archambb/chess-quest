@@ -940,7 +940,7 @@
   {
     "quest_number": 39,
     "title": "Early Graves",
-    "rules": "Have 6 of your own pieces captured before turn 10. Reward: Return them to the board in random spots.",
+    "rules": "Have 4 of your own pieces captured before turn 10. Reward: Return them to the board in random spots.",
     "feedback": [
       "Lost Pieces",
       "Turns"
