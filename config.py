@@ -1,5 +1,30 @@
 # config.py
+import configparser
+import os
+
 import chess
+
+
+CONFIG_INI_PATH = os.path.join("data", "config.ini")
+
+
+def load_debug_options(path=CONFIG_INI_PATH):
+    """
+    Load debug flags from data/config.ini.
+
+    Missing files/keys fall back to the current development defaults:
+    legacy debug off, debug overlay on.
+    """
+    parser = configparser.ConfigParser()
+    parser.read(path, encoding="utf-8")
+    return {
+        "debug": parser.getboolean("debug", "debug", fallback=False),
+        "debug_overlay_enabled": parser.getboolean(
+            "debug",
+            "debug_overlay_enabled",
+            fallback=True,
+        ),
+    }
 
 # Global constants
 WIDTH = 1280

@@ -14,7 +14,9 @@ from bootloader import BootLoader
 
 class ChessScreen:
     def __init__(self):
-        self.debug = False
+        debug_options = config.load_debug_options()
+        self.debug = debug_options["debug"]
+        self.debug_overlay_enabled = debug_options["debug_overlay_enabled"]
         self.player_set = 0  # This is for the player's piece images. This will be set by the player in the final g.
 
         pygame.init()
@@ -145,15 +147,21 @@ class ChessScreen:
                 continue
 
             mouse_pos = pygame.mouse.get_pos()
-            hovered_square, hovered_power = self.input.update_hover(mouse_pos)
+            debug_overlay_open = self.debug_controller.is_overlay_open()
+            if debug_overlay_open:
+                hovered_square, hovered_power = None, None
+            else:
+                hovered_square, hovered_power = self.input.update_hover(mouse_pos)
 
-            if self.main_game_screen:
+            if self.main_game_screen and not debug_overlay_open:
                 if self.game_result.process_terminal_state_if_needed():
                     continue
 
             for event in pygame.event.get():
                 # Debug hotkeys (only acts if self.debug True inside controller)
-                self.debug_controller.handle_event(event)
+                consumed = self.debug_controller.handle_event(event)
+                if consumed:
+                    continue
 
                 out = self.input.handle_event(
                     event,
@@ -166,8 +174,10 @@ class ChessScreen:
                     break
 
             # Centralized enemy-turn progression + post-move hooks + ragequit handling
-            self.turn_controller.tick()
-            self.ui_state.update_game_state()
+            debug_overlay_open = self.debug_controller.is_overlay_open()
+            if not debug_overlay_open:
+                self.turn_controller.tick()
+                self.ui_state.update_game_state()
             self.renderer.draw("main", hovered_square=hovered_square, hovered_power=hovered_power)
 
         # Shutdown

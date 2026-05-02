@@ -124,8 +124,15 @@ class RenderPipeline(BoardRenderer, UIRenderMixin):
         self.draw_feedback() # Keep feedback always on the top
         # Menu is always the top-most overlay
         self._draw_game_menu_overlay_if_open()
+        self._draw_debug_overlay_if_open()
         if kwargs.get("flip", True):
             pygame.display.flip()
+
+    def _draw_debug_overlay_if_open(self):
+        controller = getattr(self.g, "debug_controller", None)
+        overlay = getattr(controller, "overlay", None)
+        if overlay and getattr(overlay, "is_open", False):
+            overlay.draw(self.g.screen)
 
 
     ########################################################################
