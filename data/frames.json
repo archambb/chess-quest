@@ -60,7 +60,7 @@
         "return_choice": false
       },
       {
-        "text": "I will spare you, but you are hereby banished! [Learn Summon Boulder]",
+        "text": "I will spare you, but you are hereby banished! [Learn Granite Elf]",
         "target": "Stone_Spare",
         "return_choice": false
       }
@@ -80,7 +80,7 @@
         "return_choice": false
       },
       {
-        "text": "I will spare you, but you are hereby banished! [Learn Summon Boulder]",
+        "text": "I will spare you, but you are hereby banished! [Learn Granite Elf]",
         "target": "Stone_Spare",
         "return_choice": false
       }
@@ -100,7 +100,7 @@
         "return_choice": false
       },
       {
-        "text": "I will spare you, but you are hereby banished! [Learn Summon Boulder]",
+        "text": "I will spare you, but you are hereby banished! [Learn Granite Elf]",
         "target": "Stone_Spare",
         "return_choice": false
       }
@@ -131,7 +131,7 @@
     "text": "Kahnigut: You caught me on a merciful day. You will live. But you are banished and shall never return here again or you will certainly taste my steel.",
     "options": [
       {
-        "text": "Free the Wizard of Stone! [Learn Summon Boulder]",
+        "text": "Free the Wizard of Stone! [Learn Granite Elf]",
         "target": "free",
         "return_choice": true
       },
@@ -143,7 +143,7 @@
     ],
     "return_rewards": {
       "spells": [
-        "Summon Boulder"
+        "Granite Elf"
       ]
     }
   },
@@ -454,7 +454,7 @@
     "text": "Morvek: Impressive. Most commanders shatter by now, but you... you protect your king like a man who knows the value of each piece."
   },
   "95": {
-    "text": "Morvek: Spare me, and I will share my rite—SUMMON UNDEAD PAWN. Fallen soldiers claw back to serve again. Kill me, and the shadows lose a very generous partner.",
+    "text": "Morvek: Spare me, and I will share my rite—SUMMON UNDEAD ELVES. Fallen soldiers claw back to serve again. Kill me, and the shadows lose a very generous partner.",
     "options": [
       {
         "text": "Strike Morvek down [+3 Advanced Shields, +2 Time Warps]",
@@ -462,7 +462,7 @@
         "return_choice": true
       },
       {
-        "text": "Spare Morvek and accept his dark rite [Learn Summon Undead Pawn]",
+        "text": "Spare Morvek and accept his dark rite [Learn Summon Undead Elves]",
         "target": "Shadow_Realms_Release",
         "return_choice": true
       }
@@ -478,10 +478,10 @@
     }
   },
   "97": {
-    "text": "Kahnigut steps aside. Morvek lifts a hand, tracing a circle of black fire in the air. Whispers coil into Kahnigut's mind—the method of SUMMON UNDEAD PAWN, a grim gift he will not use lightly.",
+    "text": "Kahnigut steps aside. Morvek lifts a hand, tracing a circle of black fire in the air. Whispers coil into Kahnigut's mind—the method of SUMMON UNDEAD ELVES, a grim gift he will not use lightly.",
     "return_rewards": {
       "spells": [
-        "Summon Undead Pawn"
+        "Summon Undead Elves"
       ]
     }
   },
@@ -667,7 +667,7 @@
     "text": "Varkos: Impressive. Most commanders fear my ranks. You cut through them like a gravedigger late for supper."
   },
   "143": {
-    "text": "Varkos: Spare me, and I will refine your army with SUMMON UNDEAD PAWN. Your fallen can march again. Kill me, and the Hollow goes dark... and empty.",
+    "text": "Varkos: Spare me, and I will refine your army with SUMMON UNDEAD ELVES. Your fallen can march again. Kill me, and the Hollow goes dark... and empty.",
     "options": [
       {
         "text": "Lay Varkos to rest at last [+2 Shields, +2 Time Warps]",
@@ -675,7 +675,7 @@
         "return_choice": true
       },
       {
-        "text": "Spare Varkos and accept his grave bargain [Learn Summon Undead Pawn]",
+        "text": "Spare Varkos and accept his grave bargain [Learn Summon Undead Elves]",
         "target": "Grave_Hollow_Release",
         "return_choice": true
       }
@@ -691,10 +691,10 @@
     }
   },
   "145": {
-    "text": "Kahnigut steps back. Varkos presses a bone-white hand to the soil, and a cold pattern of command seeps into Kahnigut's thoughts—the rite of SUMMON UNDEAD PAWN, offered with a thin, knowing smile.",
+    "text": "Kahnigut steps back. Varkos presses a bone-white hand to the soil, and a cold pattern of command seeps into Kahnigut's thoughts—the rite of SUMMON UNDEAD ELVES, offered with a thin, knowing smile.",
     "return_rewards": {
       "spells": [
-        "Summon Undead Pawn"
+        "Summon Undead Elves"
       ]
     }
   },

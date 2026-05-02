@@ -31,6 +31,7 @@ class StoryPlayer:
             self.stories_data = {}
 
     def play_story(self, story_name):
+        self.last_rewards = None
         frames_to_play = self.get_frames_for_story(story_name)
         index = 0
 
@@ -181,6 +182,9 @@ class StoryPlayer:
             # Otherwise, treat target as another story name and branch into it.
             if next_target:
                 return self.play_story(next_target)
+
+        if frame_data.get("return_rewards"):
+            self.last_rewards = frame_data.get("return_rewards")
 
         return None
 

@@ -1,3 +1,4 @@
+import json
 import pygame
 from play_story import StoryPlayer
 
@@ -64,7 +65,7 @@ class StoryMode:
             return None
         return self.STAGE_STORY_PREFIXES.get(stage_id)
 
-    def _normalize_story_result_and_apply_rewards(self, raw_result):
+    def _normalize_story_result_and_apply_rewards(self, raw_result, resolve_story_targets=False):
         """
         Accept whatever StoryPlayer.play_story() returns and normalize it
         to a simple result string, while also applying any rewards from
@@ -98,10 +99,37 @@ class StoryMode:
         else:
             result = raw_result
 
+        if rewards is None:
+            rewards = getattr(self.story_player, "last_rewards", None)
+            self.story_player.last_rewards = None
+
+        if result and rewards is None and resolve_story_targets and self._story_exists(result):
+            followup_raw = self.story_player.play_story(result)
+            return self._normalize_story_result_and_apply_rewards(
+                followup_raw,
+                resolve_story_targets=resolve_story_targets,
+            )
+
         if rewards:
             self._apply_story_rewards(rewards)
 
         return result
+
+    def _story_exists(self, story_id):
+        stories = getattr(self.story_player, "stories_data", {}) or {}
+        return story_id.lower() in {key.lower() for key in stories.keys()}
+
+    def _known_spell_names(self):
+        spell_info = getattr(self.g, "spell_info", {}) or {}
+        if spell_info:
+            return set(spell_info.keys())
+
+        try:
+            with open("data/spell_description.json", "r", encoding="utf-8") as f:
+                return set(json.load(f).keys())
+        except Exception as exc:
+            print(f"[WARN] Could not validate story spell rewards: {exc}")
+            return set()
 
     def _apply_story_rewards(self, rewards):
         """
@@ -113,7 +141,7 @@ class StoryMode:
             "promotions": 2
           },
           "spells": [
-            "Summon Boulder"
+            "Granite Elf"
           ]
         }
         """
@@ -127,7 +155,11 @@ class StoryMode:
 
         # Spells
         spells = rewards.get("spells", [])
+        known_spells = self._known_spell_names()
         for spell in spells:
+            if known_spells and spell not in known_spells:
+                print(f"[WARN] Story reward references unknown spell: {spell!r}")
+                continue
             if spell not in self.g.spellbook_master:
                 self.g.spellbook_master.append(spell)
             if spell not in self.g.spellbook:
@@ -203,9 +235,9 @@ class StoryMode:
 
         Uses "<Prefix>_Win" from stories.json for normal stages.
 
-        For the early Stone wizard arc, falls back to "Stone_Plead_1" -
-        which still uses frames.json (return_rewards) and the old
-        kill/free semantics.
+        For the early Stone wizard arc, falls back to "Stone_Plead_1",
+        which now uses the same frames.json return_rewards path as other
+        win stories.
         """
         prefix = self._stage_prefix_for_current_world()
 
@@ -218,20 +250,7 @@ class StoryMode:
         print(f"[STORY] Stage victory → {story_id}")
         self._refresh_story_player()
         raw = self.story_player.play_story(story_id)
-        result = self._normalize_story_result_and_apply_rewards(raw)
-
-        # Optional: preserve the original Stone logic on top of any rewards
-        if story_id == "Stone_Plead_1":
-            if result == "kill":
-                self.g.powerups["promotions"] = self.g.powerups.get("promotions", 0) + 2
-                self.g.powerups["shields"] = self.g.powerups.get("shields", 0) + 2
-                print("[STONE] Extra +2 promotions, +2 shields (legacy behavior).")
-            elif result == "free":
-                if "Summon Boulder" not in self.g.spellbook_master:
-                    self.g.spellbook_master.append("Summon Boulder")
-                if "Summon Boulder" not in self.g.spellbook:
-                    self.g.spellbook.append("Summon Boulder")
-                print("[STONE] Learned Summon Boulder (legacy behavior).")
+        self._normalize_story_result_and_apply_rewards(raw, resolve_story_targets=True)
 
     def handle_lose_story(self):
         """
