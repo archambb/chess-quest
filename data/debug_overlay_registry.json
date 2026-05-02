@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "tabs": [
+    {
+      "id": "game",
+      "label": "Game",
+      "entries": [
+        {"id": "player_side", "label": "Player Side", "kind": "value", "path": "game.player_side", "type": "enum", "options": ["white", "black"], "editable": true},
+        {"id": "player_wins", "label": "Round Wins", "kind": "value", "path": "game.player_wins", "type": "int", "min": 0, "max": 3, "editable": true},
+        {"id": "player_losses", "label": "Round Losses", "kind": "value", "path": "game.player_losses", "type": "int", "min": 0, "max": 3, "editable": true},
+        {"id": "turns", "label": "Player Turns", "kind": "value", "path": "game.turns", "type": "int", "min": 0, "editable": true},
+        {"id": "completed_turns", "label": "Completed Turns", "kind": "value", "path": "game.completed_turns", "type": "int", "min": 0, "editable": true},
+        {"id": "rage_quit", "label": "Enemy Rage Quit", "kind": "value", "path": "game.ENEMY_RAGE_QUITS", "type": "bool", "editable": true},
+        {"id": "register_win", "label": "Register Quest Win", "kind": "action", "action": "register_win", "danger": true},
+        {"id": "register_loss", "label": "Register Quest Loss", "kind": "action", "action": "register_loss", "danger": true},
+        {"id": "register_stalemate", "label": "Register Stalemate", "kind": "action", "action": "register_stalemate", "danger": true},
+        {"id": "overlay_check", "label": "Trigger Check Overlay", "kind": "action", "action": "trigger_gamestate_display", "args": {"state": "check"}},
+        {"id": "overlay_checkmate", "label": "Trigger Checkmate Overlay", "kind": "action", "action": "trigger_gamestate_display", "args": {"state": "checkmate"}},
+        {"id": "overlay_stalemate", "label": "Trigger Stalemate Overlay", "kind": "action", "action": "trigger_gamestate_display", "args": {"state": "stalemate"}},
+        {"id": "overlay_rage_quit", "label": "Trigger Rage-Quit Overlay", "kind": "action", "action": "trigger_gamestate_display", "args": {"state": "rage_quit"}}
+      ]
+    },
+    {
+      "id": "quests",
+      "label": "Quests",
+      "entries": [
+        {"id": "active_quests", "label": "Active Quests", "kind": "value", "path": "quests.active_quests", "type": "list", "editable": true},
+        {"id": "quest_status", "label": "Quest Status", "kind": "value", "path": "quests.quest_status", "type": "dict", "editable": true},
+        {"id": "checkmate_teleport", "label": "Checkmate Teleport", "kind": "value", "path": "quests.enable_checkmate_teleport", "type": "bool", "editable": true},
+        {"id": "reflective_shield", "label": "Reflective Shield", "kind": "value", "path": "quests.enable_reflective_shield", "type": "bool", "editable": true},
+        {"id": "empowered_freeze", "label": "Empowered Freeze", "kind": "value", "path": "quests.enable_empowered_freeze", "type": "bool", "editable": true},
+        {"id": "poisoned_pawns", "label": "Poisoned Pawns", "kind": "value", "path": "quests.enable_poisoned_pawns", "type": "bool", "editable": true},
+        {"id": "reset_quest_status", "label": "Reset Active Quest Status", "kind": "action", "action": "reset_quest_status"}
+      ]
+    },
+    {
+      "id": "inventory",
+      "label": "Inventory",
+      "entries": [
+        {"id": "player_gold", "label": "Player Gold", "kind": "value", "path": "game.player_gold", "type": "int", "min": 0, "editable": true},
+        {"id": "powers_unlocked", "label": "Powers Unlocked", "kind": "value", "path": "game.powers_unlocked", "type": "bool", "editable": true},
+        {"id": "powerups", "label": "Powerups", "kind": "value", "path": "game.powerups", "type": "dict", "editable": true},
+        {"id": "spellbook", "label": "Current Spellbook", "kind": "value", "path": "game.spellbook", "type": "list", "editable": true},
+        {"id": "spellbook_master", "label": "Master Spellbook", "kind": "value", "path": "game.spellbook_master", "type": "list", "editable": true},
+        {"id": "gear_owned", "label": "Gear Bar Ownership", "kind": "value", "path": "game.gear_owned", "type": "list", "editable": true},
+        {"id": "gear_inventory", "label": "Gear Inventory", "kind": "value", "path": "gear.gear", "type": "dict", "editable": true},
+        {"id": "gear_pending", "label": "Gear Pending Action", "kind": "value", "path": "gear.pending_action", "type": "str", "editable": true}
+      ]
+    },
+    {
+      "id": "board",
+      "label": "Board",
+      "entries": [
+        {"id": "force_white_turn", "label": "Force White Turn", "kind": "action", "action": "force_turn", "args": {"color": "white"}},
+        {"id": "force_black_turn", "label": "Force Black Turn", "kind": "action", "action": "force_turn", "args": {"color": "black"}},
+        {"id": "instant_checkmate_white", "label": "Instant check-mate white", "kind": "action", "action": "setup_instant_checkmate", "args": {"color": "white"}},
+        {"id": "instant_checkmate_black", "label": "Instant check-mate black", "kind": "action", "action": "setup_instant_checkmate", "args": {"color": "black"}},
+        {"id": "manual_enemy_move", "label": "Trigger Enemy Move", "kind": "action", "action": "trigger_enemy_move"},
+        {"id": "reset_board", "label": "Reset Board", "kind": "action", "action": "reset_board", "danger": true},
+        {"id": "clear_board", "label": "Clear Board To Tray", "kind": "action", "action": "clear_board_to_tray", "danger": true},
+        {"id": "print_fen", "label": "Print Current FEN", "kind": "action", "action": "print_fen"},
+        {"id": "validate_board", "label": "Validate Board", "kind": "action", "action": "validate_board"}
+      ]
+    }
+  ]
+}
