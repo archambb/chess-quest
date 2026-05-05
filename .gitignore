@@ -4,10 +4,28 @@ __pycache__/
 *.pyo
 *.pyd
 
+# Python environment
+.python-version
+
+# pytest cache (if you ever use it)
+.pytest_cache/
+
+# mypy / type checking
+.mypy_cache/
+
+# coverage reports
+.coverage
+htmlcov/
+
 # Virtual environments
 venv/
 .env/
 .env
+
+# Prevent accidental weird filenames / debug junk
+*.bak
+*.swp
+*.orig
 
 # Builds/logs/temp
 build/
@@ -40,3 +58,9 @@ engine/
 
 # Large game assets - keep out of first GitHub push
 assets/
+
+# Game saves
+saves/
+
+# Ignore temporary validation scripts only
+tools/validate*.py

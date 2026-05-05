@@ -2,8 +2,7 @@
 [likely fixed] Need to check quest statuses after enemy move (Queen Count not firing)
 [can't put on freeze or shield, but need to make sure enemy doesn't move if frozen or if magnet is shielded] Magnet does not respect freezes and shields
 [] After playing again Wizard of Light, we see wizard of light pieces in the piece purchase screen
-[] The fire wizard may have destroyed his own king in the rank burn-out
-[] When you lose for the final checkmate, there's no "Checkmate" displayed. No clear concept that you lost. Just on the stone level.
+[s] When you lose for the final checkmate, there's no "Checkmate" displayed. No clear concept that you lost. Just on the stone level.
 [] Market played the story for dreamland (Hammock)
 [] Market has no background
 [] Queen Count quest (queen taken?) just before the end of the match caused the queen to change on the palyer side after a few turns, I think. Happened in the market level.

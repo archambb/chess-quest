@@ -475,6 +475,8 @@ class SaveManager:
 
         g.hard_pause_start_time = None
         g.hard_pause_callback = None
+        g.click_pause_active = False
+        g.click_pause_callback = None
         if getattr(g, "menu", None):
             g.menu.is_open = False
         if getattr(g, "renderer", None):

@@ -385,7 +385,7 @@ class UIRenderMixin:
             scale = 1.0
 
             if self.gstate_display_type != "check":
-                if elapsed > self.gstate_display_max_time:
+                if elapsed > self.gstate_display_max_time and not getattr(self.g, "click_pause_active", False):
                     self.gstate_display_active = False
                     return
                 if elapsed < self.gstate_display_anim_duration:

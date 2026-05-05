@@ -329,7 +329,7 @@ class MapChallenges:
                 for file_ in range(8):
                     sq = chess.square(file_, self._lava_row_index)
                     p = self.g.board.piece_at(sq)
-                    if p and p.color == player_color:
+                    if p and p.color == player_color and p.piece_type != chess.KING:
                         self.g.quests.record_captured_piece(p, count_for_quests=True)
                         self.g.board.remove_piece_at(sq)
                 self._lava_row_active = False
