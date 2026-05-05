@@ -5,6 +5,8 @@ import random
 import chess
 import chess.engine
 
+from promotion_ui import PROMOTION_OPTIONS, choose_promotion_piece_type
+
 
 class BoardManager:
     """
@@ -64,6 +66,7 @@ class BoardManager:
     # ─────────────────────────────────────────────────────────────
     def setup_new_board(self):
         g = self.g
+        g.current_game_mode = "combat"
 
         g.current_state_wins = 0
         g.current_state_losses = 0
@@ -87,6 +90,7 @@ class BoardManager:
         g.selected_square = None
         g.selected_power = None
         g.selected_spell = None
+        g.wall_of_flame_active = False
         g.ENEMY_RAGE_QUITS = False
 
         g.spellbook = list(g.spellbook_master)
@@ -115,8 +119,9 @@ class BoardManager:
     # ─────────────────────────────────────────────────────────────
     # Board reset pipeline
     # ─────────────────────────────────────────────────────────────
-    def reset_board(self):
+    def reset_board(self, preserve_gold=False):
         g = self.g
+        g.current_game_mode = "combat"
 
         if getattr(g, "engine", None):
             try:
@@ -143,6 +148,7 @@ class BoardManager:
         g.selected_square = None
         g.selected_power = None
         g.selected_spell = None
+        g.wall_of_flame_active = False
         g.spellbook = list(g.spellbook_master)
         g._spell_cache_dirty = True
         g.ENEMY_RAGE_QUITS = False
@@ -162,7 +168,10 @@ class BoardManager:
         self.apply_player_army_to_board(g.player_side)
 
         g.PIECE_IMAGES = g.assets.load_piece_images()
-        g.board_manager.sprinkle_gold_pieces()
+        if preserve_gold:
+            print("[INFO] Preserving existing gold after stalemate reset.")
+        else:
+            g.board_manager.sprinkle_gold_pieces()
 
         print(f"Brand-new game! You are now {g.player_side}.")
 
@@ -308,12 +317,44 @@ class BoardManager:
             return move
 
         if piece.piece_type == chess.PAWN:
-            dst_rank = chess.square_rank(dst_sq)
-            promotion_rank_target = (dst_rank == 7) if piece.color == chess.WHITE else (dst_rank == 0)
-            if promotion_rank_target:
-                g.player_has_promoted = True
-                move = chess.Move(src_sq, dst_sq, promotion=chess.QUEEN)
+            legal_promotions = self._legal_promotion_piece_types(src_sq, dst_sq)
+            if legal_promotions:
+                promotion_type = self._choose_promotion_piece_type(piece, src_sq, dst_sq, legal_promotions)
+                if promotion_type is None:
+                    return None
+                move = chess.Move(src_sq, dst_sq, promotion=promotion_type)
         return move
+
+    def _legal_promotion_piece_types(self, src_sq, dst_sq):
+        g = self.g
+        preferred = [piece_type for piece_type, _, _ in PROMOTION_OPTIONS]
+        legal = {
+            move.promotion
+            for move in g.board.legal_moves
+            if (
+                move.from_square == src_sq and
+                move.to_square == dst_sq and
+                move.promotion is not None
+            )
+        }
+        return [piece_type for piece_type in preferred if piece_type in legal]
+
+    def _choose_promotion_piece_type(self, piece, src_sq, dst_sq, legal_promotions):
+        g = self.g
+        provider = getattr(g, "promotion_choice_provider", None)
+        if provider:
+            choice = provider(piece.color, src_sq, dst_sq, tuple(legal_promotions))
+        else:
+            choice = choose_promotion_piece_type(g, piece.color)
+
+        if choice is None:
+            return None
+
+        if choice not in legal_promotions:
+            print(f"[Promotion] Invalid promotion choice {choice}; defaulting to queen.")
+            return legal_promotions[0]
+
+        return choice
 
     def _validate_move_against_map(self, move, piece):
         g = self.g
@@ -340,6 +381,9 @@ class BoardManager:
             g.renderer.animate_piece_move(piece.symbol(), move.from_square, move.to_square)
             board.push(move)
 
+            if move.promotion:
+                g.player_has_promoted = True
+
             g.quests.update_quest_variables(piece, move, player=True)
             self._clear_king_protections()
             g.selected_square = None
@@ -360,6 +404,8 @@ class BoardManager:
             g.renderer.animate_piece_move(piece.symbol(), move.from_square, move.to_square)
 
             if g.map_challenges.apply_special_move(move):
+                if move.promotion:
+                    g.player_has_promoted = True
                 g.quests.update_quest_variables(piece, move, player=True)
                 self._clear_king_protections()
                 g.selected_square = None
@@ -396,6 +442,8 @@ class BoardManager:
             return False
 
         move = self._build_promotion_if_needed(piece, g.selected_square, dest_square)
+        if move is None:
+            return False
 
         if move in g.board.legal_moves:
             pruned = g.map_challenges.prune_moves([move], piece=piece, from_sq=move.from_square)
@@ -474,6 +522,29 @@ class BoardManager:
                 g.player_gold += 1
                 print(f"[INFO] Player collected gold at {chess.square_name(square)}! Total: {g.player_gold}")
                 g.audio.play_random("coin")
+
+    def promote_back_rank_pawns_to_queens(self, board=None):
+        board = board or self.g.board
+        promoted = []
+
+        for square, piece in list(board.piece_map().items()):
+            if piece.piece_type != chess.PAWN:
+                continue
+
+            rank = chess.square_rank(square)
+            if rank not in (0, 7):
+                continue
+
+            board.set_piece_at(square, chess.Piece(chess.QUEEN, piece.color))
+            promoted.append(square)
+
+        if promoted:
+            print(
+                "[Promotion] Auto-promoted back-rank pawn(s) to queen: "
+                f"{[chess.square_name(sq) for sq in promoted]}"
+            )
+
+        return promoted
 
     def player_color(self):
         g = self.g

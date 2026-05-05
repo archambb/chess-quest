@@ -296,19 +296,25 @@ class ArmyUpkeepScreen:
     # ------------------------------------------------------------------
 
     def _draw_gold(self):
-        x = config.WIDTH - 200
+        x = 60
         y = 20
+        coin_size = 48
 
         if self.gold_icon is not None:
-            icon_rect = self.gold_icon.get_rect(topleft=(x, y))
-            self.screen.blit(self.gold_icon, icon_rect)
+            icon = pygame.transform.smoothscale(self.gold_icon, (coin_size, coin_size))
+            icon_rect = icon.get_rect(topleft=(x, y))
+            self.screen.blit(icon, icon_rect)
             text_x = icon_rect.right + 8
         else:
             text_x = x
 
-        txt = f"{self.g.player_gold} gold"
-        surf = self.font.render(txt, True, (255, 230, 80))
-        self.screen.blit(surf, (text_x, y + 4))
+        font = pygame.font.SysFont(None, 48)
+        txt = f"= {int(getattr(self.g, 'player_gold', 0))}"
+        surf = font.render(txt, True, (255, 255, 255))
+        shadow = font.render(txt, True, (0, 0, 0))
+        text_y = y + (coin_size // 2 - surf.get_height() // 2)
+        self.screen.blit(shadow, (text_x + 2, text_y + 2))
+        self.screen.blit(surf, (text_x, text_y))
 
     def _draw_done_button(self):
         pygame.draw.rect(self.screen, (40, 120, 40), self.done_rect, border_radius=8)
@@ -445,7 +451,7 @@ class ArmyUpkeepScreen:
 # Public entry point for GameWorld._advance_month
 # ----------------------------------------------------------------------
 
-def apply_monthly_upkeep(world, game):
+def apply_monthly_upkeep(world, game, upkeep_pos=None):
     """
     Called from GameWorld._advance_month(world, game).
 
@@ -456,25 +462,39 @@ def apply_monthly_upkeep(world, game):
     - Otherwise:
         * Open the ArmyUpkeepScreen so the player can buy/keep pieces.
     """
-    cell = world.world_data.get(world.player_pos)
+    pos = upkeep_pos if upkeep_pos is not None else world.player_pos
+    cell = world.world_data.get(pos)
     if not cell:
-        print("[ARMY] No world cell for current position; skipping upkeep.")
+        print(f"[ARMY] No world cell for upkeep position {pos}; skipping upkeep.")
         return
 
     building = cell.get("building")
-    stage_id = cell.get("stage_id", 0)  # still useful if training wants it later
+    stage_id = cell.get("stage_id", 0)
+    building_upkeep_ready = cell.get("building_upkeep_ready", True)
 
-    if building == "train":
+    print(
+        "[ARMY_FLOW] trigger=departure "
+        f"site={pos} destination={getattr(world, '_pending_destination_pos', None)} "
+        f"stage_id={stage_id} building={building!r} "
+        f"building_upkeep_ready={building_upkeep_ready}"
+    )
+
+    if building == "train" and building_upkeep_ready:
         try:
             from training import TrainingCenterScreen
-            print("[ARMY] Training center present: skipping upkeep and opening Training Center.")
-            t_screen = TrainingCenterScreen(game, world)
+            print("[ARMY_FLOW] action=training_center_restore reason=departure_from_ready_training_center")
+            t_screen = TrainingCenterScreen(game, world, training_pos=pos)
             t_screen.run()
         except Exception as e:
             print(f"[ARMY] TrainingCenterScreen failed ({e}); no upkeep charged.")
         return
 
     # Normal case → open upkeep UI
+    if building == "train":
+        print("[ARMY_FLOW] action=normal_upkeep reason=new_training_center_not_ready")
+    else:
+        print("[ARMY_FLOW] action=normal_upkeep reason=departure_from_non_training_site")
+
     screen = ArmyUpkeepScreen(game, world)
     screen.run()
 

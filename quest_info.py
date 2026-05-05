@@ -448,11 +448,14 @@ class QuestInfo:
                             self.update_quest_stat(key, zero=True)
 
                 elif key == "Enemy Pawns Haven't Moved" and move:
-                    if piece.piece_type == chess.PAWN:
-                        self.enemy_non_pawn_streak = 0
-                    else:
+                    check_board = board_before_move or self.g.board
+                    blocked_pawns = self._count_enemy_pawns_without_legal_moves(check_board, enemy_color)
+                    if blocked_pawns >= 4:
                         self.enemy_non_pawn_streak += 1
-                        self.update_quest_stat(key, amount=self.enemy_non_pawn_streak)
+                        self.update_quest_stat(key, equal_to=self.enemy_non_pawn_streak)
+                    else:
+                        self.enemy_non_pawn_streak = 0
+                        self.update_quest_stat(key, equal_to=0)
 
                 elif key == "Lost Elves" and move:
                     if captured_piece and captured_piece.piece_type == chess.BISHOP and captured_piece.color == player_color:
@@ -981,10 +984,12 @@ class QuestInfo:
 
 
     def win_quest(self, quest_num, reward=None):
-        print(f"🏆 win_quest({quest_num}) called")
-        display_index = None
-        if quest_num in self.active_quests:
-            display_index = self.active_quests.index(quest_num)
+        print(f"[Quest] win_quest({quest_num}) called")
+        if quest_num not in self.active_quests:
+            print(f"[QuestReward] Quest #{quest_num} is not active; skipping duplicate reward.")
+            return
+
+        display_index = self.active_quests.index(quest_num)
         
         self.g.quest_reward_handler.give_reward(
             quest_num,
@@ -992,8 +997,10 @@ class QuestInfo:
             display_index=display_index,
         )
         
-        if quest_num in self.active_quests:
-            self.active_quests.remove(quest_num)
+        self.g.player_gold += 3
+        print(f"[QuestReward] Quest completion gold: +3 (Total: {self.g.player_gold})")
+
+        self.active_quests.remove(quest_num)
 
     
     def get_captured_piece(self, board_before_move: chess.Board, move: chess.Move):
@@ -1012,6 +1019,27 @@ class QuestInfo:
 
         # Normal capture (or None if it’s not a capture)
         return board_before_move.piece_at(move.to_square)
+
+    def _count_enemy_pawns_without_legal_moves(self, board: chess.Board, enemy_color: chess.Color) -> int:
+        """Return the number of remaining enemy pawns that cannot legally move now."""
+        if board is None:
+            return 0
+
+        test_board = board.copy(stack=False)
+        test_board.turn = enemy_color
+        enemy_pawn_squares = {
+            square
+            for square, piece in test_board.piece_map().items()
+            if piece.color == enemy_color and piece.piece_type == chess.PAWN
+        }
+
+        movable_pawns = set()
+        for move in test_board.legal_moves:
+            piece = test_board.piece_at(move.from_square)
+            if piece and piece.color == enemy_color and piece.piece_type == chess.PAWN:
+                movable_pawns.add(move.from_square)
+
+        return len(enemy_pawn_squares - movable_pawns)
 
     def record_captured_piece(self, captured_piece, count_for_quests=False):
         """Track captured/destroyed pieces for revive rewards and non-move capture stats."""

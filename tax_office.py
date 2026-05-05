@@ -26,7 +26,7 @@ class TaxOfficeScreen:
     def __init__(self, game, world):
         self.g = game
         self.world = world
-        self.screen = g.screen
+        self.screen = self.g.screen
         self.clock = pygame.time.Clock()
         self.running = False
 
@@ -221,53 +221,3 @@ class TaxOfficeScreen:
         self.running = False
 
 
-# ----------------------------------------------------------------------
-# Standalone test harness
-# ----------------------------------------------------------------------
-
-if __name__ == "__main__":
-    """
-    Standalone test harness for TaxOfficeScreen.
-
-    Usage:
-      python tax_office.py
-
-    Requirements:
-      - config.py with WIDTH, HEIGHT defined.
-      - Optional: assets/GFX/UI/tax.png for nice background.
-    """
-
-    pygame.init()
-
-    # Create window from config
-    try:
-        screen = pygame.display.set_mode((config.WIDTH, config.HEIGHT))
-    except Exception:
-        screen = pygame.display.set_mode((1280, 720))
-        if hasattr(config, "WIDTH") and hasattr(config, "HEIGHT"):
-            config.WIDTH, config.HEIGHT = screen.get_size()
-
-    pygame.display.set_caption("Tax Office - Standalone Test")
-
-    class DummyWorld:
-        def __init__(self):
-            self.tax_office_balance = 123  # collected taxes ready to claim
-            self.tax_office_income_per_month = 45  # recurring monthly tax income
-
-    class DummyGame:
-        def __init__(self, screen, world):
-            self.screen = screen
-            self.world = world
-            self.player_gold = 200  # on-hand gold
-
-    world = DummyWorld()
-    game = DummyGame(screen, world)
-
-    print("[TEST] Starting TaxOfficeScreen test...")
-    tax_screen = TaxOfficeScreen(game, world)
-    tax_screen.run()
-    print("[TEST] Tax office closed.")
-    print(f"[TEST] Final tax_office_balance: {world.tax_office_balance}")
-    print(f"[TEST] Final player_gold: {g.player_gold}")
-
-    pygame.quit()

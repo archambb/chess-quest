@@ -1087,7 +1087,7 @@
   {
     "quest_number": 45,
     "title": "Wall of Fire",
-    "rules": "Block all eight enemy pawns from moving for 5+ turns. Reward: Immediately pick a row and burn all enemies in that row.",
+    "rules": "Block at least four enemy pawns from moving for 5+ turns. Reward: Immediately pick a row and burn all enemies in that row.",
     "feedback": [
       "Enemy Pawns Haven't Moved"
     ],

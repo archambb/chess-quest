@@ -407,6 +407,7 @@ class GameWorld:
         x, y = pos
         cell = self.world_data[(x, y)]
         cell["building"] = building_type
+        cell["building_upkeep_ready"] = False
 
         if building_type == "market":
             cell["state"] = "wonmarket"
@@ -419,8 +420,15 @@ class GameWorld:
 
     # Calendar ---------------------------------------------------------
 
-    def _advance_month(self):
+    def _advance_month(self, upkeep_pos=None):
         """Advance game time by one month each time we move to a new land."""
+        departure_cell = self.world_data.get(upkeep_pos) if upkeep_pos is not None else None
+        departure_building_ready = (
+            departure_cell.get("building_upkeep_ready", True)
+            if departure_cell is not None
+            else None
+        )
+
         self.current_month_index += 1
         if self.current_month_index >= 12:
             self.current_month_index = 0
@@ -435,11 +443,14 @@ class GameWorld:
         if apply_monthly_upkeep is not None:
             try:
                 # Signature: apply_monthly_upkeep(world, game)
-                apply_monthly_upkeep(self, self.g)
+                apply_monthly_upkeep(self, self.g, upkeep_pos=upkeep_pos)
             except Exception as e:
                 print(f"[WARN] apply_monthly_upkeep failed: {e}")
         else:
             print("[INFO] army_upkeep.py not found; skipping monthly upkeep.")
+
+        if departure_cell is not None and departure_building_ready is False:
+            departure_cell["building_upkeep_ready"] = True
 
         # Monthly economy (bank interest + taxes)
         self._update_bank_interest()
@@ -542,6 +553,8 @@ class GameWorld:
             * If it has a Market/Bank/Tax/Training, we open the appropriate UI.
         """
         game = self.g
+        game.current_game_mode = "overworld"
+        game.main_game_screen = False
         screen = game.screen
 
         pygame.init()
@@ -604,11 +617,22 @@ class GameWorld:
 
                         # Only act if that tile is actually reachable this turn
                         if picked is not None and picked in traversable_squares:
+                            previous_pos = self.player_pos
+                            previous_cell = self.world_data.get(previous_pos, {})
+                            departed_ready_training_center = (
+                                previous_cell.get("building") == "train"
+                                and previous_cell.get("building_upkeep_ready", True)
+                            )
                             x, y = picked
+                            self._pending_destination_pos = (x, y)
+                            try:
+                                self._advance_month(upkeep_pos=previous_pos)
+                            finally:
+                                self._pending_destination_pos = None
+
                             # Move knight to the new land
                             self.player_pos = (x, y)
                             self.record_visit(x, y)
-                            self._advance_month()
                             print(f"[INFO] Moved to: {self.player_pos}")
 
                             cell = self.world_data[(x, y)]
@@ -630,7 +654,14 @@ class GameWorld:
                                 elif building == "tax":
                                     self.open_tax_office(game)
                                 elif building == "train":
-                                    self.open_training_center(game)
+                                    if (
+                                        departed_ready_training_center
+                                        and cell.get("building_upkeep_ready", True)
+                                    ):
+                                        print("[INFO] Training Center to Training Center move; opening arrival training.")
+                                        self.open_training_center(game)
+                                    else:
+                                        print("[INFO] Arrived at Training Center; training applies when departing.")
                                 else:
                                     print("[WARN] Land has no recognized building; staying on overworld.")
                                 # Stay in overworld after visiting won land.

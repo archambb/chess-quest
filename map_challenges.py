@@ -159,7 +159,7 @@ class MapChallenges:
         if stage_id == 5:
             self._stage5_random_friendly_freeze()
 
-        if stage_id == 6:
+        if stage_id == 6 and self.g.turns % 5 == 0 and self.g.turns != 0:
             self._stage6_tornado_remove_friendly_pawn()
 
         if stage_id == 7:
@@ -407,10 +407,15 @@ class MapChallenges:
         sq = random.choice(pawns)
         self.g.quests.record_captured_piece(self.g.board.piece_at(sq), count_for_quests=True)
         self.g.board.remove_piece_at(sq)
+        self._stage6_tornado_vfx(sq)
         self.g.audio.play_random("bomb")
         self.g.renderer.enemy_dialog_text = "A tornado snatches a pawn!"
         self.g.renderer.enemy_dialog_timer = 120
         self.g.renderer.enemy_dialog_alpha = 255
+
+    def _stage6_tornado_vfx(self, square):
+        """Hook for tornado VFX/GFX when the storm removes a pawn."""
+        pass
 
     # ────────────────────────────────────────────────────
     # Stage 7 — Enemy pawns resurrect as knights around the enemy queen

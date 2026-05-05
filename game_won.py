@@ -175,7 +175,15 @@ class TerritoryWinScreen:
     # ─────────────────────────────────────────────────────────────
 
     def _draw(self, mouse_pos):
-        # Darken the whole screen but keep the previous frame visible
+        # Redraw the overworld under the chooser; the previous frame may be combat.
+        try:
+            traversable = self.world.knight_moves(self.world.player_pos)
+            self.world.renderer.draw_world(self.screen, traversable, hovered_pos=None)
+        except Exception as e:
+            print(f"[WARN] Could not draw overworld behind territory win screen: {e}")
+            self.screen.fill((0, 0, 0))
+
+        # Darken the whole screen while keeping the overworld visible.
         overlay = pygame.Surface(
             (self.screen_width, self.screen_height),
             pygame.SRCALPHA

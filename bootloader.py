@@ -145,6 +145,7 @@ class BootLoader:
         # Each opponent's variables
         g.player_wins = 0
         g.player_losses = 0
+        g.player_stalemates = 0
         g.player_side = "white"  # or black -- can change with certain boards
 
         # Defaults (unset until a save/new-game applies real values)
@@ -289,6 +290,7 @@ class BootLoader:
         g.meteor_active = False
         g.meteor_quadrant = None
         g.meteor_flash_timer = 0
+        g.wall_of_flame_active = False
 
         g.boulder_squares = set()
 

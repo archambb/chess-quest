@@ -102,6 +102,7 @@ class GameResultManager:
             # Reset board wins
             g.player_wins = 0
             g.player_losses = 0
+            g.player_stalemates = 0
             g.player_side = "white"
 
             # Reset quest-related board variables
@@ -169,6 +170,7 @@ class GameResultManager:
         if g.player_losses >= 3:
             g.player_wins = 0
             g.player_losses = 0
+            g.player_stalemates = 0
 
             # Stage-specific failure story BEFORE leaving this tile
             if hasattr(g, "story_mode") and hasattr(g, "world") and g.world:
@@ -210,5 +212,6 @@ class GameResultManager:
 
         g.quests.check_for_quest_win()
         self.between_rounds_quest_activity(win_status)
-        g.reset_board()
+        g.player_stalemates = getattr(g, "player_stalemates", 0) + 1
+        g.reset_board(preserve_gold=True)
 
