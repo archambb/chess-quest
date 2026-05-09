@@ -13,6 +13,7 @@ class StoryPlayer:
         self.current_music = None
         self.clock = pygame.time.Clock()
         self.last_rewards = None  # holds rewards for the last return_choice
+        self._last_displayed_frame = None
 
         # Load frames data from JSON
         try:
@@ -32,6 +33,7 @@ class StoryPlayer:
 
     def play_story(self, story_name):
         self.last_rewards = None
+        self._last_displayed_frame = None
         frames_to_play = self.get_frames_for_story(story_name)
         index = 0
 
@@ -83,11 +85,13 @@ class StoryPlayer:
         return frames
 
     def play_frame(self, frame_num):
-        frame_data = self.frames_data.get(str(frame_num), {})
-        text = frame_data.get("text", "")
+        requested_frame_data = self.frames_data.get(str(frame_num))
+        display_frame_data, raw_graphic, display_frame_num = self.resolve_display_frame(
+            frame_num,
+            requested_frame_data,
+        )
 
-        # Decide options for this frame first (new JSON structure or legacy)
-        options = self.get_options(frame_data)
+        options = self.get_options(display_frame_data)
         has_options = bool(options)
 
         # Layout bands (text / image / options)
@@ -127,24 +131,20 @@ class StoryPlayer:
             image_band_bottom - image_band_top,
         )
 
-        # Load graphics and fit into image_band
-        graphic_path = self.get_random_asset("assets/GFX/frame", f"frame_{frame_num}")
+        text = display_frame_data.get("text", "")
         graphic = None
         image_rect = pygame.Rect(0, 0, 0, 0)
-        if graphic_path:
-            try:
-                raw = pygame.image.load(graphic_path).convert_alpha()
-                graphic, image_rect = self.fit_graphic_into_band(raw, image_band)
-            except Exception as e:
-                print(f"[Error] Could not load graphic {graphic_path}: {e}")
+        if raw_graphic:
+            raw_graphic.set_alpha(255)
+            graphic, image_rect = self.fit_graphic_into_band(raw_graphic, image_band)
 
         # Load and play music
-        music_path = self.get_random_asset("assets/SFX/music/frame", f"frame_music_{frame_num}")
+        music_path = self.get_random_asset("assets/SFX/music/frame", f"frame_music_{display_frame_num}")
         if music_path:
             self.fade_music(music_path)
 
         # Load and play voiceover
-        voice_path = self.get_random_asset("assets/SFX/voice/frame", f"frame_voice_{frame_num}")
+        voice_path = self.get_random_asset("assets/SFX/voice/frame", f"frame_voice_{display_frame_num}")
         if voice_path:
             try:
                 voiceover = pygame.mixer.Sound(voice_path)
@@ -176,17 +176,50 @@ class StoryPlayer:
             # bubble the target back to the caller (Intro choices, Stone kill/free, etc.).
             if chosen.get("return_choice"):
                 # Stash rewards for external use (if any)
-                self.last_rewards = frame_data.get("return_rewards")
+                self.last_rewards = display_frame_data.get("return_rewards")
                 return next_target
 
             # Otherwise, treat target as another story name and branch into it.
             if next_target:
                 return self.play_story(next_target)
 
-        if frame_data.get("return_rewards"):
-            self.last_rewards = frame_data.get("return_rewards")
+        if display_frame_data.get("return_rewards"):
+            self.last_rewards = display_frame_data.get("return_rewards")
 
         return None
+
+    def resolve_display_frame(self, frame_num, requested_frame_data):
+        """
+        Return the frame data and image to display for this story step.
+
+        A frame is considered displayable only when it has a frames.json entry
+        and a loadable frame image. Missing entries or images reuse the most
+        recent displayable frame from the active story; if none exists yet, the
+        existing black-screen placeholder behavior is preserved.
+        """
+        if isinstance(requested_frame_data, dict):
+            graphic_path = self.get_random_asset("assets/GFX/frame", f"frame_{frame_num}")
+            if graphic_path:
+                try:
+                    raw = pygame.image.load(graphic_path).convert_alpha()
+                    self._last_displayed_frame = {
+                        "frame_num": frame_num,
+                        "frame_data": requested_frame_data,
+                        "raw_graphic": raw,
+                    }
+                    return requested_frame_data, raw, frame_num
+                except Exception as e:
+                    print(f"[Error] Could not load graphic {graphic_path}: {e}")
+            else:
+                print(f"[WARN] Missing story graphic for frame {frame_num}; using prior frame if available.")
+        else:
+            print(f"[WARN] Missing story frame data for frame {frame_num}; using prior frame if available.")
+
+        cached = self._last_displayed_frame
+        if cached:
+            return cached["frame_data"], cached["raw_graphic"], cached["frame_num"]
+
+        return {}, None, frame_num
 
     def fit_graphic_into_band(self, graphic, band_rect):
         """Scale and center a graphic inside the given vertical band."""
