@@ -1,5 +1,6 @@
 import os
 import math
+import re
 import pygame
 
 # We still keep the particle engine "internal" to the overworld system.
@@ -855,11 +856,11 @@ class GameWorldRenderer:
         current_bonus = None
         if win_flag and info:
             if building == "market":
-                current_bonus = info.get("market_bonus")
+                current_bonus = self._format_gold_amounts(info.get("market_bonus"))
             elif building == "bank":
-                current_bonus = info.get("bank_bonus")
+                current_bonus = self._format_gold_amounts(info.get("bank_bonus"))
             elif building == "tax":
-                current_bonus = info.get("tax_bonus")
+                current_bonus = self._format_gold_amounts(info.get("tax_bonus"))
             elif building == "train":
                 current_bonus = info.get("train_bonus")
 
@@ -873,11 +874,11 @@ class GameWorldRenderer:
         available_bonus_lines = []
         if info:
             if info.get("market_bonus"):
-                available_bonus_lines.append(f"Market: {info['market_bonus']}")
+                available_bonus_lines.append(f"Market: {self._format_gold_amounts(info['market_bonus'])}")
             if info.get("bank_bonus"):
-                available_bonus_lines.append(f"Bank: {info['bank_bonus']}")
+                available_bonus_lines.append(f"Bank: {self._format_gold_amounts(info['bank_bonus'])}")
             if info.get("tax_bonus"):
-                available_bonus_lines.append(f"Tax: {info['tax_bonus']}")
+                available_bonus_lines.append(f"Tax: {self._format_gold_amounts(info['tax_bonus'])}")
             if info.get("train_bonus"):
                 available_bonus_lines.append(f"Training: {info['train_bonus']}")
 
@@ -984,3 +985,24 @@ class GameWorldRenderer:
             for line in wrapped:
                 self._draw_text_outline(screen, f"- {line}", self.ui_font, x + 10, y)
                 y += 24
+
+    def _format_gold_amounts(self, text):
+        """Normalize gold amounts in overworld tooltips without changing source data."""
+        if not text:
+            return text
+
+        formatted = str(text)
+        formatted = re.sub(
+            r"(?P<num>[+-]?\d+)\s*(?:gold|coin|coins)\b",
+            r"\g<num>g",
+            formatted,
+            flags=re.IGNORECASE,
+        )
+        formatted = re.sub(r"(:\s*)(?P<num>\d+)(?!\s*g\b)", r"\1\g<num>g", formatted)
+        formatted = re.sub(
+            r"(\bfor\s+)(?P<num>\d+)(?!\s*g\b)",
+            r"\1\g<num>g",
+            formatted,
+            flags=re.IGNORECASE,
+        )
+        return formatted

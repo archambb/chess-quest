@@ -7,9 +7,10 @@ from game_world import GameWorld
 from debug import Debug_GiveAllPowerups, Debug_GiveAllSpells
 from engine import EnemyMoveEngine
 from bootloader import BootLoader
+from save_manager import SaveManager
 
 
-# This software is GPLv3 (or newest). This software uses copyrighted assets, so assets need to be generated to use this g.
+# This software is GPLv3 (or newest). This software uses copyrighted assets, so assets need to be generated to use this game.
 
 
 class ChessScreen:
@@ -17,7 +18,7 @@ class ChessScreen:
         debug_options = config.load_debug_options()
         self.debug = debug_options["debug"]
         self.debug_overlay_enabled = debug_options["debug_overlay_enabled"]
-        self.player_set = 0  # This is for the player's piece images. This will be set by the player in the final g.
+        self.player_set = 0  # This is for the player's piece images. This will be set by the player in the final game.
 
         pygame.init()
         pygame.mixer.init()
@@ -27,6 +28,7 @@ class ChessScreen:
 
         # Boot everything heavy (no variable renames; same self.* names)
         BootLoader(self).boot()
+        self.save_manager = SaveManager(self)
 
         # ─────────────────────────────────────────────
         # Start the game (unchanged)
@@ -45,14 +47,12 @@ class ChessScreen:
             self.setup_new_board()
         else:
             beginning_screen = BeginningScreens()
-            beginning_screen.intro_screen()
             game_type = beginning_screen.show_main_menu()
-
             if game_type == "New Game":
                 self.game_start_new_game()
             elif game_type == "Continue":
-                pass
-                # self.g_start_continue()
+                if self.load_game(resume=False):
+                    self._resume_loaded_game()
             elif game_type == "Options":
                 pass
                 # self.options_menu()
@@ -65,12 +65,30 @@ class ChessScreen:
     # Menu callbacks (unchanged)
     # ─────────────────────────────────────────────
     def save_game(self):
-        print("[MENU] Save requested")
-        self.send_feedback("Save not implemented yet.")
+        try:
+            self.save_manager.save_slot("slot_1")
+            if hasattr(self, "ui_state"):
+                self.ui_state.send_feedback("Game saved.")
+        except Exception as exc:
+            print(f"[SAVE] Save failed: {exc}")
+            if hasattr(self, "ui_state"):
+                self.ui_state.send_feedback("Save failed.")
 
-    def load_game(self):
-        print("[MENU] Load requested")
-        self.send_feedback("Load not implemented yet.")
+    def load_game(self, resume=True):
+        try:
+            if not hasattr(self, "world") or self.world is None:
+                self.world = GameWorld(self)
+            loaded = self.save_manager.load_slot("slot_1")
+            if loaded and resume:
+                self._resume_loaded_game()
+            if loaded and hasattr(self, "ui_state"):
+                self.ui_state.send_feedback("Game loaded.")
+            return loaded
+        except Exception as exc:
+            print(f"[SAVE] Load failed: {exc}")
+            if hasattr(self, "ui_state"):
+                self.ui_state.send_feedback("Load failed.")
+            return False
 
     def exit_to_main_screen(self):
         print("[MENU] Exit to Main Screen requested")
@@ -87,8 +105,8 @@ class ChessScreen:
     def setup_new_board(self):
         return self.board_manager.setup_new_board()
 
-    def reset_board(self):
-        return self.board_manager.reset_board()
+    def reset_board(self, preserve_gold=False):
+        return self.board_manager.reset_board(preserve_gold=preserve_gold)
 
     def apply_player_army_to_board(self, color):
         return self.board_manager.apply_player_army_to_board(color)
@@ -119,13 +137,26 @@ class ChessScreen:
     # ────────────────────────────────────────────────────────────────────
     def game_start_new_game(self):
         self.world = GameWorld(self)
+        self.current_game_mode = "combat"
         print("Built the game world.")
 
+        # There may be a bug here:
         if hasattr(self, "story_mode"):
             self.story_mode.play_intro_and_tutorial()
 
         self.setup_new_board()
         self.run()
+
+    def _resume_loaded_game(self):
+        mode = getattr(self, "current_game_mode", "combat")
+        if mode == "overworld":
+            self.main_game_screen = False
+            self.world.overworld_move()
+            self.current_game_mode = "combat"
+            self.setup_new_board()
+        else:
+            self.current_game_mode = "combat"
+            self.main_game_screen = True
 
     def is_it_players_turn(self) -> bool:
         return self.board.turn == (self.player_side == "white")

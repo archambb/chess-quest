@@ -11,6 +11,44 @@ import config
 DEFAULT_PLAYER_ARMY_FEN = "8/8/8/8/8/8/PPPPPPPP/RNBQKBNR"
 
 
+def _scale_army_piece(surface: pygame.Surface) -> pygame.Surface:
+    src_w, src_h = surface.get_width(), surface.get_height()
+    target_w = int(round(config.SQUARE_SIZE * float(config.PIECE_BASE_FRACTION)))
+    scale = target_w / float(src_w)
+    new_w = max(1, int(round(src_w * scale)))
+    new_h = max(1, int(round(src_h * scale)))
+
+    scaled = pygame.transform.smoothscale(surface, (new_w, new_h))
+    canvas = pygame.Surface((config.SQUARE_SIZE, new_h), pygame.SRCALPHA)
+    canvas.blit(scaled, ((config.SQUARE_SIZE - new_w) // 2, 0))
+    return canvas
+
+
+def _army_piece_images(game) -> dict:
+    """
+    Training/upkeep boards are white-only army views, independent of the
+    current encounter side. Keep their sprites separate from g.PIECE_IMAGES.
+    """
+    player_set = str(getattr(game, "player_set", 0))
+    cache_key = (player_set, config.SQUARE_SIZE, config.PIECE_BASE_FRACTION)
+    cached_key = getattr(game, "_army_piece_images_key", None)
+    cached_images = getattr(game, "_army_piece_images", None)
+    if cached_key == cache_key and cached_images:
+        return cached_images
+
+    images = {}
+    for piece in ("R", "N", "B", "Q", "K", "P"):
+        path = os.path.join(config.ASSET_PIECES_DIR, f"p_{player_set}_w_{piece}.png")
+        if not os.path.exists(path):
+            print(f"[TRAINING] Missing army piece sprite: {path}")
+            continue
+        images[piece] = _scale_army_piece(pygame.image.load(path).convert_alpha())
+
+    game._army_piece_images_key = cache_key
+    game._army_piece_images = images
+    return images
+
+
 # ─────────────────────────────────────────────────────────────
 # Shared board + piece rendering helper
 #   - Used by both ArmyUpkeepScreen and TrainingCenterScreen
@@ -27,9 +65,7 @@ def draw_army_board(
     """
     Draw an 8x8 semi-transparent board plus white-side army pieces.
 
-    - Uses g.PIECE_IMAGES with same keying as AssetManager.load_piece_images:
-        * If g.player_side == "white": player's pieces are uppercase keys.
-        * If g.player_side == "black": player's pieces are lowercase keys.
+    - Uses dedicated white player army sprites, not encounter PIECE_IMAGES.
     - If `kept` is provided:
         * king and kept[sq] pieces are full alpha.
         * others are translucent.
@@ -55,7 +91,8 @@ def draw_army_board(
     screen.blit(board_surf, (board_origin_x, board_origin_y))
 
     # Pieces
-    piece_images = getattr(game, "PIECE_IMAGES", {}) or {}
+    piece_images = _army_piece_images(game)
+    fallback_piece_images = getattr(game, "PIECE_IMAGES", {}) or {}
 
     for sq, piece in board.piece_map().items():
         if piece.color != chess.WHITE:
@@ -66,13 +103,8 @@ def draw_army_board(
         x = board_origin_x + file * square_size
         y = board_origin_y + (7 - rank) * square_size - 45
 
-        # Same keying logic as AssetManager.load_piece_images
-        if getattr(game, "player_side", "white") == "white":
-            key = piece.symbol().upper()
-        else:
-            key = piece.symbol().lower()
-
-        surf = piece_images.get(key)
+        key = piece.symbol().upper()
+        surf = piece_images.get(key) or fallback_piece_images.get(key)
         if surf is None:
             # Fallback: simple circle if asset missing
             radius = square_size // 3
@@ -120,12 +152,15 @@ def _board_from_player_fen_bottom_only(fen_str: str) -> chess.Board:
         fen_str = fen_str.split(" ")[0]
 
     parts = fen_str.split("/")
-    if len(parts) != 8:
+    if len(parts) == 2:
+        rank2, rank1 = parts
+    elif len(parts) == 8:
+        rank2 = parts[-2]
+        rank1 = parts[-1]
+    else:
+        print(f"[TRAINING] Invalid player_army_fen; using default. ({fen_str})")
         parts = DEFAULT_PLAYER_ARMY_FEN.split("/")
-
-    # Take the bottom 2 ranks
-    rank2 = parts[-2] if len(parts) >= 2 else "PPPPPPPP"
-    rank1 = parts[-1] if len(parts) >= 1 else "RNBQKBNR"
+        rank2, rank1 = parts[-2], parts[-1]
 
     layout_parts = ["8", "8", "8", "8", "8", "8", rank2, rank1]
     normalized_fen = "/".join(layout_parts)
@@ -207,7 +242,15 @@ def build_trained_board_from_player_fen(player_fen: str, stage_id: int) -> chess
     for sq in chess.SQUARES:
         desired = full_board.piece_at(sq)
         current = current_board.piece_at(sq)
-        if desired and current is None:
+        if desired is None:
+            continue
+        if current is None:
+            current_board.set_piece_at(sq, desired)
+        elif (
+            current.color == chess.WHITE
+            and current.piece_type == chess.PAWN
+            and desired.piece_type != chess.PAWN
+        ):
             current_board.set_piece_at(sq, desired)
 
     return current_board
@@ -216,6 +259,16 @@ def build_trained_board_from_player_fen(player_fen: str, stage_id: int) -> chess
 # ─────────────────────────────────────────────────────────────
 # Training Center Screen
 # ─────────────────────────────────────────────────────────────
+
+def _player_army_fen_from_board(board: chess.Board) -> str:
+    full_fen = board.board_fen()
+    parts = full_fen.split("/")
+    if len(parts) == 8:
+        return f"{parts[-2]}/{parts[-1]}"
+
+    print(f"[TRAINING] Unexpected trained board FEN: {full_fen}")
+    return "PPPPPPPP/RNBQKBNR"
+
 
 class TrainingCenterScreen:
     """
@@ -227,9 +280,10 @@ class TrainingCenterScreen:
       stage-specific training bonuses (0, 3, 9).
     """
 
-    def __init__(self, game, world):
+    def __init__(self, game, world, training_pos=None):
         self.g = game
         self.world = world
+        self.training_pos = training_pos if training_pos is not None else world.player_pos
         self.screen = self.g.screen
         self.clock = pygame.time.Clock()
         self.running = False
@@ -253,8 +307,9 @@ class TrainingCenterScreen:
         self.board_origin_x = (config.WIDTH - board_w) // 2
         self.board_origin_y = (config.HEIGHT - board_h) // 2
 
-        # Determine stage_id at current tile
-        cell = world.world_data.get(world.player_pos, {})
+        # Determine stage_id at the training center being used. Monthly upkeep
+        # applies when leaving a tile, before world.player_pos changes.
+        cell = world.world_data.get(self.training_pos, {})
         self.stage_id = cell.get("stage_id", 0)
 
         # Starting army FEN
@@ -292,17 +347,26 @@ class TrainingCenterScreen:
         self.screen.blit(base, (x, y))
 
     def _draw_player_gold(self):
-        label = self.font.render("Gold on Hand:", True, (255, 255, 255))
-        value = self.font.render(
-            str(int(self.g.player_gold)),
-            True,
-            (255, 255, 128),
-        )
-        right_x = config.WIDTH - 20
-        label_rect = label.get_rect(topright=(right_x, 20))
-        value_rect = value.get_rect(topright=(right_x, 50))
-        self.screen.blit(label, label_rect)
-        self.screen.blit(value, value_rect)
+        x, y = 60, 20
+        coin_size = 48
+        font = pygame.font.SysFont(None, 48)
+
+        if getattr(self.g, "gold_coins", None):
+            coin_img = self.g.gold_coins[0]
+        else:
+            coin_img = pygame.Surface((40, 40), pygame.SRCALPHA)
+            pygame.draw.circle(coin_img, (212, 175, 55), (20, 20), 18)
+            pygame.draw.circle(coin_img, (120, 90, 20), (20, 20), 18, 3)
+
+        coin_img = pygame.transform.smoothscale(coin_img, (coin_size, coin_size))
+        text = f"= {int(getattr(self.g, 'player_gold', 0))}"
+        text_surface = font.render(text, True, (255, 255, 255))
+        shadow_surface = font.render(text, True, (0, 0, 0))
+        text_y = y + (coin_size // 2 - text_surface.get_height() // 2)
+
+        self.screen.blit(shadow_surface, (x + coin_size + 12, text_y + 2))
+        self.screen.blit(coin_img, (x, y))
+        self.screen.blit(text_surface, (x + coin_size + 10, text_y))
 
     def _draw_done_button(self):
         pygame.draw.rect(self.screen, (40, 120, 160), self.done_rect, border_radius=10)
@@ -362,7 +426,7 @@ class TrainingCenterScreen:
 
     def _apply_and_exit(self):
         # Commit the trained army back to the game FEN
-        new_fen = self.board.board_fen()
+        new_fen = _player_army_fen_from_board(self.board)
         self.g.player_army_fen = new_fen
         print(f"[TRAINING] Training complete. New army FEN: {new_fen}")
         self.running = False

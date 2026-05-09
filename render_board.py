@@ -303,6 +303,9 @@ class BoardRenderer:
                 phase_seed=7.7,
             )
 
+        if getattr(self.g, "wall_of_flame_active", False) and hovered_square is not None:
+            self._draw_wall_of_flame_hover_row(board_surf, hovered_square, t_ms)
+
 
     def _draw_highlight(self, board_surf, square, color=(0, 200, 255, 120)):
         S = config.SQUARE_SIZE
@@ -316,6 +319,31 @@ class BoardRenderer:
     # ─────────────────────────────────────────────────────────────
     # Hints / special overlays
     # ─────────────────────────────────────────────────────────────
+    def _draw_wall_of_flame_hover_row(self, board_surf, hovered_square, t_ms):
+        rank = chess.square_rank(hovered_square)
+        palette = [
+            (255, 40, 0),
+            (255, 120, 0),
+            (255, 220, 0),
+        ]
+
+        for file in range(8):
+            square = chess.square(file, rank)
+            rgb = palette[((t_ms // 120) + file) % len(palette)]
+            self._flash_target_square(
+                board_surf,
+                square,
+                rgb=rgb,
+                t_ms=t_ms,
+                base_alpha=28,
+                pulse_alpha=125,
+                outline_w_min=3,
+                outline_w_max=8,
+                corner_len=20,
+                corner_w=4,
+                phase=file * 0.55,
+            )
+
     def _draw_astral_hint(self, board_surf):
         try:
             stage_id = self.g.world.world_data[self.g.world.player_pos]["stage_id"]

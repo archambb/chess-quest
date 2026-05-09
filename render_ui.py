@@ -369,6 +369,10 @@ class UIRenderMixin:
             self.render_enemy_dialog(self.enemy_dialog_text, enemy_rect)
 
         mouse_x, mouse_y = pygame.mouse.get_pos()
+        enemy_rect = pygame.Rect(ai_x, int(self.g.enemy_portrait_y_actual), ai_width, ai_height)
+        if enemy_rect.collidepoint(mouse_x, mouse_y):
+            self._draw_enemy_score_popup(enemy_rect)
+
         hero_rect = pygame.Rect(hero_x, int(self.g.hero_portrait_y_actual), hero_width, hero_height)
         if hero_rect.collidepoint(mouse_x, mouse_y):
             self.g.show_quest_status = bool(getattr(self.g, "main_game_screen", False))
@@ -381,7 +385,7 @@ class UIRenderMixin:
             scale = 1.0
 
             if self.gstate_display_type != "check":
-                if elapsed > self.gstate_display_max_time:
+                if elapsed > self.gstate_display_max_time and not getattr(self.g, "click_pause_active", False):
                     self.gstate_display_active = False
                     return
                 if elapsed < self.gstate_display_anim_duration:
@@ -528,6 +532,43 @@ class UIRenderMixin:
         y = max(0, min(y, config.HEIGHT - total_height))
 
         self.g.screen.blit(bubble_surf, (x, y))
+
+    def _draw_enemy_score_popup(self, portrait_rect):
+        if not getattr(self.g, "main_game_screen", False):
+            return
+
+        font = pygame.font.SysFont(None, 28)
+        wins = int(getattr(self.g, "player_wins", 0))
+        losses = int(getattr(self.g, "player_losses", 0))
+        stalemates = int(getattr(self.g, "player_stalemates", 0))
+        lines = [
+            "Match Record",
+            f"Wins: {wins}",
+            f"Losses: {losses}",
+            f"Stalemates: {stalemates}",
+        ]
+
+        padding = 12
+        line_h = font.get_height()
+        width = max(font.size(line)[0] for line in lines) + padding * 2
+        height = line_h * len(lines) + padding * 2
+        surf = pygame.Surface((width, height), pygame.SRCALPHA)
+        pygame.draw.rect(surf, (20, 20, 30, 230), surf.get_rect(), border_radius=8)
+        pygame.draw.rect(surf, (230, 220, 170), surf.get_rect(), 2, border_radius=8)
+
+        y = padding
+        for index, line in enumerate(lines):
+            color = (255, 235, 170) if index == 0 else (245, 245, 245)
+            text = font.render(line, True, color)
+            surf.blit(text, (padding, y))
+            y += line_h
+
+        x = portrait_rect.right + 8
+        y = portrait_rect.centery - height // 2
+        if x + width > config.WIDTH:
+            x = portrait_rect.left - width - 8
+        y = max(8, min(y, config.HEIGHT - height - 8))
+        self.g.screen.blit(surf, (x, y))
 
     def draw_feedback(self):
         SCROLL_SCALE = 0.4

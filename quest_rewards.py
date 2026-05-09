@@ -341,6 +341,7 @@ class QuestRewardHandler:
                     pass
 
         if new_positions:
+            self.g.board_manager.promote_back_rank_pawns_to_queens()
             self.g.audio.play_random("teleport")
             self.g.board_manager.collect_gold()
             print(f"[PawnJuggler] {len(new_positions)} pawns juggled!")
@@ -490,8 +491,58 @@ class QuestRewardHandler:
         return adjacent
 
     def trigger_firewall(self):
+        self.g.wall_of_flame_active = True
+        self.g.selected_square = None
+        self.g.selected_power = None
+        self.g.selected_spell = None
+        if hasattr(self.g, "ui_state"):
+            self.g.ui_state.send_feedback("Wall of Flame: choose a row to burn.")
+        print("[QuestReward] Wall of Flame armed; click a board row.")
+
+    def resolve_wall_of_flame_row(self, square):
+        if not getattr(self.g, "wall_of_flame_active", False):
+            return False
+
+        rank = chess.square_rank(square)
+        player_color = chess.WHITE if self.g.player_side == "white" else chess.BLACK
+        enemy_color = not player_color
+
+        row_squares = [chess.square(file, rank) for file in range(8)]
+        removed = []
+
+        for target_square in row_squares:
+            piece = self.g.board.piece_at(target_square)
+            if not piece:
+                continue
+            if piece.color != enemy_color:
+                continue
+            if piece.piece_type == chess.KING:
+                continue
+
+            self.g.quests.record_captured_piece(piece, count_for_quests=True)
+            self.g.board.remove_piece_at(target_square)
+            removed.append((target_square, piece))
+
+        self.g.wall_of_flame_active = False
+        self.g.selected_square = None
+
+        self.play_wall_of_flame_effects(row_squares, removed)
+
+        if removed:
+            names = ", ".join(chess.square_name(sq) for sq, _piece in removed)
+            print(f"[WallOfFlame] Removed {len(removed)} enemy piece(s): {names}")
+        else:
+            print(f"[WallOfFlame] No enemy pieces found on rank {rank + 1}.")
+
+        try:
+            self.g.board_manager.update_allowed_moves()
+        except Exception:
+            pass
+        return True
+
+    def play_wall_of_flame_effects(self, row_squares, removed):
         pass
-        # TODO: We will pass this like a spell
+        # TODO: Add Wall of Flame graphics and sound effects here.
 
     def freeze_all_enemy(self, turns):
         board = self.g.board
@@ -813,6 +864,9 @@ class QuestRewardHandler:
 
             if not move_found:
                 break  # no more moves possible
+
+        if moves_made:
+            self.g.board_manager.promote_back_rank_pawns_to_queens()
 
 
     def blast_away_center(self):

@@ -186,6 +186,19 @@ class InputController:
                     if g.gear.resolve_pending_click(sq):
                         return  # consume click fully
 
+        if getattr(g, "wall_of_flame_active", False):
+            if g.renderer.is_click_on_board(mouse_x, mouse_y):
+                col = (mouse_x - g.board_origin_x) // config.SQUARE_SIZE
+                row = 7 - (mouse_y - g.board_origin_y) // config.SQUARE_SIZE
+                if 0 <= col < 8 and 0 <= row < 8:
+                    sq = chess.square(col, row)
+                    handler = getattr(g, "quest_reward_handler", None)
+                    if handler and handler.resolve_wall_of_flame_row(sq):
+                        g.possible_moves = []
+                        return
+            g.ui_state.send_feedback("Choose a board row for Wall of Flame.")
+            return
+
         # Power icon click?
         if hovered_power:
             self._handle_power_icon_click(hovered_power)
@@ -281,6 +294,12 @@ class InputController:
     def _handle_board_click(self, col: int, row: int, hovered_square):
         g = self.g
         square = chess.square(col, row)
+
+        if getattr(g, "wall_of_flame_active", False):
+            handler = getattr(g, "quest_reward_handler", None)
+            if handler and handler.resolve_wall_of_flame_row(square):
+                g.possible_moves = []
+                return
 
         # ------------------------------------------------------------------
         # SPELL TARGETING: if a spell is armed, it gets first dibs on the click

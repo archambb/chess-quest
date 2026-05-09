@@ -105,7 +105,7 @@ class BeginningScreens:
                     for name, rect in button_boxes.items():
                         if rect.collidepoint(mx, my):
                             if name == "CONTINUE":
-                                self.game_start_continue()
+                                return_value = self.game_start_continue()
                             elif name == "NEW GAME":
                                 return_value = self.game_start_new_game()
                             elif name == "OPTIONS":
@@ -181,7 +181,7 @@ class BeginningScreens:
         ]
 
         difficulty_descriptions = [
-            "Soldiers cost 0 gold each to maintain. Very low enemy AI. A child may accidentally beat the g.",
+            "Soldiers cost 0 gold each to maintain. Very low enemy AI. A child may accidentally beat the game.",
             "Soldiers cost 1 gold each to maintain. Very low enemy AI.",
             "Soldiers cost 1 gold each to maintain. Enemy AI starts at a competent level and gradually becomes more difficult.",
             "Soldiers cost 1 gold each to maintain. Enemy AI starts fairly hard and gradually becomes more difficult.",
@@ -331,6 +331,7 @@ class BeginningScreens:
 
     def game_start_continue(self):
         print("Continue selected.")
+        return "Continue"
 
 
     def options_menu(self):

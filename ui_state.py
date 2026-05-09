@@ -24,6 +24,8 @@ class UIState:
         # ---- hard pause ----
         self.g.hard_pause_start_time = None
         self.g.hard_pause_callback = None
+        self.g.click_pause_active = False
+        self.g.click_pause_callback = None
         self.g.hard_pause_duration = getattr(self.g, "hard_pause_duration", int(0.9 * config.FPS * (1000 / config.FPS)))
         # Prefer ms duration if already used elsewhere; otherwise default ~900ms
         if isinstance(self.g.hard_pause_duration, float):
@@ -41,11 +43,46 @@ class UIState:
         self.g.hard_pause_start_time = pygame.time.get_ticks()
         self.g.hard_pause_callback = callback
 
+    def click_pause(self, callback=None):
+        self.g.click_pause_active = True
+        self.g.click_pause_callback = callback
+
     def tick_hard_pause(self, renderer) -> bool:
         """
         Returns True if we are still in hard-pause and consumed the frame
         (i.e., caller should 'continue' main loop).
         """
+        if getattr(self.g, "click_pause_active", False):
+            clicked = False
+            try:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                        raise SystemExit
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        clicked = True
+
+                renderer.draw()
+                pygame.display.flip()
+                self.g.hard_pause_clock.tick(config.FPS)
+            except SystemExit:
+                raise
+            except Exception:
+                pass
+
+            if not clicked:
+                return True
+
+            self.g.click_pause_active = False
+            cb = self.g.click_pause_callback
+            self.g.click_pause_callback = None
+            if cb:
+                try:
+                    cb()
+                except Exception as e:
+                    print(f"[WARN] click_pause callback failed: {e}")
+            return True
+
         if not self.g.hard_pause_start_time:
             return False
 
