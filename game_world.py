@@ -456,6 +456,10 @@ class GameWorld:
         self._update_bank_interest()
         self._update_tax_income()
 
+        overworld_quests = getattr(self.g, "overworld_quests", None)
+        if overworld_quests is not None:
+            overworld_quests.on_month_advanced()
+
     def _update_bank_interest(self):
         """Apply monthly interest to the bank balance, if a bank exists."""
         if not self.has_bank():
@@ -585,7 +589,9 @@ class GameWorld:
                     # S / D -> adjust horizontal spacing (X)
                     # Z / X -> adjust per-column drop
                     # E / R -> adjust per-row diagonal stagger
-                    if event.key == pygame.K_q:
+                    if event.key == pygame.K_q and not (event.mod & pygame.KMOD_CTRL):
+                        self.renderer.show_quest_journal(screen)
+                    elif event.key == pygame.K_q:
                         self.CELL_SPACING_Y += 1
                     elif event.key == pygame.K_a:
                         self.CELL_SPACING_Y -= 1
@@ -633,6 +639,9 @@ class GameWorld:
                             # Move knight to the new land
                             self.player_pos = (x, y)
                             self.record_visit(x, y)
+                            overworld_quests = getattr(game, "overworld_quests", None)
+                            if overworld_quests is not None:
+                                overworld_quests.on_location_changed()
                             print(f"[INFO] Moved to: {self.player_pos}")
 
                             cell = self.world_data[(x, y)]

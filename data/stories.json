@@ -443,5 +443,17 @@
   "Dreamland_Return": [
     258,
     259
+  ],
+  "Dying_King_Start": [
+    260
+  ],
+  "Dying_King_Zombie": [
+    261
+  ],
+  "Dying_King_Healed": [
+    262
+  ],
+  "Dying_King_Dead": [
+    263
   ]
 }

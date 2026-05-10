@@ -19,6 +19,8 @@ class QuestInfo:
 
         self.g = game
         self.quest_lookup = {}
+        self.injected_quest_lookup = {}
+        self.injected_quest_ids = []
         
         # Quest tracking
         self.quest_status = {} # id → runtime-state dict
@@ -92,6 +94,41 @@ class QuestInfo:
             self.all_quests = json.load(f)
         self.quest_lookup = {q["quest_number"]: q for q in self.all_quests}
 
+    def _quest_by_id(self, quest_id):
+        if quest_id in self.injected_quest_lookup:
+            return self.injected_quest_lookup[quest_id]
+        return self.quest_lookup.get(quest_id)
+
+    def apply_overworld_quest_cards_for_current_board(self):
+        manager = getattr(self.g, "overworld_quests", None)
+        if manager is None:
+            return
+
+        for quest in manager.get_board_quest_definitions():
+            qid = quest.get("quest_number")
+            if qid is None or qid in getattr(self, "active_quests", []):
+                continue
+
+            self.injected_quest_lookup[qid] = quest
+            self.injected_quest_ids.append(qid)
+            self.active_quests.append(qid)
+
+            if not hasattr(self, "quest_candidates"):
+                self.quest_candidates = []
+            if not hasattr(self, "quest_cards"):
+                self.quest_cards = []
+
+            self.quest_candidates.append(qid)
+            card = CreateQuestCard(qid, quest_data=quest)
+            w, h = card.get_size()
+            self.original_card_size = (w, h)
+            scaled = pygame.transform.smoothscale(
+                card,
+                (int(w * config.CARD_SCALE_EXPAND), int(h * config.CARD_SCALE_EXPAND)),
+            )
+            self.quest_cards.append(scaled)
+            self.card_hover_scales.append(config.CARD_SCALE)
+
     def setup_quest_selection(self):
         all_quest_ids = list(range(1, self.quest_max+1))
         selected_ids = random.sample(all_quest_ids, 5)
@@ -100,6 +137,8 @@ class QuestInfo:
         self.quest_candidates = selected_ids # TO DO: I'm not sure we're using this class variable anymore
         self.active_quests = []
         self.quest_cards = []
+        self.injected_quest_lookup = {}
+        self.injected_quest_ids = []
 
         for qid in selected_ids:
             print("Quest ID:", qid)
@@ -143,18 +182,16 @@ class QuestInfo:
 
             # Continue button
             if self.continue_rect is not None and self.continue_rect.collidepoint(pos):
+                self.apply_overworld_quest_cards_for_current_board()
                 self.setup_quest_status_tracking()
                 self.quest_selection_done = True
 
 
     def setup_quest_status_tracking(self):
-        # Map quests by quest_number for fast lookup
-        quest_lookup = {q["quest_number"]: q for q in self.all_quests}
-
         self.quest_status = {}
 
         for quest_num in self.active_quests:
-            quest = quest_lookup.get(quest_num)
+            quest = self._quest_by_id(quest_num)
             if not quest:
                 continue
 
@@ -906,8 +943,52 @@ class QuestInfo:
                         if self.quest_status["Turns"] == 20:
                             self.update_quest_stat(key, equal_to=20)
   
+        self.update_injected_board_objectives()
         self.check_for_quest_win()
     # We also need to check if the quest is indeed won
+
+    def update_injected_board_objectives(self):
+        if not self.injected_quest_lookup:
+            return
+
+        player_color = self.g.player_color()
+        for qid in list(self.active_quests):
+            quest = self.injected_quest_lookup.get(qid)
+            if not quest:
+                continue
+            objective = quest.get("objective", {})
+            if objective.get("type") != "hold_piece_on_squares":
+                continue
+            key = objective.get("stat_key")
+            if not key or key not in self.quest_status:
+                continue
+
+            squares = []
+            for square_name in objective.get("squares", []):
+                try:
+                    squares.append(chess.parse_square(square_name))
+                except Exception:
+                    pass
+
+            piece_type = None
+            piece_type_name = objective.get("piece_type")
+            if piece_type_name:
+                piece_type = getattr(chess, str(piece_type_name).upper(), None)
+
+            matched = False
+            for square in squares:
+                piece = self.g.board.piece_at(square)
+                if not piece or piece.color != player_color:
+                    continue
+                if piece_type is not None and piece.piece_type != piece_type:
+                    continue
+                matched = True
+                break
+
+            if matched:
+                self.update_quest_stat(key, amount=1)
+            else:
+                self.update_quest_stat(key, zero=True)
 
     def check_for_quest_win(self):
         ops = {
@@ -922,7 +1003,7 @@ class QuestInfo:
         print("\n[QUEST CHECK] Starting check_for_quest_win...")
         for quest_num in self.active_quests:
             print(f"\n→ Checking Quest #{quest_num}")
-            quest = next((q for q in self.all_quests if q["quest_number"] == quest_num), None)
+            quest = self._quest_by_id(quest_num)
 
             if not quest:
                 print(f"  ✖ Quest #{quest_num} not found in all_quests!")
@@ -990,6 +1071,18 @@ class QuestInfo:
             return
 
         display_index = self.active_quests.index(quest_num)
+
+        if quest_num in self.injected_quest_lookup:
+            self.g.quest_reward_handler.enqueue_reward_card(
+                quest_num,
+                reward or {},
+                display_index=display_index,
+            )
+            manager = getattr(self.g, "overworld_quests", None)
+            if manager is not None:
+                manager.complete_board_objective(quest_num)
+            self.active_quests.remove(quest_num)
+            return
         
         self.g.quest_reward_handler.give_reward(
             quest_num,

@@ -58,6 +58,7 @@ class SaveManager:
             },
             "campaign": self._campaign_dict(),
             "world": self._world_dict(),
+            "overworld_quests": self._overworld_quests_dict(),
             "combat": self._combat_dict(),
             "quests": self._quests_dict(),
             "inventory": self._inventory_dict(),
@@ -72,6 +73,7 @@ class SaveManager:
 
         self._apply_campaign(data.get("campaign", {}))
         self._apply_world(data.get("world", {}))
+        self._apply_overworld_quests(data.get("overworld_quests", {}))
 
         mode = data.get("mode", {}).get("primary", "combat")
         g.current_game_mode = mode
@@ -140,6 +142,12 @@ class SaveManager:
             "world_data": cells,
         }
 
+    def _overworld_quests_dict(self):
+        manager = getattr(self.g, "overworld_quests", None)
+        if manager is None:
+            return {}
+        return manager.to_save_dict()
+
     def _combat_dict(self):
         g = self.g
         board = getattr(g, "board", chess.Board())
@@ -171,6 +179,8 @@ class SaveManager:
             "active_quests": list(getattr(q, "active_quests", [])),
             "quest_candidates": list(getattr(q, "quest_candidates", [])) if hasattr(q, "quest_candidates") else [],
             "quest_status": dict(getattr(q, "quest_status", {})),
+            "injected_quest_lookup": dict(getattr(q, "injected_quest_lookup", {})),
+            "injected_quest_ids": list(getattr(q, "injected_quest_ids", [])),
             "runtime": {
                 "checked_files_seen": sorted(getattr(q, "checked_files_seen", set())),
                 "last_piece_moved_square": self._square_or_none(getattr(q, "last_piece_moved_square", None)),
@@ -312,6 +322,12 @@ class SaveManager:
                 out.setdefault("state", "new")
                 world.world_data[pos] = out
 
+    def _apply_overworld_quests(self, data):
+        manager = getattr(self.g, "overworld_quests", None)
+        if manager is None:
+            return
+        manager.apply_save_dict(data)
+
     def _apply_combat(self, data):
         g = self.g
         fen = data.get("board_fen")
@@ -343,6 +359,8 @@ class SaveManager:
         if not q.quest_candidates:
             q.quest_candidates = list(q.active_quests)
         q.quest_status = dict(data.get("quest_status", {}))
+        q.injected_quest_lookup = dict(data.get("injected_quest_lookup", {}))
+        q.injected_quest_ids = list(data.get("injected_quest_ids", []))
         runtime = data.get("runtime", {})
         q.checked_files_seen = set(runtime.get("checked_files_seen", []))
         q.last_piece_moved_square = self._square_from_any(runtime.get("last_piece_moved_square"))
@@ -545,7 +563,8 @@ class SaveManager:
             rebuilt_candidates = []
             for qid in candidates:
                 try:
-                    card = CreateQuestCard(qid)
+                    quest_data = getattr(q, "injected_quest_lookup", {}).get(qid)
+                    card = CreateQuestCard(qid, quest_data=quest_data)
                     width, height = card.get_size()
                     q.original_card_size = (width, height)
                     scaled = pygame.transform.smoothscale(

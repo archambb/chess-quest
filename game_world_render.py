@@ -269,6 +269,9 @@ class GameWorldRenderer:
         """
         self._choose_building_for_tile(screen, pos)
 
+    def show_quest_journal(self, screen: pygame.Surface):
+        self._show_quest_journal(screen)
+
     # ─────────────────────────────────────────────────────────────
     # Text helpers
     # ─────────────────────────────────────────────────────────────
@@ -694,6 +697,94 @@ class GameWorldRenderer:
         if current:
             lines.append(" ".join(current))
         return lines
+
+    def _show_quest_journal(self, screen: pygame.Surface):
+        self._ensure_fonts()
+        manager = getattr(self.world.g, "overworld_quests", None)
+        if manager is None:
+            return
+
+        tabs = ["Active", "Failed"]
+        tab_index = 0
+        clock = pygame.time.Clock()
+        running = True
+
+        while running:
+            summaries = manager.active_summaries() if tab_index == 0 else manager.failed_summaries()
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
+                elif event.type == pygame.KEYDOWN:
+                    if event.key in (pygame.K_ESCAPE, pygame.K_q):
+                        running = False
+                    elif event.key in (pygame.K_TAB, pygame.K_RIGHT, pygame.K_LEFT):
+                        tab_index = 1 - tab_index
+                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                    mx, my = pygame.mouse.get_pos()
+                    panel_w = min(900, screen.get_width() - 120)
+                    panel_h = min(620, screen.get_height() - 120)
+                    panel = pygame.Rect(
+                        (screen.get_width() - panel_w) // 2,
+                        (screen.get_height() - panel_h) // 2,
+                        panel_w,
+                        panel_h,
+                    )
+                    for i in range(len(tabs)):
+                        rect = pygame.Rect(0, 0, 130, 36)
+                        rect.x = panel.x + 24 + i * 145
+                        rect.y = panel.y + 70
+                        if rect.collidepoint(mx, my):
+                            tab_index = i
+
+            overlay = pygame.Surface(screen.get_size(), pygame.SRCALPHA)
+            overlay.fill((0, 0, 0, 175))
+            screen.blit(overlay, (0, 0))
+
+            panel_w = min(900, screen.get_width() - 120)
+            panel_h = min(620, screen.get_height() - 120)
+            panel = pygame.Rect(
+                (screen.get_width() - panel_w) // 2,
+                (screen.get_height() - panel_h) // 2,
+                panel_w,
+                panel_h,
+            )
+            pygame.draw.rect(screen, (32, 32, 38), panel)
+            pygame.draw.rect(screen, (220, 220, 220), panel, 2)
+
+            title = "Quest Journal"
+            self._draw_text_outline(screen, title, self.calendar_font, panel.x + 24, panel.y + 22)
+
+            for i, tab in enumerate(tabs):
+                rect = pygame.Rect(panel.x + 24 + i * 145, panel.y + 70, 130, 36)
+                color = (95, 85, 55) if i == tab_index else (55, 55, 62)
+                pygame.draw.rect(screen, color, rect)
+                pygame.draw.rect(screen, (210, 210, 210), rect, 1)
+                self._draw_text_outline(screen, tab, self.ui_font, rect.x + 22, rect.y + 8)
+
+            y = panel.y + 128
+            if not summaries:
+                empty = "No active overworld quests." if tab_index == 0 else "No failed overworld quests."
+                self._draw_text_outline(screen, empty, self.ui_font, panel.x + 34, y)
+            else:
+                for item in summaries:
+                    if y > panel.bottom - 80:
+                        break
+                    name = item.get("name", "Unknown Quest")
+                    step = item.get("step", "")
+                    location = item.get("location", "")
+                    self._draw_text_outline(screen, name, self.ui_font, panel.x + 34, y)
+                    y += 30
+                    detail = f"Step: {step or 'Unknown'}"
+                    if location:
+                        detail += f"    Location: {location}"
+                    for line in self._wrap_text(detail, self.ui_font, panel_w - 90):
+                        self._draw_text_outline(screen, line, self.ui_font, panel.x + 54, y, fg=(220, 220, 230))
+                        y += 26
+                    y += 16
+
+            pygame.display.flip()
+            clock.tick(60)
 
     # ─────────────────────────────────────────────────────────────
     # Volcano emitter + smoke frames

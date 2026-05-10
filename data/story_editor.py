@@ -3,6 +3,8 @@ import json
 import os
 import shutil
 
+sys.path.insert(0, os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")))
+
 from PySide6.QtWidgets import (
     QApplication, QMainWindow, QWidget,
     QHBoxLayout, QVBoxLayout, QListWidget, QSplitter,
@@ -10,13 +12,15 @@ from PySide6.QtWidgets import (
     QLabel, QMenu, QComboBox, QTextEdit,
     QTableWidget, QTableWidgetItem, QPushButton,
     QListWidgetItem, QDialog, QInputDialog, QMessageBox,
-    QListView, QAbstractItemView
+    QListView, QAbstractItemView, QLineEdit, QTabWidget, QCompleter
 )
 from PySide6.QtCore import Qt, QRectF, Signal, QPointF, QSize
 from PySide6.QtGui import (
     QBrush, QColor, QPen, QPainterPath, QPainter,
     QPixmap, QIcon
 )
+
+import config
 
 # ─────────────────────────────────────────────────────────────
 # Paths for images and SORA prompts
@@ -25,6 +29,7 @@ from PySide6.QtGui import (
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FRAMES_DIR = os.path.normpath(os.path.join(BASE_DIR, "..", "assets", "GFX", "frame"))
 PROMPTS_PATH = os.path.normpath(os.path.join(BASE_DIR, "..", "tools", "story_image_prompts.json"))
+OVERWORLD_QUESTS_PATH = os.path.normpath(os.path.join(BASE_DIR, "overworld_quests.json"))
 
 os.makedirs(FRAMES_DIR, exist_ok=True)
 
@@ -61,6 +66,8 @@ SPELLS = [
     "Summon Undead Elves",
     "Wind Storm"
 ]
+
+GEAR = list(config.GEAR_ORDER)
 
 # ─────────────────────────────────────────────────────────────
 # Data Model
@@ -114,6 +121,56 @@ class StoryProject:
             json.dump(self.stories, f, indent=2, ensure_ascii=False)
 
         print("[SAVE] frames.json and stories.json written.")
+
+
+def load_overworld_quests(path=OVERWORLD_QUESTS_PATH):
+    if not os.path.exists(path):
+        return {"quests": []}
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    if isinstance(data, list):
+        return {"quests": data}
+    data.setdefault("quests", [])
+    return data
+
+
+def collect_overworld_story_refs(data):
+    refs = {}
+    for quest in data.get("quests", []):
+        quest_id = quest.get("id", "<missing quest id>")
+        for field in (quest.get("start", {}),):
+            story = field.get("story")
+            if story:
+                refs.setdefault(story, []).append(f"{quest_id}: start")
+        for step in quest.get("steps", []):
+            story = step.get("story")
+            if story:
+                refs.setdefault(story, []).append(f"{quest_id}: step {step.get('id', '<missing>')}")
+        for outcome_id, outcome in quest.get("outcomes", {}).items():
+            story = outcome.get("story")
+            if story:
+                refs.setdefault(story, []).append(f"{quest_id}: outcome {outcome_id}")
+    return refs
+
+
+def collect_story_flags_from_overworld(data):
+    flags = set()
+
+    def visit(value):
+        if isinstance(value, dict):
+            for key, child in value.items():
+                if key in ("flag",):
+                    flags.add(str(child))
+                elif key in ("set_flags", "clear_flags") and isinstance(child, list):
+                    flags.update(str(flag) for flag in child)
+                else:
+                    visit(child)
+        elif isinstance(value, list):
+            for item in value:
+                visit(item)
+
+    visit(data)
+    return sorted(flag for flag in flags if flag)
 
 
 # ─────────────────────────────────────────────────────────────
@@ -748,6 +805,9 @@ class StoryGraphView(QGraphicsView):
         super().__init__()
 
         self.project = project
+        self.overworld_data = load_overworld_quests()
+        self.overworld_story_refs = collect_overworld_story_refs(self.overworld_data)
+        self.known_story_flags = collect_story_flags_from_overworld(self.overworld_data)
         self.scene = QGraphicsScene(self)
         self.setScene(self.scene)
 
@@ -1300,6 +1360,31 @@ class StoryEditorPanel(QWidget):
             item.setCheckState(Qt.Unchecked)
             self.spell_list.addItem(item)
 
+        # Rewards: overworld-aware story rewards
+        self.gold_reward = QLineEdit()
+        self.gold_reward.setPlaceholderText("Gold amount")
+
+        self.gear_list = QListWidget()
+        for gear_id in GEAR:
+            item = QListWidgetItem(gear_id)
+            item.setFlags(item.flags() | Qt.ItemIsUserCheckable)
+            item.setCheckState(Qt.Unchecked)
+            self.gear_list.addItem(item)
+
+        self.set_flags_edit = QLineEdit()
+        self.set_flags_edit.setPlaceholderText("Comma-separated story flags to set")
+        self.clear_flags_edit = QLineEdit()
+        self.clear_flags_edit.setPlaceholderText("Comma-separated story flags to clear")
+        flag_completer = QCompleter(self.known_story_flags)
+        flag_completer.setCaseSensitivity(Qt.CaseInsensitive)
+        self.set_flags_edit.setCompleter(flag_completer)
+        self.clear_flags_edit.setCompleter(flag_completer)
+
+        self.story_usage_label = QLabel("")
+        self.validation_text = QTextEdit()
+        self.validation_text.setReadOnly(True)
+        self.validation_text.setMaximumHeight(95)
+
         # Frame images bottom strip
         self.frame_images = FrameImageListWidget(FRAMES_DIR)
 
@@ -1341,6 +1426,17 @@ class StoryEditorPanel(QWidget):
         layout.addWidget(self.powerup_table)
         layout.addWidget(QLabel("Spells (checked = granted):"))
         layout.addWidget(self.spell_list)
+        layout.addWidget(QLabel("Gold reward:"))
+        layout.addWidget(self.gold_reward)
+        layout.addWidget(QLabel("Gear (checked = granted):"))
+        layout.addWidget(self.gear_list)
+        layout.addWidget(QLabel("Story Flags:"))
+        layout.addWidget(self.set_flags_edit)
+        layout.addWidget(self.clear_flags_edit)
+        layout.addWidget(QLabel("Overworld Quest Usage:"))
+        layout.addWidget(self.story_usage_label)
+        layout.addWidget(QLabel("Story / Overworld Validation:"))
+        layout.addWidget(self.validation_text)
 
         layout.addWidget(QLabel("Frame Images (drop .png files here):"))
         layout.addWidget(self.frame_images)
@@ -1406,6 +1502,14 @@ class StoryEditorPanel(QWidget):
         for i in range(self.spell_list.count()):
             item = self.spell_list.item(i)
             item.setCheckState(Qt.Unchecked)
+        self.gold_reward.clear()
+        for i in range(self.gear_list.count()):
+            item = self.gear_list.item(i)
+            item.setCheckState(Qt.Unchecked)
+        self.set_flags_edit.clear()
+        self.clear_flags_edit.clear()
+        self.story_usage_label.clear()
+        self.validation_text.clear()
 
     def _make_return_item(self, checked: bool = False) -> QTableWidgetItem:
         item = QTableWidgetItem()
@@ -1461,6 +1565,7 @@ class StoryEditorPanel(QWidget):
         rr = frame_data.get("return_rewards", {})
         rr_p = rr.get("powerups", {})
         rr_s = rr.get("spells", [])
+        rr_g = rr.get("gear", [])
 
         # powerups
         for row in range(self.powerup_table.rowCount()):
@@ -1480,8 +1585,53 @@ class StoryEditorPanel(QWidget):
             else:
                 item.setCheckState(Qt.Unchecked)
 
+        gold = rr.get("gold", "")
+        self.gold_reward.setText("" if gold in (None, 0, "") else str(gold))
+
+        for i in range(self.gear_list.count()):
+            item = self.gear_list.item(i)
+            item.setCheckState(Qt.Checked if item.text() in rr_g else Qt.Unchecked)
+
+        self.set_flags_edit.setText(", ".join(rr.get("set_flags", [])))
+        self.clear_flags_edit.setText(", ".join(rr.get("clear_flags", [])))
+        self._refresh_story_awareness()
+
         # Frame images at bottom
         self.frame_images.set_frame(self.current_frame_id)
+
+    def _refresh_story_awareness(self):
+        usage = self.overworld_story_refs.get(self.current_story, []) if self.current_story else []
+        if usage:
+            self.story_usage_label.setText("; ".join(usage))
+        else:
+            self.story_usage_label.setText("No overworld quest references this story.")
+
+        problems = []
+        known_stories = set(self.project.stories.keys())
+        known_frames = set(self.project.frames.keys())
+
+        for story_id, frame_ids in self.project.stories.items():
+            for frame_id in frame_ids:
+                if str(frame_id) not in known_frames:
+                    problems.append(f"{story_id}: missing frame {frame_id}")
+
+        for story_id, refs in self.overworld_story_refs.items():
+            if story_id not in known_stories:
+                problems.append(f"Overworld quest references missing story {story_id}: {', '.join(refs)}")
+
+        for frame_id, frame in self.project.frames.items():
+            rewards = frame.get("return_rewards", {})
+            for gear_id in rewards.get("gear", []):
+                if gear_id not in GEAR:
+                    problems.append(f"Frame {frame_id}: unknown gear reward {gear_id}")
+            for flag in rewards.get("set_flags", []) + rewards.get("clear_flags", []):
+                if self.known_story_flags and flag not in self.known_story_flags:
+                    problems.append(f"Frame {frame_id}: flag '{flag}' is not used by overworld_quests.json")
+
+        if problems:
+            self.validation_text.setPlainText("\n".join(problems[:12]))
+        else:
+            self.validation_text.setPlainText("OK: story frames, overworld story references, gear rewards, and flags look consistent.")
 
     def _add_option_row(self):
         row = self.options_table.rowCount()
@@ -1665,6 +1815,30 @@ class StoryEditorPanel(QWidget):
         if rs:
             rr["spells"] = rs
 
+        gold_text = self.gold_reward.text().strip()
+        if gold_text:
+            try:
+                gold = int(gold_text)
+                if gold:
+                    rr["gold"] = gold
+            except ValueError:
+                QMessageBox.warning(self, "Invalid Gold Reward", "Gold reward must be an integer.")
+
+        gear_rewards = []
+        for i in range(self.gear_list.count()):
+            item = self.gear_list.item(i)
+            if item.checkState() == Qt.Checked:
+                gear_rewards.append(item.text())
+        if gear_rewards:
+            rr["gear"] = gear_rewards
+
+        set_flags = [flag.strip() for flag in self.set_flags_edit.text().split(",") if flag.strip()]
+        clear_flags = [flag.strip() for flag in self.clear_flags_edit.text().split(",") if flag.strip()]
+        if set_flags:
+            rr["set_flags"] = set_flags
+        if clear_flags:
+            rr["clear_flags"] = clear_flags
+
         # apply to frame
         if rr:
             frame["return_rewards"] = rr
@@ -1683,6 +1857,7 @@ class StoryEditorPanel(QWidget):
         base_label = f"Story: {self.current_story}" if self.current_story else "Story: (none)"
         self.label_story.setText(base_label + "   [Frame saved]")
         print(f"[SAVE FRAME] Saved frame {frame_key} of story '{self.current_story}'")
+        self._refresh_story_awareness()
 
         self.frame_saved.emit(self.current_story)
 
@@ -1761,6 +1936,12 @@ class MainWindow(QMainWindow):
         layout.addWidget(splitter)
 
         self.setCentralWidget(container)
+
+        tools_menu = self.menuBar().addMenu("Overworld")
+        act_create_missing = tools_menu.addAction("Create Missing Overworld Stories")
+        act_create_missing.triggered.connect(self._create_missing_overworld_stories)
+        act_validate = tools_menu.addAction("Validate Story Links")
+        act_validate.triggered.connect(self._show_story_validation)
 
         # Initial highlight state based on existing images on disk
         self._update_story_image_highlights()
@@ -1864,6 +2045,49 @@ class MainWindow(QMainWindow):
         self.story_list.addItem(story_name)
         self.graph_view.add_story_node(story_name)
         self.graph_view.rebuild_edges_and_flags()
+
+    def _create_missing_overworld_stories(self):
+        refs = collect_overworld_story_refs(load_overworld_quests())
+        missing = [story_id for story_id in sorted(refs) if story_id not in self.project.stories]
+        if not missing:
+            QMessageBox.information(self, "Overworld Stories", "No missing overworld story IDs.")
+            return
+
+        msg = "Create these missing story nodes?\n\n" + "\n".join(missing)
+        reply = QMessageBox.question(self, "Create Missing Stories", msg, QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+        if reply != QMessageBox.Yes:
+            return
+
+        used_ids = set()
+        for key in self.project.frames.keys():
+            try:
+                used_ids.add(int(key))
+            except ValueError:
+                pass
+        for frames in self.project.stories.values():
+            for frame_id in frames:
+                try:
+                    used_ids.add(int(frame_id))
+                except (TypeError, ValueError):
+                    pass
+
+        next_id = max(used_ids) + 1 if used_ids else 1
+        for story_id in missing:
+            self.project.stories[story_id] = [next_id]
+            self.project.frames[str(next_id)] = {"text": f"{story_id}"}
+            next_id += 1
+            self.story_list.addItem(story_id)
+            self.graph_view.add_story_node(story_id)
+
+        self.project.save()
+        self.graph_view.rebuild_edges_and_flags()
+        self._update_story_image_highlights()
+        QMessageBox.information(self, "Overworld Stories", f"Created {len(missing)} story node(s).")
+
+    def _show_story_validation(self):
+        self.editor_panel._refresh_story_awareness()
+        text = self.editor_panel.validation_text.toPlainText()
+        QMessageBox.information(self, "Story Link Validation", text or "No validation messages.")
 
         # Update highlights (new story may or may not have images)
         self._update_story_image_highlights()

@@ -156,6 +156,7 @@ class BoardManager:
 
         g.completed_turns = 0 # Reset turn counter
 
+        g.quests.apply_overworld_quest_cards_for_current_board()
         g.quests.setup_quest_status_tracking()
 
         g.player_side = "black" if g.player_side == "white" else "white"

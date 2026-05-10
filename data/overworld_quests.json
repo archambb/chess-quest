@@ -1,0 +1,160 @@
+{
+  "quests": [
+    {
+      "id": "dying_king",
+      "name": "The Dying King",
+      "description": "The king is fading. Dark and living remedies both remain possible.",
+      "timer": {
+        "months": null
+      },
+      "start_location": {
+        "stage_id": 0
+      },
+      "locations": {
+        "undead": {
+          "stage_id": 7
+        },
+        "life_wizard": {
+          "stage_id": 11
+        }
+      },
+      "availability": {
+        "all": [
+          {
+            "type": "flag_absent",
+            "flag": "king_alive"
+          },
+          {
+            "type": "flag_absent",
+            "flag": "king_dead"
+          }
+        ]
+      },
+      "start": {
+        "story": "Dying_King_Start",
+        "set_flags": [
+          "king_is_dying"
+        ]
+      },
+      "first_step": "choose_cure",
+      "steps": [
+        {
+          "id": "choose_cure",
+          "name": "Choose a cure",
+          "type": "dialog",
+          "choices": [
+            {
+              "id": "raise_as_zombie",
+              "text": "Seek the grave lands.",
+              "requires": [
+                {
+                  "type": "current_stage",
+                  "stage_id": 7
+                }
+              ],
+              "set_flags": [
+                "king_raised_as_zombie"
+              ],
+              "outcome": "king_zombie"
+            },
+            {
+              "id": "seek_life_wizard",
+              "text": "Petition the Wizard of Life.",
+              "requires": [
+                {
+                  "type": "current_stage",
+                  "stage_id": 11
+                }
+              ],
+              "next_step": "convince_life_wizard"
+            }
+          ]
+        },
+        {
+          "id": "convince_life_wizard",
+          "name": "Convince the Wizard of Life",
+          "type": "dialog",
+          "choices": [
+            {
+              "id": "pay_10_gold",
+              "text": "Pay 10 gold for the healing rite.",
+              "requires": [
+                {
+                  "type": "current_stage",
+                  "stage_id": 11
+                },
+                {
+                  "type": "gold_at_least",
+                  "amount": 10
+                }
+              ],
+              "costs": {
+                "gold": 10
+              },
+              "outcome": "king_healed"
+            },
+            {
+              "id": "offer_crystal_staff",
+              "text": "Offer the Crystal Staff as proof of good faith.",
+              "requires": [
+                {
+                  "type": "current_stage",
+                  "stage_id": 11
+                },
+                {
+                  "type": "gear_owned",
+                  "id": "crystal_staff"
+                }
+              ],
+              "outcome": "king_healed"
+            },
+            {
+              "id": "fail_to_convince",
+              "text": "Leave without aid.",
+              "requires": [
+                {
+                  "type": "current_stage",
+                  "stage_id": 11
+                }
+              ],
+              "outcome": "king_dies"
+            }
+          ]
+        }
+      ],
+      "outcomes": {
+        "king_zombie": {
+          "story": "Dying_King_Zombie",
+          "set_flags": [
+            "king_raised_as_zombie"
+          ],
+          "clear_flags": [
+            "king_is_dying"
+          ],
+          "complete": true
+        },
+        "king_healed": {
+          "story": "Dying_King_Healed",
+          "set_flags": [
+            "king_alive"
+          ],
+          "clear_flags": [
+            "king_dead",
+            "king_is_dying"
+          ],
+          "complete": true
+        },
+        "king_dies": {
+          "story": "Dying_King_Dead",
+          "set_flags": [
+            "king_dead"
+          ],
+          "clear_flags": [
+            "king_is_dying"
+          ],
+          "fail": true
+        }
+      }
+    }
+  ]
+}

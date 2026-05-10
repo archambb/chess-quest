@@ -14,6 +14,7 @@ from cast_spells import CastSpells
 from spell_targeting import SpellTargeting
 from quest_info import QuestInfo
 from quest_rewards import QuestRewardHandler
+from overworld_quest_manager import OverworldQuestManager
 from render import RenderPipeline
 from audio import AudioManager
 from effects import EffectsManager
@@ -301,6 +302,7 @@ class BootLoader:
         # Build Quest Information
         g.quests = QuestInfo(g)
         g.quest_reward_handler = QuestRewardHandler(g)
+        g.overworld_quests = OverworldQuestManager(g)
 
         # Background image, portraits
         g.background_image = None

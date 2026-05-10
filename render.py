@@ -895,14 +895,13 @@ class RenderPipeline(BoardRenderer, UIRenderMixin):
         scaled_w = int(base_w * current_scale)
         scaled_h = int(base_h * current_scale)
 
-        # Total width of all cards + gaps
-        total_width = 3 * scaled_w + 2 * config.CARD_MARGIN
-        start_x = (screen_w - total_width) // 2
-
         # Vertical positioning
         y_start = screen_h - peek_height
         y_end = screen_h // 2 - scaled_h // 2
         current_y = int(y_start + (y_end - y_start) * self.current_quest_hover_offset)
+
+        active_count = len(self.g.quests.active_quests)
+        positions = self._quest_card_hand_positions(active_count, scaled_w, scaled_h, current_y)
 
         for i, qid in enumerate(self.g.quests.active_quests):
             if qid not in self.g.quests.quest_candidates:
@@ -912,8 +911,33 @@ class RenderPipeline(BoardRenderer, UIRenderMixin):
 
             # Scale card from full-res
             card_scaled = pygame.transform.smoothscale(card, (scaled_w, scaled_h))
-            x = start_x + i * (scaled_w + config.CARD_MARGIN)
-            self.g.screen.blit(card_scaled, (x, current_y))
+            x, y = positions[i]
+            self.g.screen.blit(card_scaled, (x, y))
+
+    def _quest_card_hand_positions(self, count, card_w, card_h, y):
+        if count <= 0:
+            return []
+        screen_w = self.g.screen.get_width()
+        max_width = int(screen_w * 0.92)
+        if count == 1:
+            return [((screen_w - card_w) // 2, y)]
+
+        natural_step = card_w + config.CARD_MARGIN
+        total_width = card_w + natural_step * (count - 1)
+        if total_width <= max_width:
+            step = natural_step
+        else:
+            step = max(36, (max_width - card_w) // max(1, count - 1))
+            total_width = card_w + step * (count - 1)
+
+        start_x = (screen_w - total_width) // 2
+        center = (count - 1) / 2
+        positions = []
+        for i in range(count):
+            offset = abs(i - center)
+            arc_y = int(y + offset * 8)
+            positions.append((int(start_x + i * step), arc_y))
+        return positions
 
     def update_reward_presentation_queue(self):
         """
@@ -1191,17 +1215,16 @@ class RenderPipeline(BoardRenderer, UIRenderMixin):
         screen_h = self.g.screen.get_height()
         card_rect = card_scaled.get_rect(center=(screen_w // 2, screen_h // 2))
 
-        # Compute starting position (same logic as draw_current_quest_cards)
-        total_width = 3 * scaled_w + 2 * config.CARD_MARGIN
-        start_x = (screen_w - total_width) // 2
         if display_index is None:
             if qid not in self.g.quests.active_quests:
                 return False
             display_index = self.g.quests.active_quests.index(qid)
-        display_index = max(0, min(2, int(display_index)))
-        x = start_x + display_index * (scaled_w + config.CARD_MARGIN)
+        active_count = max(1, len(self.g.quests.active_quests))
+        display_index = max(0, min(active_count - 1, int(display_index)))
 
         y = screen_h - 60  # initial peek zone
+        positions = self._quest_card_hand_positions(active_count, scaled_w, scaled_h, y)
+        x, y = positions[display_index]
 
         self.quest_win_animations.append({
             "qid": qid,

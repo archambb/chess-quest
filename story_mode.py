@@ -166,6 +166,29 @@ class StoryMode:
                 self.g.spellbook.append(spell)
             print(f"[STORY REWARD] Learned spell: {spell}")
 
+        gold = int(rewards.get("gold", 0) or 0)
+        if gold:
+            self.g.player_gold += gold
+            print(f"[STORY REWARD] +{gold} gold (total {self.g.player_gold})")
+
+        gear_rewards = rewards.get("gear", [])
+        gear = getattr(self.g, "gear", None)
+        for gear_id in gear_rewards:
+            if gear is not None:
+                gear.grant(gear_id, 1)
+            if gear_id not in getattr(self.g, "gear_owned", []):
+                self.g.gear_owned.append(gear_id)
+            print(f"[STORY REWARD] Gear acquired: {gear_id}")
+
+        overworld = getattr(self.g, "overworld_quests", None)
+        if overworld is not None:
+            for flag in rewards.get("set_flags", []):
+                overworld.story_flags.add(flag)
+                print(f"[STORY REWARD] Story flag set: {flag}")
+            for flag in rewards.get("clear_flags", []):
+                overworld.story_flags.discard(flag)
+                print(f"[STORY REWARD] Story flag cleared: {flag}")
+
     # ──────────────────────────────────────────────────────────────
     # Intro / tutorial sequence
     # ──────────────────────────────────────────────────────────────
@@ -212,7 +235,7 @@ class StoryMode:
 
         world = self.g.world
         node = world.world_data.get(world.player_pos, {})
-        losses = node.get("losses", 0)
+        losses = node.get("lose", node.get("losses", 0))
 
         if losses > 0:
             story_id = f"{prefix}_Return"
